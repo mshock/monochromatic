@@ -35,13 +35,19 @@ hr {
     box-shadow: 0px 1px 1px #000;
 }
 
-header, footer {
+header {
     background-color: #111;
     padding: 10px;
 }
 
 footer {
+    font-size:60%;
     text-align: center;
+    margin: auto;
+    width: 70%;
+    max-width: 700px;
+    border-top:1px solid #333;
+    padding: 10px;
 }
 
 article {
