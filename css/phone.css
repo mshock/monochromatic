@@ -1,0 +1,32 @@
+/* vim: set ai sw=4 ts=4 fdm=marker: */
+
+/*
+ * Optimization for mobile phones
+ *
+ * Every rule here will override rules of the main CSS
+ *
+ */
+
+/* Overall style {{{ */
+body {
+    font-size: 70%;
+}
+
+#wrapper {
+    width:95%;
+    margin: auto;
+}
+
+section h2 {
+    display: block;
+}
+/* }}} */
+
+/* Links {{{ */
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}

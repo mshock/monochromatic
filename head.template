@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <a href='/'><h1>Monochromatic</h1></a> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes appart</h2>
+    </header>

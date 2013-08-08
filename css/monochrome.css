@@ -1,0 +1,168 @@
+/* vim: set ai sw=4 ts=4 fdm=marker: */
+
+/*
+ * COLORS DEFINITION:
+ *      - background -- #222
+ *      - def. text  -- #888
+ *      - link text  -- #eea
+ *      - link visit -- #ddd
+ *      - main title -- #fff
+ *      - sub titles -- #666
+ *
+ */
+
+/* Main blocks style {{{ */
+body {
+    background-color: #222;
+    color: #888;
+    padding: 0;
+    margin: 0;
+}
+
+#wrapper {
+    width:800px;
+    padding: 10px;
+    margin-left: 128px;
+    margin-top: 28px;
+}
+
+hr {
+    width: 40%;
+    margin-left: 0;
+    margin-top: 32px;
+    border: 1px solid #262626;
+    box-shadow: 0px 1px 1px #000;
+}
+
+header, footer {
+    background-color: #111;
+    padding: 10px;
+}
+
+footer {
+    text-align: center;
+}
+
+article {
+    margin: none;
+    padding-left: 20px;
+}
+/* }}} */
+
+/* Titles and headers {{{ */
+h1, h3 {
+    color: #fff;
+    text-shadow: 2px 2px 2px #000;
+    display: inline;
+}
+
+h2 {
+    color: #666;
+    display: inline;
+    font-weight: normal;
+}
+
+header h1 {
+    font-size: 2.0em;
+    font-style: italic;
+}
+
+header h2 {
+    font-size: 1.2em;
+}
+
+section h1 {
+    font-size: 1.5em;
+}
+
+section h2 {
+    font-size: 1.0em;
+}
+
+section h3 {
+    display: block;
+    font-size:1.5em;
+}
+
+/* }}} */
+
+/* Pretty links {{{ */
+a {
+    color: #eea;
+    text-shadow: 2px 2px 2px #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: line-through;
+    text-shadow: 0px 0px 0px #222;
+}
+/* }}} */
+
+/* Tables {{{ */
+table {
+    border-collapse: collapse;
+    border: 2px solid #333;
+}
+
+table td, table th {
+    padding:4px;
+}
+
+td {
+    border: 1px solid #333;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+}
+/* }}} */
+
+/* Coding style (<code>) {{{ */
+code {
+    font-family: monospace;
+}
+
+pre {
+    color: #eec;
+    background-color: #111;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 4px;
+}
+
+pre hr {
+    width: 100%;
+    margin: 0;
+    margin-top: 4px;
+    border: 1px dashed #222;
+    box-shadow: none;
+}
+/* }}} */
+
+/* Text Formatting {{{ */
+strong {
+    color: #fff;
+}
+
+em {
+    font-style: italic;
+}
+
+blockquote, q {
+    color: #666;
+    font-style: italic;
+}
+
+blockquote {
+    border-left: 8px solid #333;
+
+    padding-left: 8px;
+}
+/* }}} */
