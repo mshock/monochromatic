@@ -69,22 +69,34 @@
 <pre>
 index.html
 <hr/>
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;p&gt;Hello, World!&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+<span class="Comment">&lt;!DOCTYPE html&gt;</span>
+<span class="Function">&lt;</span><span class="Statement">html</span><span class="Function">&gt;</span>
+    <span class="Function">&lt;</span><span class="Statement">head</span><span class="Function">&gt;</span>
+<span class="PreProc">        </span><span class="Function">&lt;</span><span class="Statement">title</span><span class="Function">&gt;</span><span class="Normal">monochromatic</span><span class="Identifier">&lt;/</span><span class="Statement">title</span><span class="Identifier">&gt;</span>
+<span class="PreProc">    </span><span class="Identifier">&lt;/</span><span class="Statement">head</span><span class="Identifier">&gt;</span>
+    <span class="Function">&lt;</span><span class="Statement">body</span><span class="Function">&gt;</span>
+        <span class="Function">&lt;</span><span class="Statement">p</span><span class="Function"> </span><span class="Type">id</span><span class="Function">=</span><span class="String">'shblah'</span><span class="Function">&gt;</span>
+            Hello, World!
+        <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">body</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">html</span><span class="Identifier">&gt;</span>
 </pre>
           </code>
           <code>
 <pre>
 main.c
 <hr/>
-#include &lt;stdio.h&gt;
-int
-main (int argc, char **argv)
+<span class="PreProc">#include </span><span class="String">&lt;stdio.h&gt;</span>
+
+<span class="PreProc">#define TEXT </span><span class="String">&quot;Hello, World!&quot;</span>
+<span class="PreProc">#define </span><span class="Constant">EXIT_SUCCESS</span><span class="PreProc"> </span><span class="Constant">0</span>
+
+<span class="Type">int</span>
+main (<span class="Type">int</span> argc, <span class="Type">char</span> **argv)
 {
-    puts("Hello, World!");
+    printf(<span class="String">&quot;</span><span class="Special">%s</span><span class="Special">\n</span><span class="String">&quot;</span>, TEXT);
+
+    <span class="Statement">return</span> <span class="Constant">EXIT_SUCCESS</span>;
 }
 </pre>
           </code>
@@ -92,7 +104,6 @@ main (int argc, char **argv)
         </article>
       </section>
     </div>
-    <div id='blank'></div>
     <div id='blank'></div>
     <footer>
       &copy; 2013 WTFPL &mdash; <a href='http://www.wtfpl.net/about/'>Do What the Fuck You Want to Public License</a>

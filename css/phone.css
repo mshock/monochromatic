@@ -13,12 +13,11 @@ body {
 }
 
 #wrapper {
-    width:95%;
     margin: auto;
 }
 
 section h2 {
-    display: block;
+    display: inline;
 }
 /* }}} */
 
