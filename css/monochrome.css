@@ -11,12 +11,29 @@
  *
  */
 
+/* Font definitions {{{ */
+@font-face {
+    font-family: archivo;
+    src: url(/css/fonts/archivo.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Not Courrier Sans';
+    src: url(/css/fonts/not-courrier-sans.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+/* }}} */
+
 /* Main blocks style {{{ */
 body {
     background-color: #222;
     color: #888;
     padding: 0;
     margin: 0;
+    font-family: archivo, sans-serif;
 }
 
 #wrapper {
@@ -139,6 +156,7 @@ th {
 /* Coding style (<code>) {{{ */
 code {
     font-family: monospace;
+    font-size: 60%;
 }
 
 pre {
@@ -173,6 +191,7 @@ pre hr {
 /* Text Formatting {{{ */
 strong {
     color: #fff;
+    font-weight: normal;
 }
 
 em {
