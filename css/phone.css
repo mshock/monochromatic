@@ -29,3 +29,16 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+/* }}} */
+
+/* Images {{{ */
+
+img {
+    width:60%;
+}
+
+/* Comment images - use with <span> or <div> */
+.caption {
+    width:30%;
+}
+/* }}} */
