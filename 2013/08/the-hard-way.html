@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <a href='/'><h1>Monochromatic</h1></a> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes appart</h2>
+    </header>
+    <div id='wrapper'>
+      <section>
+        <h1>
+          <a href='#'>The Hard way</a>
+        </h1>
+        <h2>
+          &mdash; 9 August, 2013
+        </h2>
+        <article>
+
+          <p>
+            As you will notice, I am fond of learning things "The Hard Way".<br />
+            I'm going to tell you why, but before that, here is my background, so that you'll understand
+            how I came to that opinion:<br />
+            <ul>
+              <li><strong>2011, september</strong> &mdash; First attempt at linux, dual-booting Ubuntu 10.10</li>
+              <li><strong>2012, february</strong> &mdash; Upgrading to Archlinux, single booting</li>
+              <li><strong>2012, june</strong> &mdash; Obtaining an old computer, and setting it up as a home server</li>
+              <li><strong>2012, december</strong> &mdash; Switching to Archlinux at work, single booting</li>
+              <li><strong>2013, july</strong> &mdash; Installing CRUX on my notebook</li>
+            </ul>
+            I have alway tried to put myself in difficulties, to challenge myself and learn new things.<br />
+            During this period, I have searched plenty of tools matching the Unix Philosophy, by <cite>Ken Thompson</cite>:
+            <blockquote>
+              <p>
+                Write programs that do one thing and do it well. Write programs to work together.
+                Write programs to handle text streams, because that is a universal interface.
+              </p>
+            </blockquote>
+            This is the reason why I prefer using CLI based tools rather than GUI based ones. I've come to the point where
+            grabbing the mouse to click on a button is a <em>real</em> pain.<br />
+            But let's go back to <strong>the hard way</strong>.
+          </p>
+
+          <h3 id="what-is-it">What is that ? Can I eat it ?</h3>
+          <p>
+            Learning stuff the hard way is (talking about computers), starting using tools or learning stuff,
+            without a formation, any piece of help, or any hack to make it more simple to use/learn.<br />
+            Being put in front of a difficulty will force you to search how something works, how do this or that, and you will
+            know what not to do after you did it.<br />
+            Basically, by learning tstuff his way <strong>you will learn from your mistakes, and understand
+            what you are doing</strong>.  <br />
+            To illustrate this, I will use my own experience with a hard to master tool: Vim.<br />
+            <br />
+            Vim, is an extremly powerful modal text editor. Modal means here that there are multiple modes, each one
+            made to do different tasks. We see here that it is totally different from the standard text editor everyone knows
+            (I'm looking at you notepad...).<br />
+            Vim is hard to approach, and difficult to master, because of your good ol' reflexes. So it is an excellent tool to
+            learn how to learn the hard way!<br />
+            Here are the basic steps:<br />
+            <ol>
+              <li>Use it as your <em>main editor</em>, stop using every other alternatives</li>
+              <li>Use it <em>before</em> starting to configure it</li>
+              <li>Do not use any plugin <em>at all</em></li>
+              <li>Don't give up !</li>
+            </ol>
+            Using Vim this way (at least, at the beginning), will help you mastering the tool faster than learning progressively.
+            Of course, you could still use the mouse, until you are ready to stop using it, use the arrow keys to move within the
+            buffer, delete by selecting your text in visual mode, and pressing &lt;SUPPR&gt;.<br />
+            But, WHEN will you be ready ? WHEN will you force yourself not to do that ? WHY not doing this now?<br />
+            <br />
+            I forced myself to use it this way, and after a week or two, I was putting ":wqjk{wB" in every other text editor,
+            because I were finally comfortable with, and used to Vim.
+          </p>
+
+          <h3 id='drawbacks'>Drawbacks</h3>
+          <p>
+            I see you raising the <q>I can't have a productivity loss at my work</q> card, and you are right.
+            This method is not shipped with only advantages, and sometimes, you should avoid it. If you think that you can't
+            handle a productivity loss, postpone the learning for when you will have the time. But don't do that to much, because
+            you have to be aware that <strong>you will have a productivity loss</strong>. So I will ask a single question:<br />
+            <q>Before being ultra-productive, would you rather be totally unproductive for one week, or almost productive
+            for one month ?</q><br />
+            Actually, I have never suffered from that 'bad productivity' the hard way implies. And believe me, it's worth the pain!
+          </p>
+
+          <p>
+            This is all about choice. Everybody has his learning curve, find yours!<br />
+            If you're not convinced about this. Please try it. You will, at least, have your own opinion, which is great.<br />
+            After that, you will be more pleased to tell if the tool is made for you or not, and if you want to make your life 
+            easier. (Show me one Vim user that has choosen to enable the mouse because it enhance his productivity... I dare you
+            <span class='smiley'>;)</span> ).
+          </p>
+
+          <h3 id='homeworks'>Homeworks</h3>
+          <p>
+            There are a lot of place in the UNIX domain where the hard way can be applied, here are a few examples:
+            <ul>
+              <li>Write shell script that uses multiple tools to reproduce the behavior of another tool (eg,
+                <a href:'http://tools.suckless.org/ii'>irc it</a>)</li>
+              <li>Switch from a desktop environnement to a standalone window manager, like <a href='http://www.6809.org.uk/evilwm/'>evilwm</a></li>
+              <li>When you master a tool, search for another one, less featured</li>
+              <li>Put yourself in difficulties. Don't be affraid to break things</li>
+              <li><strong>Break things!</strong></li>
+              <li>...</li>
+            </ul>
+            I hope I conviced you, at least, to try it. It might be hard at first, But that's the point.
+          </p>
+
+        </article>
+      </section>
+    </div>
+    <!-- footer {{{ -->
+    <footer>
+      &copy; 2013 WTFPL &mdash; <a href='http://www.wtfpl.net/about/'>Do What the Fuck You Want to Public License</a>
+      &mdash; contact : &lt;<a href='mailto:willy@mailoo.org'>willy at mailoo dot org</a>&gt;
+    </footer>
+    <!-- }}} -->
+  </body>
+</html>
+<!-- vim: set sw=2 et ai fdm=marker: -->
