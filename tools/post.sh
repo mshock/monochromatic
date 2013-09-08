@@ -2,10 +2,17 @@
 
 [[ -z "$1" ]] && exit 1
 
-POST="$(date +%Y)/$(date +%m)/${1// /-}.html"
+folder=$(date +%Y/%m)
+file=${1// /-}.html
+
+[[ ! -d ${folder} ]] && mkdir ${folder}
+
+POST="${folder}/${file}"
 
 cat tools/{head,body,foot}.template >>  $POST
 
-echo "$POST created"
+[[ -f ${folder}/${file} ]] && echo "$POST created" && exit 0
+
+echo "cannot create ${POST}"
 
 
