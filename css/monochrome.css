@@ -165,13 +165,15 @@ th {
 
 /* Coding style (<code>) {{{ */
 code {
+    color: #eec;
     font-family: monospace;
     font-size: 60%;
 }
 
 pre {
-    color: #eec;
+    color: inherit;
     background-color: #111;
+    font:inherit;
     padding: 10px;
     border-radius: 10px;
     margin-top: 4px;
