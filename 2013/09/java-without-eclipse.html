@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href='/'>Monochromatic</a></h1> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes appart</h2>
+    </header>
+    <div id='wrapper'>
+      <section>
+        <h1>
+          <a href='#'>Java without Eclipse</a>
+        </h1>
+        <h2>
+          &mdash; 08 September, 2013
+        </h2>
+        <article>
+          <p>
+            This is a fact, when someone starts developping with java, he (or she) is
+            given an IDE: Eclipse.<br />
+            <br />
+            When one codes in C, using plain gcc + Makefile and a good text editor is adviced.
+            This is the same for C++, bash, ruby, haskell, perl, python, bla bla bla...<br />
+            Why would java escape the rules ?!<br />
+            <ul>
+              <li>It is hard to play with classpath.</li>
+              <li>It is boring to compile java by hand</li>
+              <li>Eclipse is SOOOOOOO good at it !</li>
+              <li>Eclipse has plenty of plugin to manage a project</li>
+              <li>bla bla bla...</li>
+            </ul>
+            Of course, there are advantages ! And if these are good enough for you. Go with eclipse
+            And have some fun !<br />
+            <br />
+          </p>
+          <h3>Throwing Eclipse away</h3>
+          <p>
+            I just finished a java project for my CS studies, on a bare notebook (without X.org).<br />
+            And I had NO PROBLEM with not using Eclipse at all !<br />
+            Now let me introduce my setup. Of course, it's not as easy as double-clicking on the
+            eclipse-setup.exe. but it follows my ideas, and I'm happy with it !<br />
+            <br />
+            It needs the following:
+            <ul>
+              <li>Your editor of choice</li>
+              <li>JRE (O RLY?)</li>
+              <li>JDK (U DON'T SAY)</li>
+              <li>Know yout shit !</li>
+            </ul>
+            You just have to know how to compile/run a java project.
+            Here is what I learnt:<br />
+            <strong>javac</strong> is used for compiling,
+            <strong>java</strong> to run an application.<br />
+            javac takes a *.java file, and compile it into a *.class file,
+            that you will run with java. Who needs Eclipse to do that ?!<br />
+            "<em>But real-life project are -a lot- more complicated than that !
+            You have to put files in packages, classes in another directory, etc...</em>"<br />
+          And you just activated my trap card...<br />
+          For sure, real project are a lot more complicated ! For example:<br />
+          <code>
+<pre>
+~/src/java/eg
+├── bin
+├── build
+│   └── build.xml
+├── conf
+│   └── server-log4j.properties
+├── lib
+│   ├── junit-4.11.jar
+│   └── log4j-1.2.12.jar
+├── src
+│   └── com
+│       └── irc
+│           ├── client
+│           │   ├── ClientConnexion.java
+│           │   ├── ClientFenetre.java
+│           │   ├── Client.java
+│           │   └── Client_TEST.java
+│           ├── server
+│           │   ├── ClientRun.java
+│           │   ├── Server.java
+│           │   └── Server_TEST.java
+│           └── utils
+│               ├── Command.java
+│               ├── Command_TEST.java
+│               ├── Communication.java
+│               ├── Communication_TEST.java
+│               └── Log.java
+└── tags
+</pre>
+            </code>
+            This is what my project looks like. sources are in src/, 
+            classes compiled in bin/. Each source has it's own package.<br />
+            <br />
+            Let's see how to handle this project, using UNIX as your IDE !
+          </p>
+          <h3>Compilation</h3>
+          <p>
+            It probably is the hardest part. Java is hard to compile properly,
+            so tools like Ant are used in IDEs.<br />
+            <br />
+            Basicaly, compilation goes like this:<br />
+            <code>javac -d bin/ -sourcepath src/ -classpath bin/ src/com/irc/utils/Command.java</code><br />
+            -d specifies the directory where your classes will go.<br />
+            -sourcepath tells javac where to search for source files.<br />
+            -classpath is the same as the abode, but for class files.<br />
+            <br />
+            Do you see it coming ? <strong>YES</strong>, we will use a Makefile.<br />
+            Here is mine:<br />
+            <code>
+<pre>
+<span class="Comment"># Locate directories</span>
+<span class="Identifier">class_d</span>=bin
+<span class="Identifier">lib_d</span>=lib
+<span class="Identifier">source_d</span>=src
+<span class="Identifier">package_d</span>=com/irc
+
+<span class="Identifier">classpath</span>:=<span class="Identifier">$(class_d)</span>:<span class="Identifier">$(lib_d)</span>/junit-4.11.jar:<span class="Identifier">$(lib_d)</span>/log4j-1.2.12.jar
+
+<span class="Comment"># If there's already a CLASSPATH, put it on the front</span>
+<span class="PreProc">ifneq</span> (<span class="Identifier">$(CLASSPATH)</span>,)
+<span class="Identifier">        classpath</span>:= <span class="Identifier">$(CLASSPATH)</span>:<span class="Identifier">$(classpath)</span>
+<span class="PreProc">endif</span>
+
+<span class="Comment"># Re-export the CLASSPATH.</span>
+<span class="Statement">export</span> CLASSPATH:=<span class="Identifier">$(classpath)</span>
+
+<span class="Identifier">MATCH</span>=<span class="String">'.*[^(_TEST)]\.java'</span>
+
+<span class="PreProc">ifdef</span> TEST
+<span class="PreProc">    ifeq</span> (<span class="Identifier">$(TEST)</span>, all)
+<span class="Identifier">        MATCH</span>=<span class="String">'.*_TEST\.java'</span>
+<span class="PreProc">    else</span>
+<span class="Identifier">        MATCH</span>=<span class="String">'.*\/</span><span class="Identifier">$(TEST)</span><span class="String">\/.*_TEST\.java'</span>
+<span class="PreProc">    endif</span>
+<span class="PreProc">endif</span>
+
+<span class="Comment"># Find all the source and convert them to class files</span>
+<span class="Identifier">S_SERVER</span>= <span class="Identifier">$(</span><span class="Statement">shell</span><span class="Identifier"> find $(source_d)/com/irc/server -regex $(MATCH))</span>
+<span class="Identifier">C_SERVER</span>= <span class="Identifier">$(</span><span class="Statement">patsubst</span><span class="Identifier"> src/%.java, bin/%.class, $(S_SERVER))</span>
+<span class="Identifier">S_CLIENT</span>= <span class="Identifier">$(</span><span class="Statement">shell</span><span class="Identifier"> find $(source_d)/com/irc/client -regex $(MATCH))</span>
+<span class="Identifier">C_CLIENT</span>= <span class="Identifier">$(</span><span class="Statement">patsubst</span><span class="Identifier"> src/%.java, bin/%.class, $(S_CLIENT))</span>
+<span class="Identifier">S_UTILS</span>= <span class="Identifier">$(</span><span class="Statement">shell</span><span class="Identifier"> find $(source_d)/com/irc/utils -regex $(MATCH))</span>
+<span class="Identifier">C_UTILS</span>= <span class="Identifier">$(</span><span class="Statement">patsubst</span><span class="Identifier"> src/%.java, bin/%.class, $(S_UTILS))</span>
+
+<span class="Statement">.SUFFIXES:</span> .java .class
+<span class="Statement">.PHONY:</span> default server client utils clean init all
+
+<span class="Function">default:</span> classes
+
+<span class="Function">$(class_d)/%.class:</span> <span class="Identifier">$(source_d)</span>/<span class="Identifier">%</span>.java
+<span class="Special">	@</span><span class="Constant">echo </span><span class="String">&quot;JAVAC </span><span class="Identifier">$&lt;</span><span class="String">&quot;</span>
+<span class="Special">	@</span><span class="Identifier">$(JAVAC)</span><span class="Constant"> </span><span class="Identifier">$(JFLAGS)</span><span class="Constant"> </span><span class="Identifier">$&lt;</span>
+
+<span class="Function">classes:</span> utils server client <span class="Identifier">$(class_d)</span>
+
+<span class="Function">server:</span> <span class="Identifier">$(C_SERVER)</span> utils
+<span class="Function">client:</span> <span class="Identifier">$(C_CLIENT)</span> utils
+<span class="Function">utils:</span> <span class="Identifier">$(C_UTILS)</span>
+
+<span class="Function">all:</span> init classes
+
+<span class="Identifier">$(class_d)</span><span class="Function">:</span>
+<span class="Constant">	mkdir </span><span class="Identifier">$(class_d)</span>
+
+<span class="Function">clean:</span>
+<span class="Constant">	rm -rf </span><span class="Identifier">$(class_d)</span><span class="Constant">/*</span>
+</pre>
+            </code>
+            It will search the appropriate sources in your sourcepath, and compile them in the
+            associated classpath.<br />
+            Building the tests appart is done with <code>make TEST=[server|client|utils|all]</code>
+            And it will compile your code only if it has changed (thanks GNU/make !).<br />
+            <br />
+            It there you need more explaination on this, mail me your questions !
+          </p>
+          <h3>Running</h3>
+          <p>
+            Running your program will be a lot more easier. And you probably know
+            What I'm going to tell you: <em>shell script</em>.<br />
+            <br />
+            Simple huh ? You just need to know how to run a java program:<br />
+            <code>java -classpath bin/ com.irc.server.Server</code><br />
+            Do I really need to explain what -classpath is ..?<br />
+            On the other hand, "com.irc.server" is the package containing my
+            Server class, and "Server" is the class containing the method main().<br />
+            <br />
+            So you will have no problems building the correct script that will run your
+            application. It will probably (in its simplest form) look like this:<br />
+            <code>
+<pre>
+<span class="Comment">#!/bin/sh</span>
+
+<span class="Identifier">classpath</span>=bin:lib/log4j-1.2.12.jar
+<span class="Identifier">package</span>=com.irc.server
+
+java <span class="Special">-cp</span> <span class="PreProc">$classpath</span> <span class="PreProc">$package.Server</span>
+</pre>
+            </code>
+            Isn't that easy ?
+            </p>
+            <h3>Conclusion</h3>
+            <p>
+              <strong>YOU. DON'T. NEED. ECLIPSE. AT ALL.</strong><br />
+              I know that a lot of people will discard me, telling that
+              This is a pain in the neck to go like this, that you need to know 
+              Makefile, and take the time to write them, etc...<br />
+              But these are reusable, and it helps you to know how to manage the
+              whole process !<br />
+              Furthermore, it can be interesting to (at least) try this method, just
+              to see how it goes.<br />
+              You will be able to use every tool you want, git, vim, emacs, 
+              svn, ctags, ...<br />
+              No needs to get used to the Eclipse interface, and forget about your
+              favorite editor ! Isn't that promising ?
+            </p>
+        </article>
+      </section>
+    </div>
+    <!-- footer {{{ -->
+    <footer>
+      &copy; 2013 WTFPL &mdash; <a href='http://www.wtfpl.net/about/'>Do What the Fuck You Want to Public License</a>
+      &mdash; contact : &lt;<a href='mailto:willy@mailoo.org'>willy at mailoo dot org</a>&gt;
+    </footer>
+    <!-- }}} -->
+  </body>
+</html>
+<!-- vim: set sw=2 et ai fdm=marker: -->
