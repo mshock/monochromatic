@@ -12,7 +12,6 @@ fu! Date()
     exe append(line("."), "&mdash; ".strftime("%d %B, %Y"))
     norm 'zJ
 endf
-nmap <leader>d :call Date()<CR>
 
 fu! EscapeHTML()
     silent! s/</\&lt;/g
@@ -22,6 +21,6 @@ endf
 
 " love that...
 ab -- &mdash;
-ab < &lt;
-ab > &gt;
+ab </  </<C-X><C-o>
 
+nmap <leader>d :call Date()<CR>
