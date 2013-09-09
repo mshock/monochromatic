@@ -39,6 +39,8 @@
           </p>
           <h3>Throwing Eclipse away</h3>
           <p>
+            For that to be clear, <strong>I am not saying that IDEs are evil ! I am just showing how
+            you can avoid them, in favor of your daily tools</strong>.<br />
             I just finished a java project for my CS studies, on a bare notebook (without X.org).<br />
             And I had NO PROBLEM with not using Eclipse at all !<br />
             Now let me introduce my setup. Of course, it's not as easy as double-clicking on the
@@ -55,13 +57,16 @@
             Here is what I learnt:<br />
             <strong>javac</strong> is used for compiling,
             <strong>java</strong> to run an application.<br />
-            javac takes a *.java file, and compile it into a *.class file,
+            javac takes a .java file, and compiles it into a .class file,
             that you will run with java. Who needs Eclipse to do that ?!<br />
-            "<em>But real-life project are -a lot- more complicated than that !
-            You have to put files in packages, classes in another directory, etc...</em>"<br />
-          And you just activated my trap card...<br />
-          For sure, real project are a lot more complicated ! For example:<br />
-          <code>
+            <br />
+            <q>But real-life project are -a lot- more complicated than that !
+            You have to put files in packages, classes in another directory, etc...</q><br />
+            <br />
+            And you just activated my trap card...<br />
+            For sure, real project are a lot more complicated ! For example:<br />
+            <br />
+            <code>
 <pre>
 ~/src/java/eg
 ├── bin
@@ -118,6 +123,10 @@
 <span class="Identifier">lib_d</span>=lib
 <span class="Identifier">source_d</span>=src
 <span class="Identifier">package_d</span>=com/irc
+
+<span class="Comment"># Compilation stuff</span>
+<span class="Identifier">JAVAC</span>=javac
+<span class="Identifier">JFLAGS</span>=-g -d <span class="Identifier">$(class_d)</span> -sourcepath <span class="Identifier">$(source_d)</span> -Xlint:all
 
 <span class="Identifier">classpath</span>:=<span class="Identifier">$(class_d)</span>:<span class="Identifier">$(lib_d)</span>/junit-4.11.jar:<span class="Identifier">$(lib_d)</span>/log4j-1.2.12.jar
 
@@ -215,7 +224,8 @@ java <span class="Special">-cp</span> <span class="PreProc">$classpath</span> <s
               to see how it goes.<br />
               You will be able to use every tool you want, git, vim, emacs, 
               svn, ctags, ...<br />
-              No needs to get used to the Eclipse interface, and forget about your
+              <br />
+              No needs to get used to the Eclipse interface, and to forget about your
               favorite editor ! Isn't that promising ?
             </p>
         </article>
