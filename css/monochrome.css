@@ -58,7 +58,7 @@ header {
 }
 
 footer {
-    font-size:60%;
+    font-size:70%;
     text-align: center;
     margin: auto;
     width: 70%;
@@ -89,29 +89,22 @@ h2 {
     color: #666;
     display: inline;
     font-weight: normal;
+    font-size: 120%;
 }
 
 header h1 {
-    font-size: 2.0em;
+    font-size: 300%;
     font-style: italic;
     margin-right: 8px;
 }
 
-header h2 {
-    font-size: 1.2em;
-}
-
 section h1 {
-    font-size: 1.5em;
-}
-
-section h2 {
-    font-size: 1.0em;
+    font-size: 200%;
 }
 
 section h3 {
     display: block;
-    font-size:1.5em;
+    font-size:150%;
 }
 
 /* }}} */
