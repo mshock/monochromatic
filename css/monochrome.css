@@ -34,6 +34,7 @@ body {
     padding: 0;
     margin: 0;
     font-family: archivo, sans-serif;
+    font-size: 90%;
 }
 
 #wrapper {
@@ -89,22 +90,22 @@ h2 {
     color: #666;
     display: inline;
     font-weight: normal;
-    font-size: 120%;
+    font-size: 100%;
 }
 
 header h1 {
-    font-size: 300%;
+    font-size: 200%;
     font-style: italic;
     margin-right: 8px;
 }
 
 section h1 {
-    font-size: 200%;
+    font-size: 150%;
 }
 
 section h3 {
     display: block;
-    font-size:150%;
+    font-size:120%;
 }
 
 /* }}} */
@@ -167,6 +168,7 @@ pre {
     color: inherit;
     background-color: #111;
     font:inherit;
+    font-size:60%;
     padding: 10px;
     border-radius: 10px;
     margin-top: 4px;
