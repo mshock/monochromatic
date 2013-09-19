@@ -161,14 +161,14 @@ th {
 code {
     color: #eec;
     font-family: monospace;
-    font-size: 60%;
+    font-size: 70%;
 }
 
 pre {
     color: inherit;
     background-color: #111;
     font:inherit;
-    font-size:80%;
+    font-size:inherit;
     padding: 10px;
     border-radius: 10px;
     margin-top: 4px;
