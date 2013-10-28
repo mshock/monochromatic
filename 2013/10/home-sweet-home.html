@@ -19,7 +19,22 @@
           &mdash; 28 October, 2013
         </h2>
         <article>
-          <h3>Article in progress [...]</h3>
+          <h3>Summary</h3>
+          <p>
+            Yes, a summary, because taht's gonna be a LONG article.
+            <ul>
+              <li><a href="#intro">Introduction</a></li>
+              <li><a href="#wm">Window manager</a></li>
+              <li><a href="#term">Terminal</a></li>
+              <li><a href="#sh">Shell</a></li>
+              <li><a href="#cli">CLI tools</a></li>
+              <li><a href="#bar">Status bar</a></li>
+              <li><a href="#setup">Integration</a></li>
+            </ul>
+          </p>
+
+          <hr/>
+          <h3 id="intro">Introduction</h3>
           <p>
             Okay, so you have finally installed your distro of choice, cleaned
             the whole setup, installed X.org, xterm and vim...<br />
@@ -46,7 +61,8 @@
             <strong>setting up your home!</strong>
           </p>
 
-          <h3>Window manager</h3>
+          <hr/>
+          <h3 id="wm">Window manager</h3>
           <p>
             This is the most important part of your future environment. It is
             the god that will tell all your windows where to go, how to move,
@@ -104,16 +120,201 @@
             even prettier!<br />
           </p>
 
-            Here is a quick CWM setup, using compton and librgba:<br />
             <br />
             <a class='a_img' href='/img/2013-10-28-cwm.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-cwm.jpg' alt='cwm screenshot'/>
             </a>
+            <span class="caption">Here is a quick CWM setup, using compton and
+              librgba</span>
           </p>
           <p>
           Oh! A last advice, <strong>do not bind applications through your WM</strong>. Using an application like <a href="http://www.nongnu.org/xbindkeys/xbindkeys.html">xbindkeys</a> to do that is a better idea, as it follow the <a href="http://www.faqs.org/docs/artu/ch01s06.html">UNIX philosophy</a>, and it will help you a lot if you want to try another WM.
           </p>
-          <h3>CLI tools</h3>
+
+          <hr/>
+          <h3 id="term">Terminal</h3>
+          <p>
+            Here we are. The terminal. The central part of the whole setup!
+            <br />
+            As an advanced user, you spend a lot of time within the terminal,
+            so it is important to keep your terminal a pleasant place for your
+            eyes.<br />
+            There are, in fact, only two ways to tweak your terminal: 
+            <strong>colors and font</strong>. The goal is to find the best
+            readability/usability/awesomeness ratio.<br />
+            I'd recommend that you start from a dark scheme, as it's better for
+            your eyes by night (But that's just my opinion, light colorschemes
+            can look pretty good!).<br />
+            Terminals usually manage up to 256 colors, but you will use only 16
+            of them:<br />
+            &rarr; [0-7] for normal text<br />
+            &rarr; [8-15] for bold text<br />
+            Here is the color chart:
+            <ul>
+              <li>00 &mdash; Dark black</li>
+              <li>01 &mdash; Dark red</li>
+              <li>02 &mdash; Dark green</li>
+              <li>03 &mdash; Dark yellow</li>
+              <li>04 &mdash; Dark blue</li>
+              <li>05 &mdash; Dark magenta</li>
+              <li>06 &mdash; Dark cyan</li>
+              <li>07 &mdash; Dark white</li>
+              <li>08 &mdash; Light black</li>
+              <li>09 &mdash; Light red</li>
+              <li>10 &mdash; Light green</li>
+              <li>11 &mdash; Light yellow</li>
+              <li>12 &mdash; Light blue</li>
+              <li>13 &mdash; Light magenta</li>
+              <li>14 &mdash; Light cyan</li>
+              <li>15 &mdash; Light white</li>
+            </ul>
+            Now, just tweak each color to fit your perfect theme!<br />
+            To do so, refer to the manual of your terminal.
+          </p>
+          <p>
+            If you don't have one, here is a list of terminal you can use:
+            <ul>
+              <li><a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a></li>
+              <li><a href="https://github.com/thestinger/termite/">termite</a></li>
+              <li><a href="http://www.calno.com/evilvte/">evilvte</a>
+              <li><a href="http://www.afterstep.org/aterm.php">aterm</a>
+              <li><a href="http://freecode.com/projects/mterm">mterm</a>
+            </ul>
+            I have stick with rxvt-unicode (urxvt) personnally. I find it pretty
+            powerfull, light and fast. Also, it can be extended in perl, which
+            is great (muh URL selection).
+          </p>
+          <p>
+            Back to terminal colors! The best way I know to change the terminal
+            colorscheme, is using the X server resource database (xrdb). But it
+            does not work with every terminal (it works, at least, with xterm and
+            urxvt).<br />
+            All you have to do, is configure your colors in a file called
+            <code>~/.Xresources</code>, and source it with the command:
+            <code><pre>xrbd -load ~/.Xresources</pre></code>
+            For example, here is mine (screenshot at the end of the section):
+            <code>
+              <pre>
+*background:#222222
+*foreground:#e8e9ca
+
+*color0:    #222222
+*color1:    #8b3e2f
+*color2:    #526f33
+*color3:    #665847
+*color4:    #4a708b
+*color5:    #7a378b
+*color6:    #528b8b
+*color7:    #999999
+
+*color8:    #4c4c4c
+*color9:    #d75f00
+*color10:   #cee318
+*color11:   #eee685
+*color12:   #9ac0cd
+*color13:   #9f79ee
+*color14:   #79cdcd
+*color15:   #e8e9ca
+              </pre>
+            </code>
+          </p>
+          <p>
+            For the font, it's quite the same, but I suggest that you search for
+            the terms <em>xft font</em>, <em>bitmap fonts</em> and <em>X
+              resources</em> cause it can be a little tricky to understand.
+            <br />
+            Quickly, there are two way to draw fonts in your terminal, with, and
+            without xft. XFT allows you to draw nice fonts and scale them the
+            way you want, like BitStream Vera Sans, Monospace, etc... But these
+            are "slow" to draw.
+            The other method is the one used by TTY, bitmap fonts. Those are
+            fixed pixeled font that can look odd, but draw fastly.<br />
+            Just make a choice.<br />
+            To declare a XFT font:
+            <code><pre>*font: xft:&lt;font name&gt;:size=&lt;size&gt;</pre></code>
+            To declare a bitmap font (I'm not sure for every bit, so I'll leave
+            a * where I don't know the meaning. If you can help, or if I'm wrong,
+            <a href="mailto:willy@mailoo.org">Mail me</a> please):
+            <code><pre>*font: -&lt;family&gt;-&lt;name&gt;-&lt;type&gt;-*-*--&lt;height&gt;-*-*-*-*-*-&lt;encoding&gt;-&lt;encoding_number&gt;</pre></code>
+
+              Here is a small example:
+              <code>
+                <pre>
+*font: xft:monospace:size=10
+*font: -misc-tamsyn-medium-*-*--14-101-*-*-*-*-*
+                </pre>
+              </code>
+          </p>
+          <p>
+            So, we have seen how to tweak the terminal, let's see what it looks
+            like!
+            I wrote a small script for the purpose:<br />
+            <br />
+            <a class='a_img' href='/img/2013-10-28-term.jpg'>
+              <img class='a_img' src='/img/thumb/2013-10-28-term.jpg' alt='term screenshot'/>
+            </a>
+            <a class="caption" href="http://git.z3bra.org/cgit.cgi/scripts/tree/info.sh">info.sh</a><br />
+          </p>
+
+          <hr/>
+          <h3 id="sh">Shell</h3>
+          <p>
+            right after seeing the terminal, you can't avoid it's main program:
+            <strong>the shell</strong>.<br />
+            If you don't know this already, the shell is the link between the
+            user and the programs. It's a program you will communicate with to
+            manipulate your system. An important program tough.<br />
+            Choose it carefully then. Here is the main shell list:
+            <ul>
+              <li>sh &mdash; The historical shell</li>
+              <li>bash &mdash; Improved shell, based on sh</li>
+              <li>zsh &mdash; An extermly powerfull shell with a great
+              completion system</li>
+              <li>fish &mdash; A user friendly shell, really different from the
+              above</li>
+              <li>csh &mdash; The Berkeley UNIX shell</li>
+              <li>tcsh &mdash; An improvement of csh</li>
+            </ul>
+
+            I personnaly use zsh because it has a feature I like, the right
+            prompt. also, it's completion system is really great (argument
+            completion is a good thing to have, trust me..).  <br /> 
+
+            Anyway, I'll treat here only the "standard shell": bash <br />
+
+            The first thing you will see from the shell is its prompt. The
+            prompt is a set of characters that gives info to the user, and
+            invite him to input commands. Basically, it looks like this:
+            <code><pre>$ </pre></code>
+            Fancy huh ?
+            The prompt chars are contained in the variable <code>PS1</code> for
+            sh/bash, and <code>PROMPT</code>/<code>RPROMPT</code> for zsh.
+            <code>
+              <pre>
+$ PS1='z3bra-$ '
+z3bra-$ 
+              </pre>
+            </code>
+            (You don't have to issue the two command to make it works.)
+            Take a look at the bash manpage, section "Prompting" for more info
+            on how to tweak it.
+            Here is my personnal prompt:
+            <code>
+              <pre>
+<span class="Identifier">PROMPT</span>=<span class="Statement">&quot;</span>
+<span class="String">%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%} »  </span><span class="Statement">&quot;</span>
+<span class="Identifier">RPROMPT</span>=<span class="Statement">&quot;</span><span class="String">%{</span><span class="PreProc">$fg</span><span class="String">[black]%}%M:%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%}%~%{</span><span class="PreProc">$reset_color</span><span class="String">%}   </span><span class="Statement">&quot;</span>
+              </pre>
+            </code>
+            <a class='a_img' href='/img/2013-10-28-shell.jpg'>
+              <img class='a_img' src='/img/thumb/2013-10-28-shell.jpg' alt='shell screenshot'/>
+            </a>
+            <span class="caption">A few different prompts, from top to bottom:
+              sh, zsh, bash, zsh</span>
+          </p>
+
+          <hr/>
+          <h3 id="cli">CLI tools</h3>
           <p>
             The shell is the core of a UNIX/Linux based system. So having a
             bunch of fast, light and efficient CLI tools is a must. There are
@@ -144,13 +345,148 @@
               href="http://weechat.org/">weechat</a> and <a
               href="http://sourceforge.net/projects/re-alpine/">Alpine</a>.
             <br />
-            Mandatory screenshot of the setup with those apps (and custom
-            themes).<br />
             <br />
             <a class='a_img' href='/img/2013-10-28-cli.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-cli.jpg' alt='cwm screenshot'/>
             </a>
+            <span class="caption">Mandatory screenshot of the setup with those apps (and custom
+            themes).</span>
           </p>
+
+          <hr/>
+          <h3 id="bar">Status bar</h3>
+          <p>
+            All of this is great, but I think that if you want to check the
+            time, you're not willing to open a terminal, and type:
+            <code><pre>date +%H:%M</pre></code>
+            It's not really practical most of the time. The same can apply to
+            the amount of free space, to current volume level or the number of
+            unread mails you have.<br />
+            That's what status bar are made for. They pick infos for you and
+            display them in a thin bar on an edge of your screen.<br />
+
+            My bar of choice is, by far, <a
+              href="https://github.com/LemonBoy/bar">bar ain't recursive</a>, by
+            Lemon Boy.<br />
+            It is light, fast and simple. Exactly how I like it!
+            the purpose is simple:<br />
+            <ol>
+              <li>Write a script that output a bunch of informations</li>
+              <li>Pipe that script into the bar</li>
+              <li>Run them within an infinite loop!</li>
+            </ol>
+
+            That is all you need. For example, if you only need the date in the bar:
+            <code><pre>while :; do date; done | bar &</pre></code>
+            And there you go!
+            You can achieve really great looking stuff with that simple
+            process:<br />
+            <br />
+            <a class='a_img' href='/img/2013-10-28-bar.jpg'>
+              <img class='a_img' src='/img/thumb/2013-10-28-bar.jpg' alt='bar screenshot'/>
+            </a>
+            <span class="caption">You can also choose to put your status bar
+              within a terminal multiplexer status bar, <a
+                hreaf="http://calummacrae.blogspot.fr/2012/12/dropping-status-bars-for-tmux-as-im.html">as
+                phyrne suggested</a> in
+            one of his blog post</span>
+          </p>
+
+          <hr/>
+          <h3 id="setup">Integration</h3>
+          <p>
+            Now that we potentially have a working desktop, let make it spawn
+            correctly, using ONLY on file: <code>~/.xinitrc</code>.
+            <br />
+            That magical file is simply a shell script that is called by default
+            with <code>startx</code>.
+            In fact, when you proceed this command, it does the following:
+            <code><pre>$ startx ~/.xinitrc -- :0</pre></code>
+            It source your ~/.xinitrc, and launch it on the Xorg server number
+            0.
+            To launch your wm of choice from the xinitrc, just add the command
+            to launch it in the file, preceded by 'exec'. It will replace the
+            current process (your shell) by the window manager, so that the
+            session will terminate with your WM.<br />
+          </p>
+          <p>
+            Okay, now you have the theory. Before starting to pratice, I'll give
+            you a few hints for a "good" xinitrc (yeah, I love making lists):
+            <ul>
+              <li>Launch ONLY session related commands</li>
+              <li>Make it evolutive, so that you can spawn multiple X sessions
+              at the same time</li>
+              <li>Fork every command, except those that are dependent, to speed
+              up the desktop spawning</li>
+            </ul>
+            Finally, here is my own xinitrc
+            <code>
+              <pre>
+<span class="Comment">#!/bin/bash</span>
+<span class="Comment">#</span>
+<span class="Comment"># ~/.xinitrc</span>
+<span class="Comment">#</span>
+
+<span class="Comment"># load nvidia config</span>
+nvidia-settings <span class="Special">-l</span>
+
+<span class="Comment"># Set wallpaper</span>
+hsetroot <span class="Special">-tile</span> ~/usr/img/<span class="Statement">bg</span>/stripes.png &amp;
+
+<span class="Comment"># default cursor</span>
+xsetroot <span class="Special">-cursor_name</span> left_ptr &amp;
+
+<span class="Function">function</span> <span class="Function">wm() {</span>
+    <span class="Comment"># Load X resources</span>
+    xrdb <span class="Special">-load</span> ~/.Xresources <span class="Statement">&amp;</span>
+
+    <span class="Comment"># personnal bindings</span>
+    xbindkeys
+
+    <span class="Comment"># set WM name</span>
+    xsetroot <span class="Special">-name</span> <span class="PreProc">$1</span>
+
+    <span class="Comment">#status bar</span>
+    ~/bin/bar/status.sh <span class="Statement">&amp;</span> <span class="Comment"># it acts kinda weirdly</span>
+
+    <span class="Comment"># Compositing</span>
+    <span class="Comment"># enable RGBA module for GTK</span>
+    <span class="Statement">export</span><span class="Identifier"> GTK_MODULES=</span>rgba
+
+    <span class="Comment">#compton -cCb -t-5 -l-5 -r4.2 -o.4</span>
+    compton <span class="Special">-cb</span> <span class="Special">-o0</span>
+
+    <span class="Comment"># spawn window manager</span>
+    <span class="Statement">exec</span> <span class="PreProc">$1</span>
+<span class="Function">}</span>
+
+<span class="Special">[[</span> <span class="Statement">-z</span> <span class="PreProc">$1</span> <span class="Special">]]</span> &amp;&amp; wm cwm
+
+wm <span class="PreProc">$1</span>
+              </pre>
+            </code>
+            <br />
+            <a class='a_img' href='/img/2013-10-28-final.jpg'>
+              <img class='a_img' src='/img/thumb/2013-10-28-final.jpg' alt='final screenshot'/>
+            </a>
+            <span class="caption">That shot show off the whole setup, with
+              prompt, bar, applications, etc...
+              I hope you will like it!
+            </span>
+          </p>
+
+          <hr/>
+          <h3 id="end">Conclusion</h3>
+          <p>
+            The end, finally. That is a damn long article. I have deliberately
+            not expanded some point by lack of "space". I want this article to
+            end someday.<br />
+            It will give you a good start to tweak your own setup, and make it
+            look like what you want it to look.<br />
+            <br />
+            <strong>Make your environment yours, and have fun doing so!</strong>
+          </p>
+
         </article>
       </section>
     </div>
