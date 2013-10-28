@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href='/'>Monochromatic</a></h1> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes appart</h2>
+    </header>
+    <div id='wrapper'>
+      <section>
+        <h1>
+          <a href='#'>Home, sweet home</a>
+        </h1>
+        <h2>
+          &mdash; 28 October, 2013
+        </h2>
+        <article>
+          <h3>Article in progress [...]</h3>
+          <p>
+            Okay, so you have finally installed your distro of choice, cleaned
+            the whole setup, installed X.org, xterm and vim...<br />
+            <br />
+            <strong>And now, what?!</strong>
+          </p>
+          <p>
+            I've asked myself this question more than I should (probably because
+            I liking tweaking my desktop, but that's not the point here).<br />
+            And I bet that you did too !
+          </p>
+          <p>
+            In this post, I'll go through all the mandatory tweak that should be
+            done to a clean base system. YOUR system, 'cause there is no place
+            like home.<br />
+            Once standing in your ~, starring at your shell prompt, you should
+            be like <q>Uuuh that is life, eh!</q>
+          </p>
+          <p>
+            I'll not wait more to give you my secrets, but please, keep in mind
+            that these are <em>MY OPINIONS</em> and I'm not asking you to agree
+            with me. If you feel uncomfortable with some points, just avoid
+            them. You're not here to feel bad, but to find advices on
+            <strong>setting up your home!</strong>
+          </p>
+
+          <h3>Window manager</h3>
+          <p>
+            This is the most important part of your future environment. It is
+            the god that will tell all your windows where to go, how to move,
+            etc.. So you can take a little time to choose a WM, it totally
+            understandable.
+          </p>
+          <p>
+            There are three types of window managers:
+            <ul>
+              <li><strong>Floating</strong> &mdash; windows overlaps</li>
+              <li><strong>Tilling</strong> &mdash; windows are arranged in tiles
+              (kinda like a grid)</li>
+              <li><strong>Dynamics</strong> &mdash; both floating and tilling
+              are possible</li>
+              <li><strong>Aliens</strong> &mdash; Go home WM, you're drunk.</li>
+            </ul>
+            Floating management is the management style we're all used to,
+            windows are independent and you can resize/move them freely around
+            your desktop.<br />
+            Tilled window managers arrange the windows depending on what is
+            currently on your desktop. The windows <em>CAN'T</em> overlap. When
+            you create a new window, the whole set of window is rearranging to
+            let the new window find a place (Not always in fact, but that's the
+            idea behind tilling).<br />
+            Finally, dynamic WM can switch between the two managment styles
+            (most of the time, at cost of complexity and binary size, but that's
+            just my opinion). Note that most tilling WM are, in fact, dynamic
+            WM. But the way they manage floating windows is just so poor...<br />
+            <br />
+            Oh, and for the alien part, keep in mind that some WM just don't
+            manage windows like that. But their behaviors are to specific to be
+            described here. Just RTFM 'em.
+          </p>
+          <p>
+            FYI, here is a non-exhaustive list of window managers I like (F =
+            floating, T = tilling, D = dynamic... U DON'T SAY!)
+            <ul>
+              <li>cwm &mdash; Calm Window Manager (F)</li>
+              <li>Ratpoison (A)</li>
+              <li>ctwm (F)</li>
+              <li>herbstluftwm (T) (<q>Hebrstrutoflutudobleyouhem</q>)</li>
+              <li>evilwm (F)</li>
+              <li>xmonad (D)</li>
+              <li>spectrwm (T)</li>
+              <li>...</li>
+            </ul>
+
+            Note that I <em>DIDN'T</em> mentioned AwesomeWM or openbox. beuâh.
+          </p>
+          <p>
+            Once you have chosen your WM, go through its manpage/doc, set it up
+            to look the way you want. Use stuff like <a
+              href="http://gnome-look.org/content/show.php/Another+Gtk+RGBA+module+?content=100968">librgba</a>,
+            <a href="https://github.com/chjj/compton">compton</a> to make it
+            even prettier!<br />
+          </p>
+
+            Here is a quick CWM setup, using compton and librgba:<br />
+            <br />
+            <a class='a_img' href='/img/2013-10-28-cwm.jpg'>
+              <img class='a_img' src='/img/thumb/2013-10-28-cwm.jpg' alt='cwm screenshot'/>
+            </a>
+          </p>
+          <p>
+          Oh! A last advice, <strong>do not bind applications through your WM</strong>. Using an application like <a href="http://www.nongnu.org/xbindkeys/xbindkeys.html">xbindkeys</a> to do that is a better idea, as it follow the <a href="http://www.faqs.org/docs/artu/ch01s06.html">UNIX philosophy</a>, and it will help you a lot if you want to try another WM.
+          </p>
+          <h3>CLI tools</h3>
+          <p>
+            The shell is the core of a UNIX/Linux based system. So having a
+            bunch of fast, light and efficient CLI tools is a must. There are
+            applications for (almost) everything you do on a daily basis with
+            you computer: IRC clients, Text editor, Video games, Web browsers,
+            image viewer, ...<br />
+            <br />
+            Okay, I agree that some of them are not really practical to use
+            everyday. Mostly when it involve images (web lurking, image
+            processing, gaming, ...).<br />
+            But when you don't need images, <strong>unleash your
+            shell!</strong><br />
+            Use CLI based app for text-based task. It has many advantages:
+            <ul>
+              <li>ALWAYS fit your colorscheme (see <a
+                href="#terminal">Terminal</a>)</li>
+              <li>Focus on usability</li>
+              <li>Integrate well with your whole setup</li>
+              <li>This is fast as hell</li>
+              <li>This is powerfull as hell</li>
+              <li><strike>You look like a hacker</strike></li>
+            </ul>
+            I personnaly use <a href="http://vim.org">vim</a>, <a
+              href="http://irssi.org">irssi</a> and <a
+              href="http://mutt.org">mutt</a> on a daily basis.<br />
+            As an alternative, take a look at <a
+              href="https://www.gnu.org/software/emacs/">emacs</a>, <a
+              href="http://weechat.org/">weechat</a> and <a
+              href="http://sourceforge.net/projects/re-alpine/">Alpine</a>.
+            <br />
+            Mandatory screenshot of the setup with those apps (and custom
+            themes).<br />
+            <br />
+            <a class='a_img' href='/img/2013-10-28-cli.jpg'>
+              <img class='a_img' src='/img/thumb/2013-10-28-cli.jpg' alt='cwm screenshot'/>
+            </a>
+          </p>
+        </article>
+      </section>
+    </div>
+    <!-- footer {{{ -->
+    <footer>
+      &copy; 2013 WTFPL &mdash; <a href='http://www.wtfpl.net/about/'>Do What the Fuck You Want to Public License</a>
+      &mdash; contact : &lt;<a href='mailto:willy@mailoo.org'>willy at mailoo dot org</a>&gt;
+    </footer>
+    <!-- }}} -->
+  </body>
+</html>
+<!-- vim: set sw=2 et ai fdm=marker: -->
