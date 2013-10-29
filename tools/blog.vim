@@ -19,6 +19,16 @@ fu! EscapeHTML()
     silent! s/"/\&quot;/g
 endf
 
+fu! CodeHTML(newft)
+    let oldft = &ft         " remember current filetype
+    let ft = a:newft        " filetype to be used
+    '<,'>TOhtml             " convert the selection to HTML
+    /^<pre/+1,/^<\/pre>/-1d " get the code in between <pre> tags
+    bd!                     " remove the HTML temporary buffer
+    norm gvp                " copy that in place of the old text
+    let ft = oldft          " recall the saved filetype
+endf
+
 " love that...
 ab -- &mdash;
 ab </  </<C-X><C-o>
