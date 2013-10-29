@@ -150,17 +150,43 @@
             &rarr; [0-7] for normal text<br />
             &rarr; [8-15] for bold text<br />
             Here is the color chart:
+
             <table>
-              <tr><td></td><th>Dark</th><th>Light</th></tr>
-              <tr><th>black</th><td>00</td><td>08</td></tr>
-              <tr><th>red</th><td>01</td><td>09</td></tr>
-              <tr><th>green</th><td>02</td><td>10</td></tr>
-              <tr><th>yellow</th><td>03</td><td>11</td></tr>
-              <tr><th>blue</th><td>04</td><td>12</td></tr>
-              <tr><th>magenta</th><td>05</td><td>13</td></tr>
-              <tr><th>cyan</th><td>06</td><td>14</td></tr>
-              <tr><th>white</th><td>07</td><td>15</td></tr>
+              <tr>
+                <th></th>
+                <th>black</th>
+                <th>red</th>
+                <th>green</th>
+                <th>yellow</th>
+                <th>blue</th>
+                <th>magenta</th>
+                <th>cyan</th>
+                <th>white</th>
+              </tr>
+              <tr>
+                <th>dark</th>
+                <td>00</td>
+                <td>01</td>
+                <td>02</td>
+                <td>03</td>
+                <td>04</td>
+                <td>05</td>
+                <td>06</td>
+                <td>07</td>
+              </tr>
+              <tr>
+                <th>light</th>
+                <td>08</td>
+                <td>09</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+              </tr>
             </table>
+
             Now, just tweak each color to fit your perfect theme!<br />
             To do so, refer to the manual of your terminal.
           </p>
@@ -188,6 +214,8 @@
             For example, here is mine (screenshot at the end of the section):
             <code>
               <pre>
+Xresources
+<hr />
 *background:#222222
 *foreground:#e8e9ca
 
@@ -224,15 +252,18 @@
             fixed pixeled font that can look odd, but draw fastly.<br />
             Just make a choice.<br />
             To declare a XFT font:
-            <code><pre>*font: xft:&lt;font name&gt;:size=&lt;size&gt;</pre></code>
-            To declare a bitmap font (I'm not sure for every bit, so I'll leave
-            a * where I don't know the meaning. If you can help, or if I'm wrong,
-            <a href="mailto:willy@mailoo.org">Mail me</a> please):
-            <code><pre>*font: -&lt;family&gt;-&lt;name&gt;-&lt;type&gt;-*-*--&lt;height&gt;-*-*-*-*-*-&lt;encoding&gt;-&lt;encoding_number&gt;</pre></code>
+            <code><pre>xft:&lt;font name&gt;:size=&lt;size&gt;</pre></code>
+            Bitmap font are declared like this (taken from <code>xfontsel
+              -print</code>, thanks to <a href="http://www.reddit.com/r/unixporn/comments/1pf6p4/howto_build_your_graphical_environment_piece_by/cd200mg">Gnu42</a> for the package).
+            You can then use the <code>xfontsel</code> package, or look for a
+            file named <code>fonts.dir</code> in your font directory.
+            <code><pre>-fndry-fmly-wght-slant-sWdth-astyl-pxlsz-ptSz-resx-resy-spc-avgWdth-rgstry-encdng</pre></code>
 
               Here is a small example:
               <code>
                 <pre>
+Xresources
+<hr />
 *font: xft:monospace:size=10
 *font: -misc-tamsyn-medium-*-*--14-101-*-*-*-*-*
                 </pre>
@@ -246,7 +277,7 @@
             <a class='a_img' href='/img/2013-10-28-term.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-term.jpg' alt='term screenshot'/>
             </a>
-            <a class="caption" href="http://git.z3bra.org/cgit.cgi/scripts/tree/info.sh">info.sh</a><br />
+            <span class="caption">A terminal running the script <a href="http://git.z3bra.org/cgit.cgi/scripts/tree/info.sh">info.sh</a> that dump 16 colors along system informations</span>
           </p>
 
           <hr/>
@@ -294,6 +325,8 @@ z3bra-$
             Here is my personnal prompt:
             <code>
               <pre>
+zshrc
+<hr />
 <span class="Identifier">PROMPT</span>=<span class="Statement">&quot;</span>
 <span class="String">%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%} »  </span><span class="Statement">&quot;</span>
 <span class="Identifier">RPROMPT</span>=<span class="Statement">&quot;</span><span class="String">%{</span><span class="PreProc">$fg</span><span class="String">[black]%}%M:%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%}%~%{</span><span class="PreProc">$reset_color</span><span class="String">%}   </span><span class="Statement">&quot;</span>
@@ -342,8 +375,14 @@ z3bra-$
             <a class='a_img' href='/img/2013-10-28-cli.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-cli.jpg' alt='cwm screenshot'/>
             </a>
-            <span class="caption">Mandatory screenshot of the setup with those apps (and custom
-            themes).</span>
+            <span class="caption">
+              Mandatory screenshot of the setup with those apps (and custom
+              themes).<br />
+              top-left: <strong>vim</strong><br />
+              top-right: <strong>mutt</strong><br />
+              bottom-left: <strong>tmux</strong><br />
+              bottom-right: <strong>irssi</strong><br />
+            </span>
           </p>
 
           <hr/>
@@ -414,6 +453,8 @@ z3bra-$
             Finally, here is my own xinitrc
             <code>
               <pre>
+xinitrc
+<hr />
 <span class="Comment">#!/bin/bash</span>
 <span class="Comment">#</span>
 <span class="Comment"># ~/.xinitrc</span>
