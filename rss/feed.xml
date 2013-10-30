@@ -1,0 +1,49 @@
+<?xml version='1.0'?>
+<rss version='2.0'>
+<channel>
+<title>Monochromatic</title>
+<description>z3bra, the stripes appart</description>
+<link>http://blog.z3bra.org</link>
+<item>
+<title>
+Home, sweet home
+</title>
+<description>
+There is no place like home. And this is why setting up your
+If you want advices on how to build a cosy and nice graphical
+environment, take a look here.
+</description>
+</item>
+<item>
+<title>
+Java without Eclipse
+</title>
+<description>
+Are you disapointed to leave your perfect UNIX environnment
+(vim, bash, git, ...) when it comes to java ..?
+Have you ever tried managing a Java project by hand ..?
+Trust me, it is possible !
+</description>
+</item>
+<item>
+<title>
+The Hard way
+</title>
+<description>
+Do you encounter difficulties to master a tool ? Or maybe you find that you don't
+have enough free time to put yourself into learning how to do this or that ?
+Here is a well-known technic, to learn stuffs quickly, and efficiently.
+</description>
+</item>
+<item>
+<title>
+Test your CSS !
+</title>
+<description>
+Here a simple page with a few HTML tags.
+It's pretty useful to test your CSS, even if there are no 'difficult' layouts.
+Feel free to download and share!
+</description>
+</item>
+</channel>
+</rss>
