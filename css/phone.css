@@ -8,14 +8,6 @@
  */
 
 /* Overall style {{{ */
-body {
-    font-size: 90%;
-}
-
-#wrapper {
-    margin: auto;
-}
-
 section h2 {
     display: inline;
 }

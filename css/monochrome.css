@@ -20,8 +20,8 @@
 }
 
 @font-face {
-    font-family: 'Not Courrier Sans';
-    src: url(/css/fonts/not-courrier-sans.otf);
+    font-family: droid;
+    src: url(/css/fonts/droid.ttf);
     font-weight: normal;
     font-style: normal;
 }
@@ -33,7 +33,7 @@ body {
     color: #888;
     padding: 0;
     margin: 0;
-    font-family: archivo, sans-serif;
+    font-family: droid, sans-serif;
     font-size: 90%;
 }
 
@@ -80,6 +80,10 @@ article {
 /* }}} */
 
 /* Titles and headers {{{ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: archivo, sans-serif;
+}
+
 h1, h3 {
     color: #fff;
     text-shadow: 2px 2px 2px #000;
@@ -90,7 +94,7 @@ h2 {
     color: #666;
     display: inline;
     font-weight: normal;
-    font-size: 100%;
+    font-size: 120%;
 }
 
 header h1 {
@@ -100,12 +104,12 @@ header h1 {
 }
 
 section h1 {
-    font-size: 150%;
+    font-size: 170%;
 }
 
 section h3 {
     display: block;
-    font-size:120%;
+    font-size:150%;
 }
 
 /* }}} */
