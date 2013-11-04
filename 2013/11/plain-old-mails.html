@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href='/'>Monochromatic</a></h1> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes appart</h2>
+    </header>
+    <div id='wrapper'>
+      <section>
+        <h1>
+          <a href='#'>Plain old mails</a>
+        </h1>
+        <h2>
+          &mdash; 04 November, 2013
+        </h2>
+        <article>
+          <p>
+            On my way to meet the default UNIX tools, I ran into a simple one:
+            <code>mail</code>, that was sitting in the corner of my system
+            playing with.. Nothing in fact.<br />
+            <code>mail</code> mail is one of that small utilities that have
+            been forgotten and replaced by more "moderns" tools like mutt,
+            alpine or even thunderbird. But it is worth knowing about !
+          </p>
+
+          <p>
+            <code>mail</code> can manipulate a mail box in either mbox or
+            Maildir format, and is intelligent enough to know the difference
+            between the two of them.<br />
+            It can also handle IMAP mail boxes, but for this post, I'll assume
+            you use a local mail directory under
+            <code>$HOME/var/mail/INBOX/</code>
+          </p>
+
+          <p>
+            Because we all need that bearded touch, we will use
+            <code>mail</code> as our <strong>main mail user agent</strong>.
+          </p>
+
+          <h3>The environment</h3>
+          <p>
+            As any of the standard UNIX tool, <code>mail</code> integrates well
+            in a UNIX environment, and is able to interact with external tools
+            to perform specific action (assume it, you love that huh?).
+          </p>
+
+          <p>
+            Here is the set of variable <code>mail</code> is going to use:
+            <ul>
+              <li><code>MAIL</code>: The default mail box</li>
+              <li><code>EDITOR</code>: The default editor to use</li>
+              <li><code>VISUAL</code>: The default visual editor to use</li>
+            </ul>
+            And that all ! We will not need more to get a running set up (For
+            more infos, you can check the mail(1) manpage).
+            <br />
+            So here we go. Make sure those two variables are exported:
+            <code>
+              <pre>
+$ export MAIL=$MAIL/var/mail/INBOX
+$ export EDITOR=ed
+$ export VISUAL=vim
+              </pre>
+            </code>
+            Now, we will create the most basic directory tree needed by the
+            setup (We will improve it later)
+            <code>
+              <pre>
+$ tree $HOME/var/mail
+/home/z3bra/var/mail/
+└── INBOX
+    ├── cur
+    ├── new
+    └── tmp
+
+4 directories, 0 files
+              </pre>
+            </code>
+            Ok, now the mail environment is set up. You can try the
+            <code>mail</code> command at this point, but an empty mail tree will
+            only result in the following message:
+            <code>
+              <pre>
+No mail for z3bra
+              </pre>
+            </code>
+            For future convenience, copy your <code>/etc/mail.rc</code> to
+            <code>~/.mailrc</code>, so we will be able to edit it later.
+          </p>
+          
+          <p>
+            Before continuing with <code>mail</code>, we will take a look at two
+            mail related programs, <a href="http://fdm.sourceforge.net/">fdm</a>
+            and <a href="http://msmtp.sourceforge.net/">msmtp</a>, that we
+            will use to fetch and deliver emails.
+          </p>
+        </article>
+
+        <article>
+          <h3>Fetching mails</h3>
+          <p>
+            <code>FDM</code> stands for <q>Fetch and Deliver Mails</q>, so
+            it basically get mails from a server, and place them in your local
+            filesystem based on regex rules.<br />
+            If you want a great tutorial for fdm, check out the <a
+              href="http://fdm.sourceforge.net">FDM Quick start guide</a>. I'll
+            just give you my own(simplified) config file:
+            <code>
+              <pre>
+action "INBOX"           maildir "%h/var/mail/INBOX"
+
+account &quot;&lt;account-name&gt;&quot;
+        pop3s
+        server &quot;&lt;pop3-server&gt;&quot;
+        new-only
+        cache &quot;~/var/mail/.cache&quot;
+        keep # Keeps mails on the server
+
+match all action "INBOX"
+              </pre>
+            </code>
+            <code>FDM</code> can get infos from your <code>~/.netrc</code> file,
+            which looks like this:
+            <code>
+              <pre>
+machine &lt;pop3-server&gt;
+login &lt;email@domain.tld&gt;
+password &lt;password&gt;
+              </pre>
+            </code>
+            check that mail fetching works with <code>fdm -kv fetch</code>.
+            If it works, you could place <code>fdm fetch</code> in your cron
+            entries.
+          </p>
+        </article>
+        <article>
+          <h3>Sending mails</h3>
+          <p>
+            <code>MSMTP</code> is as simple to use as <code>fdm</code>. Check
+            its <a href="http://msmtp.sourceforge.net/documentation.html">
+            documentation</a>
+            Here is a simplified config file:
+            <code>
+              <pre>
+defaults
+auth            on
+
+account         &lt;account-name&gt;
+user            &lt;email@domain.tld&gt;
+from            &lt;email@domain.tld&gt;
+host            &lt;stmp-server&gt;
+port            25
+
+account default : &lt;account-name&gt;
+              </pre>
+            </code>
+            <code>msmtp</code> will also read your <code>~/.netrc</code> file to
+            get your password.
+          </p>
+          <p>
+            by default, <code>mail</code> uses <code>sendmail</code> (guess what
+            it does...). Add the following at the end of  your 
+            <code>~/.mailrc</code>:
+            <code>
+              <pre>
+~/.mailrc
+<hr />
+...
+# use msmtp instead of sendmail
+set sendmail=&quot;/usr/bin/msmtp&quot;
+              </pre >
+            </code>
+          </p>
+        </article>
+        <article>
+          <h3>Writing a new mail</h3>
+          <p>
+            Back to the topic!<br />
+            Now that tools we are going to interact with are set up, let's write
+            and send out first mail.
+            We will send this mail to ourselves, so let's go like this:
+            <code>
+              <pre>
+$ mail <email@domain.tld>
+Subject: Testing a new MUA
+Here is the top of the mail.
+You are actually typing like in ed's insert mode.
+
+To stop typing, just type a dot on its own line
+.
+EOT
+              </pre>
+            </code>
+            This will send a mail to the given address. Nothing more. Nothing
+            less.<br />
+            You can give multiple address to send the mail to multiple contacts.
+            <br />
+            If you need more flexibility (e.g. using your own editor, or input
+            the text dynamically within a script, keep in mind that you can do
+            the following:
+            <code>
+              <pre>
+$ echo &quot;&lt;E-mail body goes here&gt;&quot; | mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt;
+$ vim /tmp/body.txt
+$ mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt; &lt; /tmp/body.txt
+              </pre>
+            </code>
+            As you might guess, the <code>-s</code> can be used to specify the
+            subject. There are also <code>-c &lt;CC-field&gt;</code>, <code>-b
+              &lt;BCC-field&gt;</code> for copy/carbin copy, and so on. Just
+            read the manpage for more options.
+          </p>
+
+          <h3>Reading your mails</h3>
+          <p>
+            To read your mail, it's quite simple. Just type <code>mail</code> to
+            get an output like:
+            <code>
+              <pre>
+$ mail
+mail version v14.4.4.  Type ? for help.
+&quot;/home/z3bra/var/mail/INBOX&quot;: 4 messages 1 unread
+O 1 contact@domain.tld Thu Jan  1 01:00  140/5273  Blah blah, subject
+A 2 me@mail.domain.tld Thu Jan  1 01:00   95/5869  RE: Previous subject
+A 3 NEWS GROUPS        Thu Jan  1 01:00  222/15606 TR: Check this ous!
+&gt;U 4 willy@mailoo.org   Thu Jan  1 01:00  104/4146 &gt;Testing a new MUA           
+? 
+              </pre>
+            </code>
+            The <code>?</code> at the end is a prompt. You can input commands
+            like <code>print &lt;num&gt;</code> to display the content of the
+            mail number "num".<br />
+            You can use abbreviations for commands: "p" is the same as "print".
+            "e" means "edit", "v" means "visual".
+
+            There are A LOT of commands (to delete mails, encrypt/decrypt, copy
+            to folders, manage aliases, ...)<br />
+            <br />
+            You can even define macros, to make action like, add sender to
+            aliases, mark as read, copy to another folder and delete the current
+            mail.
+          </p>
+          <p>
+            Today, I discovered <code>mail</code> which does anything I need to
+            manage my e-mails. I'll probably make the switch from mutt on all my
+            machines once I'll be used to it.<br />
+            <br />
+            This little discovery reminded me that UNIX was and still is a great
+            operating system, regardless of all the tools that have been
+            developped since its birth.
+          </p>
+          <p>
+            I hope you (re)learnt something with this article. I don't hear
+            about <code>mail</code> that much nowadays, although it's really
+            usable and functionnal. I feel like a pokemon hunter. Aware that
+            there are many, many tools out there, of different forms, with
+            different purpose... I'll probably never use them all. But I'll try!
+          </p>
+        </article>
+      </section>
+    </div>
+    <!-- footer {{{ -->
+    <footer>
+      <a href='http://www.acme.com/software/thttpd/'>thttpd &hearts;</a> //
+      <a href='http://www.wtfpl.net/about/'>wtfpl &copy;</a> //
+      <a href='mailto:willy@mailoo.org'>contact &#9993;</a> //
+      <a href='http://git.z3bra.org'>tools &#9874;</a> //
+      <a href='http://blog.z3bra.org/rss/feed.xml'>rss &#9733;</a>
+    </footer>
+    <!-- }}} -->
+  </body>
+</html>
+<!-- vim: set sw=2 et ai fdm=marker: -->
