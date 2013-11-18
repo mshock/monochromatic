@@ -62,7 +62,7 @@
             So here we go. Make sure those two variables are exported:
             <code>
               <pre>
-$ export MAIL=$MAIL/var/mail/INBOX
+$ export MAIL=$HOME/var/mail/INBOX
 $ export EDITOR=ed
 $ export VISUAL=vim
               </pre>
@@ -186,7 +186,7 @@ set sendmail=&quot;/usr/bin/msmtp&quot;
             We will send this mail to ourselves, so let's go like this:
             <code>
               <pre>
-$ mail <email@domain.tld>
+$ mail email@domain.tld
 Subject: Testing a new MUA
 Here is the top of the mail.
 You are actually typing like in ed's insert mode.
