@@ -71,6 +71,10 @@ footer {
     padding: 10px;
 }
 
+footer a {
+    color: #fff;
+}
+
 article {
     margin: 0;
     padding-left: 20px;
@@ -218,7 +222,7 @@ blockquote {
     font-size: 80%;
     padding-left:2px;
     padding-right:2px;
-    :order: 1px solid #bbb;
+    border: 1px solid #bbb;
     border-radius: 6px;
     transform: rotate(90deg);
 }
