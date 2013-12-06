@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/code.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href='/'>Monochromatic</a></h1> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes apart</h2>
+    </header>
+    <div id='wrapper'>
+      <section>
+        <h1>
+          <a href='#'>Love me some LaTeX</a>
+        </h1>
+        <h2>
+          &mdash; 06 December, 2013
+        </h2>
+        <article>
+          <p>
+            I am now in my last year of engineering school, and this imply that
+            I will have to write a report for the last 3 years I spent in my
+            company, as an apprentice. As a fellow Linux user, I don't want to
+            use that <strike>fucking</strike> text processor. I love my vim
+            setup, and I want to use it to write that report.
+          </p>
+          <h3>Introduction</h3>
+          <p>
+            So i came to <a href="http://www.latex-project.org/">LaTeX</a>.<br/>
+            Latex (side note: I will not write "LaTeX" everytime in this post.
+            I'm too lazy for that) is a kind of markup language that you can use
+            to write scientific reports, or anything you want in fact.<br/>
+            <br />
+            It is intelligent in the sense that, you don't have to bother about
+            the formatting on the document, latex will do that for you, and
+            probably better than you. So you can just <strong>focus on what your
+            are typing</strong>.
+          </p>
+          <p>
+            Seems interresting huh? So basically, what does it look like? Here's
+            a simple document (download/view it 
+            <a href="http://raw.z3bra.org/null/la.pdf">HERE</a>)
+            <code>
+              <pre>
+la.tex
+<hr/>
+<span class="Statement">\documentclass</span><span class="Special">[</span><span class="Constant">9pt</span><span class="Special">]{</span><span class="PreProc">report</span><span class="Special">}</span>     <span class="Comment">% Start of document</span>
+
+<span class="Statement">\usepackage</span><span class="Special">[</span><span class="Constant">utf8</span><span class="Special">]</span><span class="Special">{</span><span class="Special">inputenc</span><span class="Special">}</span>     <span class="Comment">% Write text unsing UTF-8 encoding</span>
+<span class="Statement">\usepackage</span><span class="Special">{</span><span class="Special">graphicx</span><span class="Special">}</span>           <span class="Comment">% Use graphics for diagrams and such</span>
+
+<span class="PreProc">\title{</span><span class="Statement">\LaTeX</span> exemple<span class="PreProc">}</span>
+<span class="PreProc">\author{</span>z3bra, the cool guy<span class="PreProc">}</span>
+<span class="Statement">\date</span><span class="Special">{</span><span class="Statement">\today</span><span class="Special">}</span>
+
+<span class="PreProc">\begin{document}</span>
+
+<span class="Statement">\maketitle</span>
+<span class="Statement">\tableofcontents</span>
+<span class="Statement">\listoftables</span>
+<span class="Statement">\listoffigures</span>
+<span class="Statement">\newpage</span>
+
+<span class="PreProc">\chapter</span><span class="Special">{</span>Introduction<span class="Special">}</span>
+
+<span class="PreProc">\section</span><span class="Special">{</span><span class="Statement">\LaTeX</span> is fun<span class="Special">}</span>
+Bla bla, latex is cool, and not only in bed.
+See that explanatory figure to figure out why:
+
+<span class="Statement">\begin</span><span class="Special">{</span><span class="PreProc">figure</span><span class="Special">}[</span>h!<span class="Special">]</span>
+    <span class="Statement">\centering</span>
+    <span class="Statement">\includegraphics</span><span class="Special">[</span><span class="Constant">width=\textwidth</span><span class="Special">]</span><span class="Special">{</span><span class="Special">figure</span><span class="Special">}</span>
+    <span class="Statement">\caption</span><span class="Special">{</span>Figure caption<span class="Special">}</span>
+    <span class="Statement">\label{</span><span class="Special">fig:figure</span><span class="Statement">}</span>
+<span class="Statement">\end</span><span class="Special">{</span><span class="PreProc">figure</span><span class="Special">}</span>
+
+that might not be the good figure. Anyway...
+
+<span class="PreProc">\subsection</span><span class="Special">{</span>Love?<span class="Special">}</span>
+Do you love me some <span class="Statement">\LaTeX</span>?
+
+<span class="PreProc">\subsection</span><span class="Special">{</span>Llorem ipsum<span class="Special">}</span>
+My money's in that office, right? If she start giving me some bullshit about it
+ain't there, and we got to go someplace else and get it, I'm gonna shoot you in
+the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find
+out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm
+talking to you, motherfucker. You listen: we go in there, and that nigga Winston
+or anybody else is in there, you the first motherfucker to get shot. You
+understand?
+
+Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is
+advertised as the most popular gun in American crime. Do you believe that shit?
+It actually says that in the little book that comes with it: the most popular
+gun in American crime. Like they're actually proud of that shit.
+
+Now that we know who you are, I know who I am. I'm not a mistake! It all makes
+sense! In a comic, you know how you can tell who the arch-villain's going to be?
+He's the exact opposite of the hero. And most times they're friends, like you
+and me! I should've known way back when... You know why, David? Because of the
+kids. They called me Mr Glass.
+
+<span class="Statement">\appendix</span>
+<span class="PreProc">\chapter</span><span class="Special">{</span>Appendix<span class="Special">}</span>
+
+<span class="PreProc">\section</span><span class="Special">{</span>Oh! A table!<span class="Special">}</span>
+<span class="Statement">\begin</span><span class="Special">{</span><span class="PreProc">table</span><span class="Special">}[</span>h!<span class="Special">]</span>
+    <span class="Statement">\begin</span><span class="Special">{</span><span class="PreProc">tabular</span><span class="Special">}</span><span class="Special">{</span> | l | l | p<span class="Special">{</span><span class="Constant">5cm</span><span class="Special">}</span> | <span class="Special">}</span>
+        <span class="Comment">% pretty that shit with !column -t -s \&amp; -o \&amp;</span>
+        <span class="Statement">\hline</span>
+        COLUMN <span class="Special">&amp;</span> COLUMN 3 HEADER   <span class="Special">&amp;</span> DESCRIPTION <span class="Special">\\</span> <span class="Statement">\hline</span> <span class="Statement">\hline</span>
+        column <span class="Special">&amp;</span> name of something <span class="Special">&amp;</span> Description of that, eeh <span class="Special">\\</span> <span class="Statement">\hline</span>
+        column <span class="Special">&amp;</span> name of something <span class="Special">&amp;</span> Description of that, eeh <span class="Special">\\</span> <span class="Statement">\hline</span>
+        column <span class="Special">&amp;</span> name of something <span class="Special">&amp;</span> Description of that, eeh <span class="Special">\\</span> <span class="Statement">\hline</span>
+        column <span class="Special">&amp;</span> name of something <span class="Special">&amp;</span> Description of that, eeh <span class="Special">\\</span> <span class="Statement">\hline</span>
+        column <span class="Special">&amp;</span> name of something <span class="Special">&amp;</span> Description of that, eeh <span class="Special">\\</span> <span class="Statement">\hline</span>
+        column <span class="Special">&amp;</span> name of something <span class="Special">&amp;</span> Description of that, eeh <span class="Special">\\</span> <span class="Statement">\hline</span> <span class="Statement">\hline</span>
+        FOOTER <span class="Special">&amp;</span> NAME OF FOOTER    <span class="Special">&amp;</span> WHO CARES WHAT'S HERE?   <span class="Special">\\</span> <span class="Statement">\hline</span>
+    <span class="Statement">\end</span><span class="Special">{</span><span class="PreProc">tabular</span><span class="Special">}</span>
+    <span class="Statement">\caption</span><span class="Special">{</span>Exemple of a table<span class="Special">}</span>
+    <span class="Statement">\label{</span><span class="Special">tab:table</span><span class="Statement">}</span>
+<span class="Statement">\end</span><span class="Special">{</span><span class="PreProc">table</span><span class="Special">}</span>
+
+<span class="PreProc">\end{document}</span>
+<span class="Comment">% vim&#0058; ft=tex tw=80 cc=81 nowrap fdm=marker :</span>
+              </pre>
+            </code>
+            Wooow ! That's so many tags for such a simple thing!<br/>
+            In fact, once you get used to those tags, they are no more a
+            problem. Also, The more text you have, the less you'll see the tags.
+          </p>
+          <p>
+            So, now you know HOW latex looks like. But you don't know HOW to
+            write it, and what to do with that file.<br/>
+            Don't worry, that ain't difficult. 
+          </p>
+
+          <h3>Writing latex</h3>
+          <p>
+            Latex files basically looks like any source file. First come the
+            definitions, and then the source (document) itself.<br/>
+            The definitions are importants because that will tell latex HOW to
+            create the document.
+          </p>
+          <p>
+            Latex tags are only a \ followed by a command. If that keyword needs
+            an argument, that argument is given within {}. If that command needs
+            an option, that option is given within []. Seems hard ? It is not.
+            Take a look at this:
+            <code><pre><span class="Statement">\command</span><span
+            class="Special">[</span><span class="Constant">option</span><span
+              class="Special">]{</span><span
+          class="PreProc">argument</span><span class="Special">}</span> <span
+          class="Comment">% comments are from % 'til EOL</span></pre></code>
+            Do you get it now ? Then, move on.
+          </p>
+          <p>
+            The simplest header would be:
+            <code>
+              <pre><span class="Statement">\documentclass</span><span class="Special">{</span><span class="PreProc">report</span><span class="Special">}</span> </pre>
+            </code>
+            This will tell to latex that you want to write a report. Latex knows
+            what a report is, so it will apply a set of rules (margin, font
+            size, numerotation of chapters/section, and so on). So you will ONLY
+            have to rewrite the rules you don't like, or that are missing.
+            I'll not cover that in this post, because there are too many way
+            to do so, and you are tall enough to find infos by yourself 
+            <span class='smiley'>;)</span>. Latex has a huge wiki, which is
+            great. Use it!
+          </p>
+          <p>
+            Now, the body. Here to, I will give you the most basic body (eg, not
+            covering figures, or table. The wiki is better than me to that).
+            So, the most simple body is the following:
+            <code>
+              <pre>
+<span class="PreProc">\begin{document}</span>
+
+<span class="PreProc">\chapter</span><span class="Special">{</span>First chapter<span class="Special">}</span>
+
+<span class="PreProc">\section</span><span class="Special">{</span><span class="Statement">\LaTeX</span> is fun<span class="Special">}</span>
+My money's in that office, right? If she start giving me some bullshit about it
+ain't there, and we got to go someplace else and get it, I'm gonna shoot you in
+the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find
+out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm
+talking to you, motherfucker. You listen: we go in there, and that nigga Winston
+or anybody else is in there, you the first motherfucker to get shot. You
+understand?
+
+<span class="PreProc">\section</span><span class="Special">{</span>Middle section<span class="Special">}</span>
+Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is
+advertised as the most popular gun in American crime. Do you believe that shit?
+It actually says that in the little book that comes with it: the most popular
+gun in American crime. Like they're actually proud of that shit.
+
+
+<span class="PreProc">\chapter</span><span class="Special">{</span>Last chapter<span class="Special">}</span>
+
+<span class="PreProc">\section</span><span class="Special">{</span>Last section<span class="Special">}</span>
+Now that we know who you are, I know who I am. I'm not a mistake! It all makes
+sense! In a comic, you know how you can tell who the arch-villain's going to be?
+He's the exact opposite of the hero. And most times they're friends, like you
+and me! I should've known way back when... You know why, David? Because of the
+kids. They called me Mr Glass.
+
+<span class="PreProc">\end{document}</span></pre>
+            </code>
+          </p>
+          <p>
+            You're still there ? Fine. Now, what should we do with that file ?
+          </p>
+
+          <h3>Compilation</h3>
+          <p>
+            Yeah, you read it right. You compile a Latex file, because it has to
+            generate many other files in order to understand your whole
+            document.<br />
+            It will have to count yur chapters, sections, subsection, and so on.
+            Then, create a output file which will be formatted, and correctly
+            numeroted, linked to your figures, tables, etc..
+          </p>
+          <p>
+            So, how does it works ? Taht's easy, just call <code>latex</code> on
+            your file to have it compiled.
+
+            <code><pre>latex file.tex</pre></code>
+
+            This command will create a <strong>dvi</strong> file. If you want
+            another format, you you be able to use any other tool to convert it
+            to the fomat you want:
+            <code>
+              <pre>
+dvips  file.dvi
+dvipdf file.dvi</pre>
+            </code>
+            This will create two files: <code>file.ps</code>, and
+            <code>file.pdf</code> (U DONT SAY?!), that you will be able to view
+            in your prefered PDF viewer. (I suggest 
+            <a href="http://pwmt.org/projects/zathura/">zathura</a>, which is
+            able to reload automatically your file if the timestamp have
+            changed)
+          </p>
+          <p>
+            I here someone in the audience whispering:
+            <q>But, That's a pain !</q>. You are not wrong ! That's why my
+            favorite tool comes to the rescue: <code>make</code>.
+            Yes ! Each time you hear or read the word <em>compilation</em>, you
+            should instantly think <em>Makefile</em>. That's what I did, and it
+            has saved me a lot of time!<br/>
+            I could leave it to you as an exercise, but I know that some of you
+            are just lazy. So here is the makefile I came with:
+            <code>
+              <pre>
+<span class="Comment"># File name</span>
+<span class="Identifier">BASE    </span>= la
+
+<span class="Comment"># How to view output files</span>
+<span class="Identifier">VIEWER  </span>= zathura
+
+<span class="Comment"># Files used for diagrams (umlet file)</span>
+<span class="Identifier">uxffiles</span>=<span class="Identifier">$(</span><span class="Statement">wildcard</span><span class="Identifier"> fig/*.uxf)</span>
+
+<span class="Comment"># Those files, with the correct extension for LaTeX</span>
+<span class="Identifier">figures</span>=<span class="Identifier">$(</span><span class="Statement">patsubst</span><span class="Identifier"> %.uxf,%.eps,${uxffiles})</span>
+
+<span class="Statement">.SUFFIXES:</span>
+<span class="Statement">.SUFFIXES:</span>.ps .pdf .dvi .tex .uxf .eps .toc .lof .lot
+
+<span class="Statement">.PHONY:</span> default all dvi ps pdf eps view view-ps view-pdf clean mrproper
+
+<span class="Comment"># What should 'make' run by default ?</span>
+<span class="Function">default:</span> ps
+
+<span class="Comment"># build everything</span>
+<span class="Function">all:</span> ps pdf view-ps
+
+<span class="Comment"># The output files</span>
+<span class="Function">dvi:</span> <span class="Identifier">${BASE}</span>.dvi
+<span class="Function">ps:</span>  <span class="Identifier">${BASE}</span>.ps
+<span class="Function">pdf:</span> <span class="Identifier">${BASE}</span>.pdf
+<span class="Function">eps:</span> <span class="Identifier">${figures}</span>
+
+<span class="Comment"># Default view</span>
+<span class="Function">view:</span> view-ps
+
+<span class="Comment"># --- DVI ---------------------------------------</span>
+<span class="Identifier">${BASE}</span>.dvi: <span class="Identifier">${figures}</span> <span class="Identifier">${BASE}</span>.toc <span class="Identifier">${BASE}</span>.tex
+<span class="Special">	@</span>echo <span class="String">&quot;TEX  </span><span class="Identifier">${BASE}</span><span class="String">.tex&quot;</span>
+<span class="Special">	@</span>latex <span class="Identifier">${BASE}</span>.tex &gt;/dev/null
+
+<span class="Comment"># --- TOC ---------------------------------------</span>
+<span class="Identifier">${BASE}</span>.toc: <span class="Identifier">${figures}</span> <span class="Identifier">${BASE}</span>.tex
+<span class="Special">	@</span>echo <span class="String">&quot;TOC  </span><span class="Identifier">${BASE}</span><span class="String">.tex&quot;</span>
+<span class="Special">	@</span>latex -draftmode <span class="Identifier">${BASE}</span>.tex &gt;/dev/null
+
+<span class="Comment"># --- EPS ---------------------------------</span>
+<span class="Function">.uxf.eps:</span>
+<span class="Special">	@</span><span class="Constant">echo </span><span class="String">&quot;EPS  </span><span class="Identifier">$&lt;</span><span class="String">&quot;</span>
+<span class="Special">	@</span><span class="Constant">umlet -action=convert -format=eps -filename=</span><span class="Identifier">$&lt;</span><span class="Constant"> &gt;/dev/null</span>
+
+<span class="Comment"># --- PS ----------------------------------------</span>
+<span class="Function">.dvi.ps:</span>
+<span class="Special">	@</span><span class="Constant">echo </span><span class="String">&quot;PS   </span><span class="Identifier">$&lt;</span><span class="String">&quot;</span>
+<span class="Special">	@</span><span class="Constant">dvips -q </span><span class="Identifier">$&lt;</span>
+
+<span class="Comment"># --- PDF ---------------------------------------</span>
+<span class="Function">.dvi.pdf:</span>
+<span class="Special">	@</span><span class="Constant">echo </span><span class="String">&quot;PDF  </span><span class="Identifier">$&lt;</span><span class="String">&quot;</span>
+<span class="Special">	@</span><span class="Constant">dvipdf -q </span><span class="Identifier">$&lt;</span>
+
+<span class="Comment"># --- OTHER -------------------------------------</span>
+<span class="Function">view-%:</span> <span class="Identifier">${BASE}</span>.<span class="Identifier">%</span>
+<span class="Constant">	</span><span class="Identifier">${VIEWER}</span><span class="Constant"> </span><span class="Identifier">$&lt;</span>
+
+<span class="Function">clean:</span>
+<span class="Constant">	rm -f *.aux</span>
+<span class="Constant">	rm -f *.log</span>
+<span class="Constant">	rm -f *.dvi</span>
+<span class="Constant">	rm -f *.lof</span>
+<span class="Constant">	rm -f *.lot</span>
+<span class="Constant">	rm -f *.toc</span>
+
+<span class="Function">mrproper:</span> clean
+<span class="Constant">	rm -f fig/*.eps</span>
+<span class="Constant">	rm -f *.pdf</span>
+<span class="Constant">	rm -f *.ps</span> </pre>
+            </code>
+            Easy to use!
+            <code>
+              <pre>
+make [dvi|ps|pdf|eps]   # build either the dvi/ps/pdf files, or the eps files
+make [view-ps|view-pdf] # calls ${VIEWER} on either the ps or pdf file </pre>
+            </code>
+            Maybe... To get the "eps" part, see the <a href="#tips">tips
+              section</a>
+          </p>
+
+          <h3>Enjoy !</h3>
+          <p>
+            There you go, you are now ready to write your own latex documents,
+            and browser the web to find help about what is not explained in
+            this post (there is <strong>A LOT</strong> things about latex..)
+          </p>
+          <p>
+            Before to unleash you, here are just a few tips, from my experience
+            with latex (particularly images).
+            <ul id='tips'>
+              <li>
+                Read other documents, there are goldmine out there, and that
+                wil hemlp you a lot
+              </li>
+              <li>
+                Write the skeleton of your file BEFORE the text itself, so you
+                can focus on what you type.
+              </li>
+              <li>
+                DVI format only support EPS files to render figures, now you're
+                warned..
+              </li>
+              <li>
+                <a href="http://umlet.com/">UMLet</a> is a great tool to create
+                diagrams and such. It also include a cli routine to export files
+                to format like pdf/jpg/eps (see the Makefile above)
+              </li>
+              <li>
+                Latex can also write letter! That's cool isn't it?
+              </li>
+            </ul>
+          </p>
+        </article>
+      </section>
+    </div>
+    <!-- footer {{{ -->
+    <footer>
+      <a href='http://www.acme.com/software/thttpd/'>thttpd &hearts;</a> //
+      <a href='http://www.wtfpl.net/about/'>wtfpl &copy;</a> //
+      <a href='mailto:willy@mailoo.org'>contact &#9993;</a> //
+      <a href='http://z3bra.org'>root &#9774;</a> //
+      <a href='http://blog.z3bra.org/rss/feed.xml'>rss &#9733;</a>
+    </footer>
+    <!-- }}} -->
+  </body>
+</html>
+<!-- vim: set sw=2 et ai fdm=marker: -->
