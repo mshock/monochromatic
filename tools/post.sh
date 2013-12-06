@@ -11,8 +11,8 @@ POST="${folder}/${file}"
 
 cat tools/{head,body,foot}.template >>  $POST
 
-[[ -f ${folder}/${file} ]] && echo "$POST created" && exit 0
+[[ ! -f ${folder}/${file} ]] && echo "cannot create ${POST}" && exit 1
 
-echo "cannot create ${POST}"
+echo "$POST created"
 
-
+ln -fs ${POST} post.html
