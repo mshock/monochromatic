@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <link rel='stylesheet' href='/css/monochrome.css'/>
+    <link rel='stylesheet' href='/css/code.css'/>
+    <link rel='stylesheet' href='/css/phone.css' media='screen and (max-width: 540px)'/>
+    <title>monochromatic</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href='/'>Monochromatic</a></h1> <h2>&mdash; <a href='/about.html'>z3bra</a>, the stripes apart</h2>
+    </header>
+    <div id='wrapper'>
+      <section>
+        <h1>
+          <a href='#'>Images in terminal</a>
+        </h1>
+        <h2>
+          &mdash; 28 January, 2014
+        </h2>
+        <article>
+          <p>
+            I am a huge fan of the terminal. Really. 90% of the magic I realize
+            on my computer is through a terminal: IRC, text editing, ,e-mails, 
+            file managing, package managing, developpement, even web browsing
+            sometimes !
+            <br />
+            But the terminal lack one thing: <strong>image rendering</strong>.
+          </p>
+        <p>
+            I have search a way to display images in the terminal for a
+            looooong time now, and after digging through fbi, fbterm, and
+            obscure graphical drivers, I finally found my goldmine.. I stumbled
+            upon <a
+              href='http://www.nongnu.org/ranger/screenshots/w3mimgpreview.png'>this picture</a>
+            taken from <a href='http://www.nongnu.org/ranger/'>this website</a>.
+            Ranger. It's a text-based file manager (that's cool bro'), but the
+            interesting point sits in the "dependencies" section:
+            <blockquote>
+              <cite><li>w3m for previewing images in "true color".</li></cite>
+            </blockquote>
+            <a href='http://w3m.sourceforge.net'>w3m</a>. That was my
+            answer.
+          </p>
+          <h3>the package</h3>
+          <p>
+            w3m is a text-based web browser. It means that you can use it to
+            browse the web from within your terminal (good stuff!). There are
+            many like it (lynx, links, elinks, edbrowse,..), but this one is
+            different, as it acts more like a point'n'click software than a CLI
+            app.
+          </p>
+          <p>
+            w3m uses gpm, a tool that let you use your terminal cursor like a
+            mouse, moving it character by character.<br />
+            Anyway, that's not the point here. Let's go back to image viewing!
+            w3m has the particularity to render images in your terminal, and it
+            is pretty good at it! The problem was to find out
+            <strong>HOW</strong>. I browsed the manpage many, many times,
+            searching for keywords like <q>image</q>, <q>preview</q>, <q>gimme
+              my f**cking image rendering, damn software!</q>. Every usefull
+            keyword I could find. <strong>Nothing</strong>.
+          </p>
+          <h3>the pursuit</h3>
+          <p>
+            A few minutes (when all the buckets were fullfilled with my tears),
+            I finally tough: <q>Use the source, z3bra</q>.<br /> That's how I
+            installed ranger.
+          </p>
+          <p>
+            Ranger is written in python. And if it uses w3m to render images, I
+            would find the tool it uses to do so. Here is how I managed to find
+            it:
+            <code>
+              <pre>
+$ pacman -Ql ranger | grep -E 'image|img|w3m|picture|preview'
+ranger /usr/lib/python3.3/site-packages/ranger/ext/__pycache__/img_display.cpython-33.pyc
+ranger /usr/lib/python3.3/site-packages/ranger/ext/__pycache__/img_display.cpython-33.pyo
+ranger /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
+
+$ grep 'w3m' /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
+    ...
+W3MIMGDISPLAY_PATH = '/usr/lib/w3m/w3mimgdisplay'
+    ...
+              </pre>
+            </code>
+            <strong>HOORAY!</strong> A binary ! Next step will be to understand
+            how to make it render images in the terminal..
+          </p>
+          <h3>the trials</h3>
+          <p>
+            Obviously, running <code>w3mimgdisplay --help</code> would've been
+            too easy.. But I finally managed to understand a few things using
+            the ranger source I just found, and
+          <a href='https://www.mail-archive.com/mutt-users@mutt.org/msg34447.html'>this thread</a>.
+            Here is the idea: w3mimgdisplay reads commands from stdin, and draws
+            something on your terminal, pixel by pixel.
+          </p>
+          <p>
+            w3mimgdisplay commands are numbers from 0 to 6, and some commands
+            take additionnal parameters.<br />
+            In the w3m tarball, you can find this:
+            <code>
+              <pre>
+w3mimgdisplay.c
+<hr>
+/*
+ * w3mimg protocol
+ *  0  1  2 ....
+ * +--+--+--+--+ ...... +--+--+
+ * |op|; |args             |\n|
+ * +--+--+--+--+ .......+--+--+
+ *
+ * args is separeted by ';'
+ * op   args
+ *  0;  params          draw image
+ *  1;  params          redraw image
+ *  2;  -none-          terminate drawing
+ *  3;  -none-          sync drawing
+ *  4;  -none-          nop, sync communication
+ *                      response '\n'
+ *  5;  path            get size of image,
+ *                      response "<width> <height>\n"
+ *  6;  params(6)       clear image
+ *
+ * params
+ *      &lt;n&gt;;&lt;x&gt;;&lt;y&gt;;&lt;w&gt;;&lt;h&gt;;&lt;sx&gt;;&lt;sy&gt;;&lt;sw&gt;;&lt;sh&gt;;&lt;path&gt;
+ * params(6)
+ *      &lt;x&gt;;&lt;y&gt;;&lt;w&gt;;&lt;h&gt;
+ *
+ */
+              </pre>
+            </code>
+            Here is the <em>params</em> interpreted on the mutt mail list:
+            <code>
+              <pre>
+&gt;  n  - This is used when displaying multiple images
+&gt;  x  - x coordinate to draw the image at (top left corner)
+&gt;  y  - y coordinate to draw the image at (top left corner)
+&gt;  w  - width to draw the image
+&gt;  h  - height to draw the image
+&gt;  sx - x offset to draw the image
+&gt;  xy - y offset to draw the image
+&gt;  sw - width of the original (source) image
+&gt;  sh - height of the original (source) image
+              </pre>
+            </code>
+            </p>
+            <p>
+            I now have a better idea on how the protocol works.<br />
+            Now, by crossing it with the ranger source, I ended up with this
+            line:
+            <code><pre> echo -e '0;1;0;0;200;160;;;;;ant.jpg\n4;\n3;' | /usr/lib/w3m/w3mimgdisplay </pre></code>
+              <strong>BOOM !</strong>
+              <a href='http://chezmoicamarche.com'>It works!</a><br />
+              <a class='a_img' href='/img/w3mimgdisplay-crap.jpg'>
+                <img class='a_img' src='/img/thumb/w3mimgdisplay-crap.jpg'
+                alt='Fucked up w3mimgdisplay trial'/>
+              </a>
+              <span class='caption'>
+                The result of the previous command. Our
+                picture drawn in 200x100px, at offset +0+0 in the terminal.
+                <br />I'm sure you're already trying it 
+                <span class='smiley'>;)</span>
+              </span>
+          </p>
+          <h3>the wrapping</h3>
+          <p>
+            Okay, we can now display an image in the terminal, at the offset
+            and size we want. Let's wrap it up in a script, to be more adaptive!
+            We will need some tools to help us here. Feel free to search by
+            yourself, as an exercise. Here is the script I came with:
+            <code>
+              <pre>
+<span class="Comment">#!/bin/bash</span>
+<span class="Comment">#</span>
+<span class="Comment"># z3bra -- 2014-01-21</span>
+
+<span class="Statement">test</span> <span class="Special">-z</span> <span class="Statement">&quot;</span><span class="PreProc">$1</span><span class="Statement">&quot;</span> &amp;&amp; <span class="Statement">exit</span>
+
+<span class="Identifier">W3MIMGDISPLAY</span>=<span class="Statement">&quot;</span><span class="String">/usr/lib/w3m/w3mimgdisplay</span><span class="Statement">&quot;</span>
+<span class="Identifier">FILENAME</span>=<span class="PreProc">$1</span>
+<span class="Identifier">FONTH</span>=<span class="Constant">14</span> <span class="Comment"># Size of one terminal row</span>
+<span class="Identifier">FONTW</span>=<span class="Constant">8</span>  <span class="Comment"># Size of one terminal column</span>
+<span class="Identifier">COLUMNS</span>=<span class="Special">`tput cols`</span>
+<span class="Identifier">LINES</span>=<span class="Special">`tput lines`</span>
+
+<span class="Statement">read</span> width height <span class="Statement">&lt;&lt;&lt;</span> <span class="Special">`</span><span class="Statement">echo</span><span class="String"> -e </span><span class="Statement">&quot;</span><span class="String">5;</span><span class="PreProc">$FILENAME</span><span class="Statement">&quot;</span><span class="String"> </span><span class="Special">| </span><span class="PreProc">$W3MIMGDISPLAY</span><span class="Special">`</span>
+
+<span class="Identifier">max_width</span>=<span class="PreProc">$((</span><span class="PreProc">$FONTW</span><span class="Special"> * </span><span class="PreProc">$COLUMNS</span><span class="PreProc">))</span>
+<span class="Identifier">max_height</span>=<span class="PreProc">$((</span><span class="PreProc">$FONTH</span><span class="Special"> * </span><span class="PreProc">$((</span><span class="PreProc">$LINES</span><span class="Special"> - </span><span class="Constant">2</span><span class="PreProc">))))</span> <span class="Comment"># substract one line for prompt</span>
+
+<span class="Statement">if </span><span class="Statement">test</span> <span class="PreProc">$width</span> <span class="Statement">-gt</span> <span class="PreProc">$max_width</span>; <span class="Statement">then</span>
+    <span class="Identifier">height</span>=<span class="PreProc">$((</span><span class="PreProc">$height</span><span class="Special"> * </span><span class="PreProc">$max_width</span><span class="Special"> / </span><span class="PreProc">$width</span><span class="PreProc">))</span>
+    <span class="Identifier">width</span>=<span class="PreProc">$max_width</span>
+<span class="Statement">fi</span>
+<span class="Statement">if </span><span class="Statement">test</span> <span class="PreProc">$height</span> <span class="Statement">-gt</span> <span class="PreProc">$max_height</span>; <span class="Statement">then</span>
+    <span class="Identifier">width</span>=<span class="PreProc">$((</span><span class="PreProc">$width</span><span class="Special"> * </span><span class="PreProc">$max_height</span><span class="Special"> / </span><span class="PreProc">$height</span><span class="PreProc">))</span>
+    <span class="Identifier">height</span>=<span class="PreProc">$max_height</span>
+<span class="Statement">fi</span>
+
+<span class="Identifier">w3m_command</span>=<span class="Statement">&quot;</span><span class="String">0;1;0;0;</span><span class="PreProc">$width</span><span class="String">;</span><span class="PreProc">$height</span><span class="String">;;;;;</span><span class="PreProc">$FILENAME</span><span class="Special">\n</span><span class="String">4;</span><span class="Special">\n</span><span class="String">3;</span><span class="Statement">&quot;</span>
+
+tput cup <span class="PreProc">$((</span><span class="PreProc">$height</span><span class="Special">/</span><span class="PreProc">$FONTH</span><span class="PreProc">))</span> <span class="Constant">0</span>
+<span class="Statement">echo</span><span class="String"> -e </span><span class="PreProc">$w3m_command</span>|<span class="PreProc">$W3MIMGDISPLAY</span>
+              </pre>
+            </code>
+            Let's see the rendering...<br />
+            <a class='a_img' href='/img/w3mimgdisplay-good.jpg'>
+              <img class='a_img' src='/img/thumb/w3mimgdisplay-good.jpg'
+              alt='Fucked up w3mimgdisplay trial'/>
+            </a>
+            <span class='caption'>
+              The script draws the image depending on the terminal size (width
+              AND height), and put the cursor after the image (exactly 2 lines
+              after).<br />
+              You might want to adapt it to your own case, as the character
+              height and width is hardcoded.
+            </span><br />
+            <br />
+            Aaaaaaaaand it's cool !
+          </p>
+
+          <h3>the end</h3>
+          <p>
+            There you are. You have a tool to preview images in your terminal,
+            in an easy way. The dependency is not huge, and you can script it
+            the way you want.<br />
+          </p>
+          <p>
+            I hope you learnt a few things here, like tips to grok softwares,
+            understand libs/protocols, or at least, the w3mimg protocol.<br />
+            My script is not perfect, because I have no idea how one can get the
+            current cursor line and such. so if you have any improvement or
+            idea, I'll be glad to modify my script and add your name :)
+          </p>
+          <p>
+            <em>Side note:</em> w3m can't render images in urxvt, if the depth
+            is 32. That means that you can't render images on a transparent
+            background. Be sure that you comment the line </code>URxvt*depth:
+          32</code> in your </code>~/.Xresources</code>.
+          </p>
+          <h3>That's all, folks!</h3>
+        </article>
+      </section>
+    </div>
+    <!-- footer {{{ -->
+    <footer>
+      <a href='http://www.acme.com/software/thttpd/'>thttpd &hearts;</a> //
+      <a href='http://www.wtfpl.net/about/'>wtfpl &copy;</a> //
+      <a href='mailto:willy@mailoo.org'>contact &#9993;</a> //
+      <a href='http://z3bra.org'>root &#9774;</a> //
+      <a href='http://blog.z3bra.org/rss/feed.xml'>rss &#9733;</a>
+    </footer>
+    <!-- }}} -->
+  </body>
+</html>
+<!-- vim: set sw=2 et ai fdm=marker: -->
