@@ -5,7 +5,7 @@
 folder=$(date +%Y/%m)
 file=${1// /-}.html
 
-[[ ! -d ${folder} ]] && mkdir ${folder}
+[[ ! -d ${folder} ]] && mkdir -p ${folder}
 
 POST="${folder}/${file}"
 
