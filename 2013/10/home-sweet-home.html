@@ -293,7 +293,7 @@ Xresources
             <ul>
               <li>sh &mdash; The historical shell</li>
               <li>bash &mdash; Improved shell, based on sh</li>
-              <li>zsh &mdash; An extermly powerfull shell with a great
+              <li>zsh &mdash; An extremly powerfull shell with a great
               completion system</li>
               <li>fish &mdash; A user friendly shell, really different from the
               above</li>
@@ -301,9 +301,12 @@ Xresources
               <li>tcsh &mdash; An improvement of csh</li>
             </ul>
 
-            I personnaly use zsh because it has a feature I like, the right
-            prompt. also, it's completion system is really great (argument
-            completion is a good thing to have, trust me..).  <br /> 
+            I personnaly used zsh a lot because it has a feature I like,
+            the right prompt. also, it's completion system is really great
+            (argument completion is a good thing to have, trust me..). But I now
+            use bash again because I don't need much of the features zsh
+            provide, so that was kinda like using a chainsaw to cut a thin rope.
+            <br />
 
             Anyway, I'll treat here only the "standard shell": bash <br />
 
@@ -326,10 +329,27 @@ z3bra-$
             Here is my personnal prompt:
             <code>
               <pre>
+bashrc
+<hr/>
+<spak class="Comment"># Fancy prompt</span>
+<span class="Statement">fg</span><span class="Statement">=</span><span class="PreProc">(</span><span class="Statement">'</span><span class="String">\[\e[0;30m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;31m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;32m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;33m\]</span><span class="Statement">'</span>
+<span class="Special">    </span><span class="Statement">'</span><span class="String">\[\e[0;34m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;35m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;36m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;37m\]</span><span class="Statement">'</span>
+<span class="Special">    </span><span class="Statement">'</span><span class="String">\[\e[1;30m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;31m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;32m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;33m\]</span><span class="Statement">'</span>
+<span class="Special">    </span><span class="Statement">'</span><span class="String">\[\e[1;34m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;35m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;36m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;37m\]</span><span class="Statement">'</span><span class="PreProc">)</span>
+<span class="Identifier">nofg</span>=<span class="Statement">'</span><span class="String">\[\e[0m\]</span><span class="Statement">'</span>
+
+<span class="Identifier">PS1</span>=<span class="Statement">''</span>;<span class="Statement">[</span> <span class="Statement">-n</span> <span class="Statement">&quot;</span><span class="PreProc">$SSH_CLIENT</span><span class="Statement">&quot;</span> <span class="Statement">]</span> &amp;&amp; <span class="Identifier">PS1</span>=<span class="Statement">&quot;</span><span class="PreProc">${</span><span class="PreProc">fg</span><span class="PreProc">[</span><span class="Constant">8</span><span class="PreProc">]</span><span class="PreProc">}</span><span class="PreProc">$(</span><span class="Special">hostname|cut </span><span class="Special">-b-2</span><span class="PreProc">)</span><span class="String"> </span><span class="Statement">&quot;</span>
+<span class="Statement">export</span><span class="Identifier"> PS1=</span><span class="Statement">&quot;</span><span class="String"> </span><span class="PreProc">${</span><span class="PreProc">PS1</span><span class="PreProc">}${</span><span class="PreProc">fg</span><span class="PreProc">[</span><span class="Constant">11</span><span class="PreProc">]</span><span class="PreProc">}</span><span class="String">──── </span><span class="PreProc">${</span><span class="PreProc">nofg</span><span class="PreProc">}</span><span class="Statement">&quot;</span>
+              </pre>
+            </code>
+
+            And my old zsh prompt:
+
+            <code>
+              <pre>
 zshrc
 <hr />
-<span class="Identifier">PROMPT</span>=<span class="Statement">&quot;</span>
-<span class="String">%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%} »  </span><span class="Statement">&quot;</span>
+<span class="Identifier">PROMPT</span>=<span class="Statement">&quot;</span> <span class="String">%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%} »  </span><span class="Statement">&quot;</span>
 <span class="Identifier">RPROMPT</span>=<span class="Statement">&quot;</span><span class="String">%{</span><span class="PreProc">$fg</span><span class="String">[black]%}%M:%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%}%~%{</span><span class="PreProc">$reset_color</span><span class="String">%}   </span><span class="Statement">&quot;</span>
               </pre>
             </code>
@@ -428,7 +448,7 @@ zshrc
           <h3 id="setup">Integration</h3>
           <p>
             Now that we potentially have a working desktop, let make it spawn
-            correctly, using ONLY on file: <code>~/.xinitrc</code>.
+            correctly, using ONLY one file: <code>~/.xinitrc</code>.
             <br />
             That magical file is simply a shell script that is called by default
             with <code>startx</code>.
