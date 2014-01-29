@@ -23,12 +23,15 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: district;
-    src: url(/css/fonts/district.otf);
-    font-weight: normal;
-    font-style: normal;
-}
+/*
+ * @font-face {
+ *     font-family: district;
+ *     src: url(/css/fonts/district.otf);
+ *     font-weight: normal;
+ *     font-style: normal;
+ * }
+ */
+
 /* }}} */
 
 /* Main blocks style {{{ */
@@ -37,7 +40,7 @@ body {
     color: #bbb;
     padding: 0;
     margin: 0;
-    font-family: district, sans-serif;
+    font-family: /* district, */ sans-serif;
     font-size: 90%;
 }
 
