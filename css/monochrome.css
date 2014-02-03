@@ -2,11 +2,11 @@
 
 /*
  * COLORS DEFINITION:
- *      - background -- #333
- *      - header (bg)-- #222
+ *      - background -- #222
+ *      - header (bg)-- #000
  *      - def. text  -- #bbb
  *      - link visit -- #bbb
- *      - code (bg)  -- #222
+ *      - code (bg)  -- #000
  *      - link text  -- #eec
  *      - borders    -- #eec
  *      - main title -- #fff
@@ -36,7 +36,7 @@
 
 /* Main blocks style {{{ */
 body {
-    background-color: #333;
+    background-color: #222;
     color: #bbb;
     padding: 0;
     margin: 0;
@@ -54,13 +54,16 @@ body {
 
 hr {
     width: 40%;
+    height: 1px;
+    background-color:#fff;
     margin-left: 0;
     margin-top: 32px;
-    border: 1px solid #222;
+    border:none;
+    /* border: 1px solid #000; */
 }
 
 header {
-    background-color: #222;
+    background-color: #000;
     padding: 10px;
 }
 
@@ -151,7 +154,7 @@ header h1 a:hover {
 /* Tables {{{ */
 table {
     border-collapse: collapse;
-    border: 1px solid #222;
+    border: 1px solid #000;
     margin-top:8px;
     margin-bottom:8px;
 }
@@ -161,11 +164,11 @@ table td, table th {
 }
 
 td {
-    border: 1px solid #222;
+    border: 1px solid #000;
 }
 
 th {
-    background-color: #222;
+    background-color: #000;
     color: #fff;
     font-weight: normal;
 }
@@ -174,27 +177,24 @@ th {
 /* Coding style (<code>) {{{ */
 code {
     color: inherit;
-    font-family: monospace;
-    font-size: 90%;
 }
 
 pre {
     color: inherit;
-    background-color: #222;
-    font:inherit;
-    font-size:inherit;
+    background-color: #322;
     padding: 10px;
-    border-radius: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
     margin-top: 4px;
     max-height:200px;
     overflow:auto;
 }
 
 pre hr {
+    background-color:#555;
     width: 100%;
     margin: 0;
     margin-top: 4px;
-    border: 1px dashed #222;
 }
 /* }}} */
 
@@ -237,7 +237,7 @@ img {
     width:30%;
     vertical-align: top;
     display: inline-block;
-    box-shadow: 0px 0px 10px #222;
+    box-shadow: 0px 0px 10px #000;
     border-radius: 4px;
     margin:auto;
     margin-top: 8px;
