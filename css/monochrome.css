@@ -45,8 +45,8 @@ body {
 }
 
 #wrapper {
-    width:80%;
-    max-width:800px;
+    width:90%;
+    max-width:720px;
     padding: 10px;
     margin:auto;
     margin-top: 28px;
@@ -63,17 +63,22 @@ hr {
 }
 
 header {
-    background-color: #000;
+    /* background-color: #000; */
+    width:90%;
+    margin:auto;
+    max-width:720px;
+    border-bottom: 1px solid #555;
     padding: 10px;
 }
 
 footer {
+    color: #555;
     font-size:90%;
     text-align: center;
     margin: auto;
     width: 70%;
-    max-width: 700px;
-    border-top:1px solid #eec;
+    max-width: 720px;
+    border-top:1px solid #555;
     padding: 10px;
 }
 
@@ -107,7 +112,7 @@ h2 {
     color: #666;
     display: inline;
     font-weight: normal;
-    font-size: 120%;
+    font-size: 80%;
 }
 
 header h1 {
@@ -117,12 +122,12 @@ header h1 {
 }
 
 section h1 {
-    font-size: 170%;
+    font-size: 150%;
 }
 
 section h3 {
     display: block;
-    font-size:150%;
+    font-size:120%;
 }
 
 /* }}} */
