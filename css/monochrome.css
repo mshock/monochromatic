@@ -224,6 +224,10 @@ blockquote {
     padding-left: 8px;
 }
 
+.strike {
+    text-decoration: line-through;
+}
+
 .smiley {
     font-style: normal;
     font-family: sans-serif;

@@ -27,14 +27,17 @@
             We are, of course, in a paragraph. And it contains an inline quotation :<br />
             <cite>Richard M. Stallman</cite> said <q>La cuisine indienne favorise les plats curryeux.</q><br />
             But... What about blockquotes ?! Let's test :
+          </p>
 
-            <blockquote>
-              <p>
-                There are some people who live in a dream world, and there are some who face reality;
-                and then there are those who turn one into the other.
-              </p>
-              &mdash; <cite>Douglas Everett</cite>
-            </blockquote>
+          <blockquote>
+            <p>
+              There are some people who live in a dream world, and there are some who face reality;
+              and then there are those who turn one into the other.
+            </p>
+            &mdash; <cite>Douglas Everett</cite>
+          </blockquote>
+
+          <p>
             That was a fine quote. Now, go on !
           </p>
 
@@ -52,7 +55,6 @@
           </p>
 
           <h3>Tables and code</h3>
-          <p>
           <table>
             <thead>
               <tr>
@@ -71,13 +73,17 @@
               <tr> <td>cell #4-0</td> <td>cell #4-1</td> <td>cell #4-2</td> <td>cell #4-3</td> <td>cell #4-4</td> </tr>
             </tbody>
           </table>
-          Pretty nice isn't it ?<br />
-          <br />
-          Here is some code, using the &lt;pre&gt; tag (remember to escape special chars !)<br />
-          <code>
-<pre>
-index.html
-<hr/>
+
+          <p>
+            Pretty nice isn't it ?
+          </p>
+
+          <p>
+            Here is some code, using the &lt;pre&gt; tag (remember to escape special chars !)
+          </p>
+
+          <pre><code>index.html
+
 <span class="Comment">&lt;!DOCTYPE html&gt;</span>
 <span class="Function">&lt;</span><span class="Statement">html</span><span class="Function">&gt;</span>
     <span class="Function">&lt;</span><span class="Statement">head</span><span class="Function">&gt;</span>
@@ -88,13 +94,10 @@ index.html
             Hello, World!
         <span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
     <span class="Identifier">&lt;/</span><span class="Statement">body</span><span class="Identifier">&gt;</span>
-<span class="Identifier">&lt;/</span><span class="Statement">html</span><span class="Identifier">&gt;</span>
-</pre>
-          </code>
-          <code>
-<pre>
-main.c
-<hr/>
+<span class="Identifier">&lt;/</span><span class="Statement">html</span><span class="Identifier">&gt;</span></code></pre>
+
+<pre><code>main.c
+
 <span class="PreProc">#include </span><span class="String">&lt;stdio.h&gt;</span>
 
 <span class="PreProc">#define TEXT </span><span class="String">&quot;Hello, World!&quot;</span>
@@ -106,10 +109,8 @@ main (<span class="Type">int</span> argc, <span class="Type">char</span> **argv)
     printf(<span class="String">&quot;</span><span class="Special">%s</span><span class="Special">\n</span><span class="String">&quot;</span>, TEXT);
 
     <span class="Statement">return</span> <span class="Constant">EXIT_SUCCESS</span>;
-}
-</pre>
-          </code>
-          </p>
+}</code></pre>
+
         </article>
       </section>
     </div>

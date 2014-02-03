@@ -24,7 +24,7 @@
             I am now in my last year of engineering school, and this imply that
             I will have to write a report for the last 3 years I spent in my
             company, as an apprentice. As a fellow Linux user, I don't want to
-            use that <strike>fucking</strike> text processor. I love my vim
+            use that <span class='strike'>fucking</span> text processor. I love my vim
             setup, and I want to use it to write that report.
           </p>
           <h3>Introduction</h3>
@@ -43,10 +43,10 @@
             Seems interresting huh? So basically, what does it look like? Here's
             a simple document (download/view it 
             <a href="http://raw.z3bra.org/null/la.pdf">HERE</a>)
-            <code>
-              <pre>
-la.tex
-<hr/>
+          </p>
+
+          <pre><code>la.tex
+
 <span class="Statement">\documentclass</span><span class="Special">[</span><span class="Constant">9pt</span><span class="Special">]{</span><span class="PreProc">report</span><span class="Special">}</span>     <span class="Comment">% Start of document</span>
 
 <span class="Statement">\usepackage</span><span class="Special">[</span><span class="Constant">utf8</span><span class="Special">]</span><span class="Special">{</span><span class="Special">inputenc</span><span class="Special">}</span>     <span class="Comment">% Write text unsing UTF-8 encoding</span>
@@ -124,9 +124,9 @@ kids. They called me Mr Glass.
 <span class="Statement">\end</span><span class="Special">{</span><span class="PreProc">table</span><span class="Special">}</span>
 
 <span class="PreProc">\end{document}</span>
-<span class="Comment">% vim&#0058; ft=tex tw=80 cc=81 nowrap fdm=marker :</span>
-              </pre>
-            </code>
+<span class="Comment">% vim&#0058; ft=tex tw=80 cc=81 nowrap fdm=marker :</span></code></pre>
+
+          <p>
             Wooow ! That's so many tags for such a simple thing!<br/>
             In fact, once you get used to those tags, they are no more a
             problem. Also, The more text you have, the less you'll see the tags.
@@ -149,18 +149,24 @@ kids. They called me Mr Glass.
             an argument, that argument is given within {}. If that command needs
             an option, that option is given within []. Seems hard ? It is not.
             Take a look at this:
-            <code><pre><span class="Statement">\command</span><span
+          </p>
+
+
+          <pre><code><span class="Statement">\command</span><span
             class="Special">[</span><span class="Constant">option</span><span
               class="Special">]{</span><span
           class="PreProc">argument</span><span class="Special">}</span> <span
-          class="Comment">% comments are from % 'til EOL</span></pre></code>
+          class="Comment">% comments are from % 'til EOL</span></code></pre>
+
+          <p>
             Do you get it now ? Then, move on.
           </p>
           <p>
             The simplest header would be:
-            <code>
-              <pre><span class="Statement">\documentclass</span><span class="Special">{</span><span class="PreProc">report</span><span class="Special">}</span> </pre>
-            </code>
+          </p>
+          <pre><code><span class="Statement">\documentclass</span><span class="Special">{</span><span class="PreProc">report</span><span class="Special">}</span></code></pre>
+
+          <p>
             This will tell to latex that you want to write a report. Latex knows
             what a report is, so it will apply a set of rules (margin, font
             size, numerotation of chapters/section, and so on). So you will ONLY
@@ -174,9 +180,10 @@ kids. They called me Mr Glass.
             Now, the body. Here to, I will give you the most basic body (eg, not
             covering figures, or table. The wiki is better than me to that).
             So, the most simple body is the following:
-            <code>
-              <pre>
-<span class="PreProc">\begin{document}</span>
+          </p>
+
+
+          <pre><code><span class="PreProc">\begin{document}</span>
 
 <span class="PreProc">\chapter</span><span class="Special">{</span>First chapter<span class="Special">}</span>
 
@@ -205,9 +212,8 @@ He's the exact opposite of the hero. And most times they're friends, like you
 and me! I should've known way back when... You know why, David? Because of the
 kids. They called me Mr Glass.
 
-<span class="PreProc">\end{document}</span></pre>
-            </code>
-          </p>
+<span class="PreProc">\end{document}</span></code></pre>
+
           <p>
             You're still there ? Fine. Now, what should we do with that file ?
           </p>
@@ -225,16 +231,20 @@ kids. They called me Mr Glass.
             So, how does it works ? Taht's easy, just call <code>latex</code> on
             your file to have it compiled.
 
-            <code><pre>latex file.tex</pre></code>
+          </p>
+          <pre><code>latex file.tex</code></pre>
+
+          <p>
 
             This command will create a <strong>dvi</strong> file. If you want
             another format, you you be able to use any other tool to convert it
             to the fomat you want:
-            <code>
-              <pre>
-dvips  file.dvi
-dvipdf file.dvi</pre>
-            </code>
+          </p>
+
+          <pre><code>dvips  file.dvi
+dvipdf file.dvi</code></pre>
+
+          <p>
             This will create two files: <code>file.ps</code>, and
             <code>file.pdf</code> (U DONT SAY?!), that you will be able to view
             in your prefered PDF viewer. (I suggest 
@@ -251,9 +261,9 @@ dvipdf file.dvi</pre>
             has saved me a lot of time!<br/>
             I could leave it to you as an exercise, but I know that some of you
             are just lazy. So here is the makefile I came with:
-            <code>
-              <pre>
-<span class="Comment"># File name</span>
+          </p>
+
+          <pre><code><span class="Comment"># File name</span>
 <span class="Identifier">BASE    </span>= la
 
 <span class="Comment"># How to view output files</span>
@@ -325,14 +335,16 @@ dvipdf file.dvi</pre>
 <span class="Function">mrproper:</span> clean
 <span class="Constant">	rm -f fig/*.eps</span>
 <span class="Constant">	rm -f *.pdf</span>
-<span class="Constant">	rm -f *.ps</span> </pre>
-            </code>
+<span class="Constant">	rm -f *.ps</span></code></pre>
+
+          <p>
             Easy to use!
-            <code>
-              <pre>
-make [dvi|ps|pdf|eps]   # build either the dvi/ps/pdf files, or the eps files
-make [view-ps|view-pdf] # calls ${VIEWER} on either the ps or pdf file </pre>
-            </code>
+          </p>
+
+          <pre><code>make [dvi|ps|pdf|eps]   # build either the dvi/ps/pdf files, or the eps files
+make [view-ps|view-pdf] # calls ${VIEWER} on either the ps or pdf file</code></pre>
+
+          <p>
             Maybe... To get the "eps" part, see the <a href="#tips">tips
               section</a>
           </p>
@@ -346,29 +358,31 @@ make [view-ps|view-pdf] # calls ${VIEWER} on either the ps or pdf file </pre>
           <p>
             Before to unleash you, here are just a few tips, from my experience
             with latex (particularly images).
-            <ul id='tips'>
-              <li>
-                Read other documents, there are goldmine out there, and that
-                will help you a lot
-              </li>
-              <li>
-                Write the skeleton of your file BEFORE the text itself, so you
-                can focus on what you type.
-              </li>
-              <li>
-                DVI format only support EPS files to render figures, now you're
-                warned..
-              </li>
-              <li>
-                <a href="http://umlet.com/">UMLet</a> is a great tool to create
-                diagrams and such. It also include a cli routine to export files
-                to format like pdf/jpg/eps (see the Makefile above)
-              </li>
-              <li>
-                Latex can also write letter! That's cool isn't it?
-              </li>
-            </ul>
           </p>
+
+          <ul id='tips'>
+            <li>
+              Read other documents, there are goldmine out there, and that
+              will help you a lot
+            </li>
+            <li>
+              Write the skeleton of your file BEFORE the text itself, so you
+              can focus on what you type.
+            </li>
+            <li>
+              DVI format only support EPS files to render figures, now you're
+              warned..
+            </li>
+            <li>
+              <a href="http://umlet.com/">UMLet</a> is a great tool to create
+              diagrams and such. It also include a cli routine to export files
+              to format like pdf/jpg/eps (see the Makefile above)
+            </li>
+            <li>
+              Latex can also write letter! That's cool isn't it?
+            </li>
+          </ul>
+
         </article>
       </section>
     </div>

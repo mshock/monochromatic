@@ -23,6 +23,7 @@
           <h3>Summary</h3>
           <p>
             Yes, a summary, because that's gonna be a LONG article.
+          </p>
             <ul>
               <li><a href="#intro">Introduction</a></li>
               <li><a href="#wm">Window manager</a></li>
@@ -32,7 +33,6 @@
               <li><a href="#bar">Status bar</a></li>
               <li><a href="#setup">Integration</a></li>
             </ul>
-          </p>
 
           <hr/>
           <h3 id="intro">Introduction</h3>
@@ -72,14 +72,16 @@
           </p>
           <p>
             There are three types of window managers:
-            <ul>
-              <li><strong>Floating</strong> &mdash; windows overlaps</li>
-              <li><strong>Tilling</strong> &mdash; windows are arranged in tiles
-              (kinda like a grid)</li>
-              <li><strong>Dynamics</strong> &mdash; both floating and tilling
-              are possible</li>
-              <li><strong>Aliens</strong> &mdash; Go home WM, you're drunk.</li>
-            </ul>
+          </p>
+          <ul>
+            <li><strong>Floating</strong> &mdash; windows overlaps</li>
+            <li><strong>Tilling</strong> &mdash; windows are arranged in tiles
+            (kinda like a grid)</li>
+            <li><strong>Dynamics</strong> &mdash; both floating and tilling
+            are possible</li>
+            <li><strong>Aliens</strong> &mdash; Go home WM, you're drunk.</li>
+          </ul>
+          <p>
             Floating management is the management style we're all used to,
             windows are independent and you can resize/move them freely around
             your desktop.<br />
@@ -100,6 +102,7 @@
           <p>
             FYI, here is a non-exhaustive list of window managers I like (F =
             floating, T = tilling, D = dynamic... U DON'T SAY!)
+          </p>
             <ul>
               <li>cwm &mdash; Calm Window Manager (F)</li>
               <li>Ratpoison (A)</li>
@@ -110,6 +113,7 @@
               <li>spectrwm (T)</li>
               <li>...</li>
             </ul>
+          <p>
 
             Note that I <em>DIDN'T</em> mentioned AwesomeWM or openbox. beuâh.
           </p>
@@ -119,9 +123,7 @@
               href="http://gnome-look.org/content/show.php/Another+Gtk+RGBA+module+?content=100968">librgba</a>,
             <a href="https://github.com/chjj/compton">compton</a> to make it
             even prettier!<br />
-          </p>
 
-            <br />
             <a class='a_img' href='/img/2013-10-28-cwm.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-cwm.jpg' alt='cwm screenshot'/>
             </a>
@@ -151,55 +153,60 @@
             &rarr; [0-7] for normal text<br />
             &rarr; [8-15] for bold text<br />
             Here is the color chart:
+          </p>
 
-            <table>
-              <tr>
-                <th></th>
-                <th>black</th>
-                <th>red</th>
-                <th>green</th>
-                <th>yellow</th>
-                <th>blue</th>
-                <th>magenta</th>
-                <th>cyan</th>
-                <th>white</th>
-              </tr>
-              <tr>
-                <th>dark</th>
-                <td>00</td>
-                <td>01</td>
-                <td>02</td>
-                <td>03</td>
-                <td>04</td>
-                <td>05</td>
-                <td>06</td>
-                <td>07</td>
-              </tr>
-              <tr>
-                <th>light</th>
-                <td>08</td>
-                <td>09</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-              </tr>
-            </table>
+          <table>
+            <tr>
+              <th></th>
+              <th>black</th>
+              <th>red</th>
+              <th>green</th>
+              <th>yellow</th>
+              <th>blue</th>
+              <th>magenta</th>
+              <th>cyan</th>
+              <th>white</th>
+            </tr>
+            <tr>
+              <th>dark</th>
+              <td>00</td>
+              <td>01</td>
+              <td>02</td>
+              <td>03</td>
+              <td>04</td>
+              <td>05</td>
+              <td>06</td>
+              <td>07</td>
+            </tr>
+            <tr>
+              <th>light</th>
+              <td>08</td>
+              <td>09</td>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+              <td>15</td>
+            </tr>
+          </table>
 
+          <p>
             Now, just tweak each color to fit your perfect theme!<br />
             To do so, refer to the manual of your terminal.
           </p>
           <p>
             If you don't have one, here is a list of terminal you can use:
-            <ul>
-              <li><a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a></li>
-              <li><a href="https://github.com/thestinger/termite/">termite</a></li>
-              <li><a href="http://www.calno.com/evilvte/">evilvte</a>
-              <li><a href="http://www.afterstep.org/aterm.php">aterm</a>
-              <li><a href="http://freecode.com/projects/mterm">mterm</a>
-            </ul>
+          </p>
+          <ul>
+            <li><a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a></li>
+            <li><a href="https://github.com/thestinger/termite/">termite</a></li>
+            <li><a href="http://www.calno.com/evilvte/">evilvte</a>
+            <li><a href="http://www.afterstep.org/aterm.php">aterm</a>
+            <li><a href="http://freecode.com/projects/mterm">mterm</a>
+          </ul>
+
+          <p>
             I have stick with rxvt-unicode (urxvt) personnally. I find it pretty
             powerfull, light and fast. Also, it can be extended in perl, which
             is great (muh URL selection).
@@ -211,12 +218,16 @@
             urxvt).<br />
             All you have to do, is configure your colors in a file called
             <code>~/.Xresources</code>, and source it with the command:
-            <code><pre>xrdb -load ~/.Xresources</pre></code>
+          </p>
+
+          <pre><code>xrdb -load ~/.Xresources</code></pre>
+
+          <p>
             For example, here is mine (screenshot at the end of the section):
-            <code>
-              <pre>
-Xresources
-<hr />
+          </p>
+
+          <pre><code>Xresources
+
 *background:#222222
 *foreground:#e8e9ca
 
@@ -236,10 +247,8 @@ Xresources
 *color12:   #9ac0cd
 *color13:   #9f79ee
 *color14:   #79cdcd
-*color15:   #e8e9ca
-              </pre>
-            </code>
-          </p>
+*color15:   #e8e9ca</code></pre>
+
           <p>
             For the font, it's quite the same, but I suggest that you search for
             the terms <em>xft font</em>, <em>bitmap fonts</em> and <em>X
@@ -253,23 +262,28 @@ Xresources
             fixed pixeled font that can look odd, but draw fastly.<br />
             Just make a choice.<br />
             To declare a XFT font:
-            <code><pre>xft:&lt;font name&gt;:size=&lt;size&gt;</pre></code>
+          </p>
+
+            <pre><code>xft:&lt;font name&gt;:size=&lt;size&gt;</code></pre>
+
+          <p>
             Bitmap font are declared like this (taken from <code>xfontsel
               -print</code>, thanks to <a href="http://www.reddit.com/r/unixporn/comments/1pf6p4/howto_build_your_graphical_environment_piece_by/cd200mg">Gnu42</a> for the package).
             You can then use the <code>xfontsel</code> package, or look for a
             file named <code>fonts.dir</code> in your font directory.
-            <code><pre>-fndry-fmly-wght-slant-sWdth-astyl-pxlsz-ptSz-resx-resy-spc-avgWdth-rgstry-encdng</pre></code>
-
-              Here is a small example:
-              <code>
-                <pre>
-Xresources
-<hr />
-*font: xft:monospace:size=10
-*font: -misc-tamsyn-medium-*-*--14-101-*-*-*-*-*
-                </pre>
-              </code>
           </p>
+
+            <pre><code>-fndry-fmly-wght-slant-sWdth-astyl-pxlsz-ptSz-resx-resy-spc-avgWdth-rgstry-encdng</code></pre>
+
+          <p>
+            Here is a small example:
+          </p>
+
+          <pre><code>Xresources
+
+*font: xft:monospace:size=10
+*font: -misc-tamsyn-medium-*-*--14-101-*-*-*-*-*</code></pre>
+
           <p>
             So, we have seen how to tweak the terminal, let's see what it looks
             like!
@@ -290,17 +304,20 @@ Xresources
             user and the programs. It's a program you will communicate with to
             manipulate your system. An important program tough.<br />
             Choose it carefully then. Here is the main shell list:
-            <ul>
-              <li>sh &mdash; The historical shell</li>
-              <li>bash &mdash; Improved shell, based on sh</li>
-              <li>zsh &mdash; An extremly powerfull shell with a great
-              completion system</li>
-              <li>fish &mdash; A user friendly shell, really different from the
-              above</li>
-              <li>csh &mdash; The Berkeley UNIX shell</li>
-              <li>tcsh &mdash; An improvement of csh</li>
-            </ul>
+          </p>
 
+          <ul>
+            <li>sh &mdash; The historical shell</li>
+            <li>bash &mdash; Improved shell, based on sh</li>
+            <li>zsh &mdash; An extremly powerfull shell with a great
+            completion system</li>
+            <li>fish &mdash; A user friendly shell, really different from the
+            above</li>
+            <li>csh &mdash; The Berkeley UNIX shell</li>
+            <li>tcsh &mdash; An improvement of csh</li>
+          </ul>
+
+          <p>
             I personnaly used zsh a lot because it has a feature I like,
             the right prompt. also, it's completion system is really great
             (argument completion is a good thing to have, trust me..). But I now
@@ -313,25 +330,29 @@ Xresources
             The first thing you will see from the shell is its prompt. The
             prompt is a set of characters that gives info to the user, and
             invite him to input commands. Basically, it looks like this:
-            <code><pre>$ </pre></code>
+          </p>
+
+          <pre><code>$ </code></pre>
+
+          <p>
             Fancy huh ?
             The prompt chars are contained in the variable <code>PS1</code> for
             sh/bash, and <code>PROMPT</code>/<code>RPROMPT</code> for zsh.
-            <code>
-              <pre>
-$ PS1='z3bra-$ '
-z3bra-$ 
-              </pre>
-            </code>
+          </p>
+
+          <pre><code>$ PS1='z3bra-$ '
+z3bra-$</code></pre>
+
+          <p>
             (You don't have to issue the two command to make it works.)
             Take a look at the bash manpage, section "Prompting" for more info
             on how to tweak it.
             Here is my personnal prompt:
-            <code>
-              <pre>
-bashrc
-<hr/>
-<spak class="Comment"># Fancy prompt</span>
+          </p>
+
+          <pre><code>bashrc
+
+<span class="Comment"># Fancy prompt</span>
 <span class="Statement">fg</span><span class="Statement">=</span><span class="PreProc">(</span><span class="Statement">'</span><span class="String">\[\e[0;30m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;31m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;32m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;33m\]</span><span class="Statement">'</span>
 <span class="Special">    </span><span class="Statement">'</span><span class="String">\[\e[0;34m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;35m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;36m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[0;37m\]</span><span class="Statement">'</span>
 <span class="Special">    </span><span class="Statement">'</span><span class="String">\[\e[1;30m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;31m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;32m\]</span><span class="Statement">'</span><span class="Special"> </span><span class="Statement">'</span><span class="String">\[\e[1;33m\]</span><span class="Statement">'</span>
@@ -339,20 +360,18 @@ bashrc
 <span class="Identifier">nofg</span>=<span class="Statement">'</span><span class="String">\[\e[0m\]</span><span class="Statement">'</span>
 
 <span class="Identifier">PS1</span>=<span class="Statement">''</span>;<span class="Statement">[</span> <span class="Statement">-n</span> <span class="Statement">&quot;</span><span class="PreProc">$SSH_CLIENT</span><span class="Statement">&quot;</span> <span class="Statement">]</span> &amp;&amp; <span class="Identifier">PS1</span>=<span class="Statement">&quot;</span><span class="PreProc">${</span><span class="PreProc">fg</span><span class="PreProc">[</span><span class="Constant">8</span><span class="PreProc">]</span><span class="PreProc">}</span><span class="PreProc">$(</span><span class="Special">hostname|cut </span><span class="Special">-b-2</span><span class="PreProc">)</span><span class="String"> </span><span class="Statement">&quot;</span>
-<span class="Statement">export</span><span class="Identifier"> PS1=</span><span class="Statement">&quot;</span><span class="String"> </span><span class="PreProc">${</span><span class="PreProc">PS1</span><span class="PreProc">}${</span><span class="PreProc">fg</span><span class="PreProc">[</span><span class="Constant">11</span><span class="PreProc">]</span><span class="PreProc">}</span><span class="String">──── </span><span class="PreProc">${</span><span class="PreProc">nofg</span><span class="PreProc">}</span><span class="Statement">&quot;</span>
-              </pre>
-            </code>
+<span class="Statement">export</span><span class="Identifier"> PS1=</span><span class="Statement">&quot;</span><span class="String"> </span><span class="PreProc">${</span><span class="PreProc">PS1</span><span class="PreProc">}${</span><span class="PreProc">fg</span><span class="PreProc">[</span><span class="Constant">11</span><span class="PreProc">]</span><span class="PreProc">}</span><span class="String">──── </span><span class="PreProc">${</span><span class="PreProc">nofg</span><span class="PreProc">}</span><span class="Statement">&quot;</span></code></pre>
 
+          <p>
             And my old zsh prompt:
+          </p>
 
-            <code>
-              <pre>
-zshrc
-<hr />
+          <pre><code>zshrc
+
 <span class="Identifier">PROMPT</span>=<span class="Statement">&quot;</span> <span class="String">%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%} »  </span><span class="Statement">&quot;</span>
-<span class="Identifier">RPROMPT</span>=<span class="Statement">&quot;</span><span class="String">%{</span><span class="PreProc">$fg</span><span class="String">[black]%}%M:%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%}%~%{</span><span class="PreProc">$reset_color</span><span class="String">%}   </span><span class="Statement">&quot;</span>
-              </pre>
-            </code>
+<span class="Identifier">RPROMPT</span>=<span class="Statement">&quot;</span><span class="String">%{</span><span class="PreProc">$fg</span><span class="String">[black]%}%M:%{</span><span class="PreProc">$fg_bold</span><span class="String">[yellow]%}%~%{</span><span class="PreProc">$reset_color</span><span class="String">%}   </span><span class="Statement">&quot;</span></code></pre>
+
+          <p>
             <a class='a_img' href='/img/2013-10-28-shell.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-shell.jpg' alt='shell screenshot'/>
             </a>
@@ -375,15 +394,19 @@ zshrc
             But when you don't need images, <strong>unleash your
             shell!</strong><br />
             Use CLI based app for text-based task. It has many advantages:
-            <ul>
-              <li>ALWAYS fit your colorscheme (see <a
-                href="#terminal">Terminal</a>)</li>
-              <li>Focus on usability</li>
-              <li>Integrate well with your whole setup</li>
-              <li>This is fast as hell</li>
-              <li>This is powerfull as hell</li>
-              <li><strike>You look like a hacker</strike></li>
-            </ul>
+          </p>
+
+          <ul>
+            <li>ALWAYS fit your colorscheme (see <a
+              href="#terminal">Terminal</a>)</li>
+            <li>Focus on usability</li>
+            <li>Integrate well with your whole setup</li>
+            <li>This is fast as hell</li>
+            <li>This is powerfull as hell</li>
+            <li><span class='strike'>You look like a hacker</span></li>
+          </ul>
+
+          <p>
             I personnaly use <a href="http://vim.org">vim</a>, <a
               href="http://irssi.org">irssi</a> and <a
               href="http://mutt.org">mutt</a> on a daily basis.<br />
@@ -411,7 +434,11 @@ zshrc
           <p>
             All of this is great, but I think that if you want to check the
             time, you're not willing to open a terminal, and type:
-            <code><pre>date +%H:%M</pre></code>
+          </p>
+
+            <pre><code>date +%H:%M</code></pre>
+
+          <p>
             It's not really practical most of the time. The same can apply to
             the amount of free space, to current volume level or the number of
             unread mails you have.<br />
@@ -422,15 +449,22 @@ zshrc
               href="https://github.com/LemonBoy/bar">bar ain't recursive</a>, by
             Lemon Boy.<br />
             It is light, fast and simple. Exactly how I like it!
-            the purpose is simple:<br />
-            <ol>
-              <li>Write a script that output a bunch of informations</li>
-              <li>Pipe that script into the bar</li>
-              <li>Run them within an infinite loop!</li>
-            </ol>
+            the purpose is simple:
+          </p>
 
+          <ol>
+            <li>Write a script that output a bunch of informations</li>
+            <li>Pipe that script into the bar</li>
+            <li>Run them within an infinite loop!</li>
+          </ol>
+
+          <p>
             That is all you need. For example, if you only need the date in the bar:
-            <code><pre>while :; do date; done | bar &</pre></code>
+          </p>
+
+            <pre><code>while :; do date; done | bar &amp;</code></pre>
+
+          <p>
             And there you go!
             You can achieve really great looking stuff with that simple
             process:<br />
@@ -453,7 +487,11 @@ zshrc
             That magical file is simply a shell script that is called by default
             with <code>startx</code>.
             In fact, when you proceed this command, it does the following:
-            <code><pre>$ startx ~/.xinitrc -- :0</pre></code>
+          </p>
+
+            <pre><code>$ startx ~/.xinitrc -- :0</code></pre>
+
+          <p>
             It source your ~/.xinitrc, and launch it on the Xorg server number
             0.
             To launch your wm of choice from the xinitrc, just add the command
@@ -464,18 +502,21 @@ zshrc
           <p>
             Okay, now you have the theory. Before starting to pratice, I'll give
             you a few hints for a "good" xinitrc (yeah, I love making lists):
-            <ul>
-              <li>Launch ONLY session related commands</li>
-              <li>Make it evolutive, so that you can spawn multiple X sessions
-              at the same time</li>
-              <li>Fork every command, except those that are dependent, to speed
-              up the desktop spawning</li>
-            </ul>
+          </p>
+          <ul>
+            <li>Launch ONLY session related commands</li>
+            <li>Make it evolutive, so that you can spawn multiple X sessions
+            at the same time</li>
+            <li>Fork every command, except those that are dependent, to speed
+            up the desktop spawning</li>
+          </ul>
+
+          <p>
             Finally, here is my own xinitrc
-            <code>
-              <pre>
-xinitrc
-<hr />
+          </p>
+
+          <pre><code>xinitrc
+
 <span class="Comment">#!/bin/bash</span>
 <span class="Comment">#</span>
 <span class="Comment"># ~/.xinitrc</span>
@@ -516,10 +557,9 @@ xsetroot <span class="Special">-cursor_name</span> left_ptr &amp;
 
 <span class="Special">[[</span> <span class="Statement">-z</span> <span class="PreProc">$1</span> <span class="Special">]]</span> &amp;&amp; wm cwm
 
-wm <span class="PreProc">$1</span>
-              </pre>
-            </code>
-            <br />
+wm <span class="PreProc">$1</span></code></pre>
+
+          <p>
             <a class='a_img' href='/img/2013-10-28-final.jpg'>
               <img class='a_img' src='/img/thumb/2013-10-28-final.jpg' alt='final screenshot'/>
             </a>

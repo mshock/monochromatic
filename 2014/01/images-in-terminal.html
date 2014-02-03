@@ -37,12 +37,17 @@
             taken from <a href='http://www.nongnu.org/ranger/'>this website</a>.
             Ranger. It's a text-based file manager (that's cool bro'), but the
             interesting point sits in the "dependencies" section:
-            <blockquote>
-              <cite><li>w3m for previewing images in "true color".</li></cite>
-            </blockquote>
+          </p>
+
+          <blockquote>
+            <cite>&bull; w3m for previewing images in "true color".</cite>
+          </blockquote>
+
+          <p>
             <a href='http://w3m.sourceforge.net'>w3m</a>. That was my
             answer.
           </p>
+
           <h3>the package</h3>
           <p>
             w3m is a text-based web browser. It means that you can use it to
@@ -51,6 +56,7 @@
             different, as it acts more like a point'n'click software than a CLI
             app.
           </p>
+
           <p>
             w3m uses gpm, a tool that let you use your terminal cursor like a
             mouse, moving it character by character.<br />
@@ -62,19 +68,21 @@
               my f**cking image rendering, damn software!</q>. Every usefull
             keyword I could find. <strong>Nothing</strong>.
           </p>
+
           <h3>the pursuit</h3>
           <p>
             A few minutes (when all the buckets were fullfilled with my tears),
             I finally tough: <q>Use the source, z3bra</q>.<br /> That's how I
             installed ranger.
           </p>
+
           <p>
             Ranger is written in python. And if it uses w3m to render images, I
             would find the tool it uses to do so. Here is how I managed to find
             it:
-            <code>
-              <pre>
-$ pacman -Ql ranger | grep -E 'image|img|w3m|picture|preview'
+          </p>
+
+          <pre><code>$ pacman -Ql ranger | grep -E 'image|img|w3m|picture|preview'
 ranger /usr/lib/python3.3/site-packages/ranger/ext/__pycache__/img_display.cpython-33.pyc
 ranger /usr/lib/python3.3/site-packages/ranger/ext/__pycache__/img_display.cpython-33.pyo
 ranger /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
@@ -82,9 +90,9 @@ ranger /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
 $ grep 'w3m' /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
     ...
 W3MIMGDISPLAY_PATH = '/usr/lib/w3m/w3mimgdisplay'
-    ...
-              </pre>
-            </code>
+    ...</code></pre>
+
+          <p>
             <strong>HOORAY!</strong> A binary ! Next step will be to understand
             how to make it render images in the terminal..
           </p>
@@ -101,10 +109,10 @@ W3MIMGDISPLAY_PATH = '/usr/lib/w3m/w3mimgdisplay'
             w3mimgdisplay commands are numbers from 0 to 6, and some commands
             take additionnal parameters.<br />
             In the w3m tarball, you can find this:
-            <code>
-              <pre>
-w3mimgdisplay.c
-<hr>
+          </p>
+
+          <pre><code>w3mimgdisplay.c
+
 /*
  * w3mimg protocol
  *  0  1  2 ....
@@ -121,7 +129,7 @@ w3mimgdisplay.c
  *  4;  -none-          nop, sync communication
  *                      response '\n'
  *  5;  path            get size of image,
- *                      response "<width> <height>\n"
+ *                      response &quot;&lt;width&gt; &lt;height&gt;\n&quot;
  *  6;  params(6)       clear image
  *
  * params
@@ -129,13 +137,13 @@ w3mimgdisplay.c
  * params(6)
  *      &lt;x&gt;;&lt;y&gt;;&lt;w&gt;;&lt;h&gt;
  *
- */
-              </pre>
-            </code>
+ */</code></pre>
+
+          <p>
             Here is the <em>params</em> interpreted on the mutt mail list:
-            <code>
-              <pre>
-&gt;  n  - This is used when displaying multiple images
+          </p>
+
+          <pre><code>&gt;  n  - This is used when displaying multiple images
 &gt;  x  - x coordinate to draw the image at (top left corner)
 &gt;  y  - y coordinate to draw the image at (top left corner)
 &gt;  w  - width to draw the image
@@ -143,37 +151,40 @@ w3mimgdisplay.c
 &gt;  sx - x offset to draw the image
 &gt;  xy - y offset to draw the image
 &gt;  sw - width of the original (source) image
-&gt;  sh - height of the original (source) image
-              </pre>
-            </code>
-            </p>
-            <p>
+&gt;  sh - height of the original (source) image</code></pre>
+
+          <p>
             I now have a better idea on how the protocol works.<br />
             Now, by crossing it with the ranger source, I ended up with this
             line:
-            <code><pre> echo -e '0;1;0;0;200;160;;;;;ant.jpg\n4;\n3;' | /usr/lib/w3m/w3mimgdisplay </pre></code>
-              <strong>BOOM !</strong>
-              <a href='http://chezmoicamarche.com'>It works!</a><br />
-              <a class='a_img' href='/img/w3mimgdisplay-crap.jpg'>
-                <img class='a_img' src='/img/thumb/w3mimgdisplay-crap.jpg'
-                alt='Fucked up w3mimgdisplay trial'/>
-              </a>
-              <span class='caption'>
-                The result of the previous command. Our
-                picture drawn in 200x100px, at offset +0+0 in the terminal.
-                <br />I'm sure you're already trying it 
-                <span class='smiley'>;)</span>
-              </span>
           </p>
+
+          <pre><code>echo -e '0;1;0;0;200;160;;;;;ant.jpg\n4;\n3;' | /usr/lib/w3m/w3mimgdisplay </code></pre>
+
+          <p>
+            <strong>BOOM !</strong>
+            <a href='http://chezmoicamarche.com'>It works!</a><br />
+            <a class='a_img' href='/img/w3mimgdisplay-crap.jpg'>
+              <img class='a_img' src='/img/thumb/w3mimgdisplay-crap.jpg'
+              alt='Fucked up w3mimgdisplay trial'/>
+            </a>
+            <span class='caption'>
+              The result of the previous command. Our
+              picture drawn in 200x100px, at offset +0+0 in the terminal.
+              <br />I'm sure you're already trying it 
+              <span class='smiley'>;)</span>
+            </span>
+          </p>
+
           <h3>the wrapping</h3>
           <p>
             Okay, we can now display an image in the terminal, at the offset
             and size we want. Let's wrap it up in a script, to be more adaptive!
             We will need some tools to help us here. Feel free to search by
             yourself, as an exercise. Here is the script I came with:
-            <code>
-              <pre>
-<span class="Comment">#!/bin/bash</span>
+          </p>
+
+          <pre><code><span class="Comment">#!/bin/bash</span>
 <span class="Comment">#</span>
 <span class="Comment"># z3bra -- 2014-01-21</span>
 
@@ -203,9 +214,9 @@ w3mimgdisplay.c
 <span class="Identifier">w3m_command</span>=<span class="Statement">&quot;</span><span class="String">0;1;0;0;</span><span class="PreProc">$width</span><span class="String">;</span><span class="PreProc">$height</span><span class="String">;;;;;</span><span class="PreProc">$FILENAME</span><span class="Special">\n</span><span class="String">4;</span><span class="Special">\n</span><span class="String">3;</span><span class="Statement">&quot;</span>
 
 tput cup <span class="PreProc">$((</span><span class="PreProc">$height</span><span class="Special">/</span><span class="PreProc">$FONTH</span><span class="PreProc">))</span> <span class="Constant">0</span>
-<span class="Statement">echo</span><span class="String"> -e </span><span class="PreProc">$w3m_command</span>|<span class="PreProc">$W3MIMGDISPLAY</span>
-              </pre>
-            </code>
+<span class="Statement">echo</span><span class="String"> -e </span><span class="PreProc">$w3m_command</span>|<span class="PreProc">$W3MIMGDISPLAY</span></code></pre>
+
+          <p>
             Let's see the rendering...<br />
             <a class='a_img' href='/img/w3mimgdisplay-good.jpg'>
               <img class='a_img' src='/img/thumb/w3mimgdisplay-good.jpg'
@@ -228,6 +239,7 @@ tput cup <span class="PreProc">$((</span><span class="PreProc">$height</span><sp
             in an easy way. The dependency is not huge, and you can script it
             the way you want.<br />
           </p>
+
           <p>
             I hope you learnt a few things here, like tips to grok softwares,
             understand libs/protocols, or at least, the w3mimg protocol.<br />
@@ -235,12 +247,14 @@ tput cup <span class="PreProc">$((</span><span class="PreProc">$height</span><sp
             current cursor line and such. so if you have any improvement or
             idea, I'll be glad to modify my script and add your name :)
           </p>
+
           <p>
             <em>Side note:</em> w3m can't render images in urxvt, if the depth
             is 32. That means that you can't render images on a transparent
-            background. Be sure that you comment the line </code>URxvt*depth:
-          32</code> in your </code>~/.Xresources</code>.
+            background. Be sure that you comment the line <code>URxvt*depth:
+          32</code> in your <code>~/.Xresources</code>.
           </p>
+
           <h3>That's all, folks!</h3>
         </article>
       </section>

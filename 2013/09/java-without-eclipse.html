@@ -27,13 +27,17 @@
             When one codes in C, using plain gcc + Makefile and a good text editor is adviced.
             This is the same for C++, bash, ruby, haskell, perl, python, bla bla bla...<br />
             Why would java escape the rules ?!<br />
-            <ul>
-              <li>It is hard to play with classpath.</li>
-              <li>It is boring to compile java by hand</li>
-              <li>Eclipse is SOOOOOOO good at it !</li>
-              <li>Eclipse has plenty of plugin to manage a project</li>
-              <li>bla bla bla...</li>
-            </ul>
+          </p>
+
+          <ul>
+            <li>It is hard to play with classpath.</li>
+            <li>It is boring to compile java by hand</li>
+            <li>Eclipse is SOOOOOOO good at it !</li>
+            <li>Eclipse has plenty of plugin to manage a project</li>
+            <li>bla bla bla...</li>
+          </ul>
+
+          <p>
             Of course, there are advantages ! And if these are good enough for you. Go with eclipse
             And have some fun !<br />
             <br />
@@ -48,12 +52,16 @@
             eclipse-setup.exe. but it follows my ideas, and I'm happy with it !<br />
             <br />
             It needs the following:
-            <ul>
-              <li>Your editor of choice</li>
-              <li>JRE (O RLY?)</li>
-              <li>JDK (U DON'T SAY)</li>
-              <li>Know your shit !</li>
-            </ul>
+          </p>
+
+          <ul>
+            <li>Your editor of choice</li>
+            <li>JRE (O RLY?)</li>
+            <li>JDK (U DON'T SAY)</li>
+            <li>Know your shit !</li>
+          </ul>
+
+          <p>
             You just have to know how to compile/run a java project.
             Here is what I learnt:<br />
             <strong>javac</strong> is used for compiling,
@@ -67,9 +75,9 @@
             And you just activated my trap card...<br />
             For sure, real project are a lot more complicated ! For example:<br />
             <br />
-            <code>
-<pre>
-~/src/java/eg
+          </p>
+
+          <pre><code>~/src/java/eg
 ├── bin
 ├── build
 │   └── build.xml
@@ -96,9 +104,9 @@
 │               ├── Communication.java
 │               ├── Communication_TEST.java
 │               └── Log.java
-└── tags
-</pre>
-            </code>
+└── tags</code></pre>
+
+          <p>
             This is what my project looks like. sources are in src/, 
             classes compiled in bin/. Each source has it's own package.<br />
             <br />
@@ -109,17 +117,21 @@
             It probably is the hardest part. Java is hard to compile properly,
             so tools like Ant are used in IDEs.<br />
             <br />
-            Basicaly, compilation goes like this:<br />
-            <code><pre>javac -d bin/ -sourcepath src/ -classpath bin/ src/com/irc/utils/Command.java</pre></code>
+            Basicaly, compilation goes like this:
+          <p>
+
+          <pre><code>javac -d bin/ -sourcepath src/ -classpath bin/ src/com/irc/utils/Command.java</code></pre>
+
+          <p>
             -d specifies the directory where your classes will go.<br />
             -sourcepath tells javac where to search for source files.<br />
             -classpath is the same as the abode, but for class files.<br />
             <br />
             Do you see it coming ? <strong>YES</strong>, we will use a Makefile.<br />
-            Here is mine:<br />
-            <code>
-<pre>
-<span class="Comment"># Locate directories</span>
+            Here is mine:
+          </p>
+
+          <pre><code><span class="Comment"># Locate directories</span>
 <span class="Identifier">class_d</span>=bin
 <span class="Identifier">lib_d</span>=lib
 <span class="Identifier">source_d</span>=src
@@ -178,9 +190,9 @@
 <span class="Constant">	mkdir </span><span class="Identifier">$(class_d)</span>
 
 <span class="Function">clean:</span>
-<span class="Constant">	rm -rf </span><span class="Identifier">$(class_d)</span><span class="Constant">/*</span>
-</pre>
-            </code>
+<span class="Constant">	rm -rf </span><span class="Identifier">$(class_d)</span><span class="Constant">/*</span></code></pre>
+
+          <p>
             It will search the appropriate sources in your sourcepath, and compile them in the
             associated classpath.<br />
             Building the tests appart is done with <code>make TEST=[server|client|utils|all]</code>
@@ -201,16 +213,16 @@
             <br />
             So you will have no problems building the correct script that will run your
             application. It will probably (in its simplest form) look like this:<br />
-            <code>
-<pre>
-<span class="Comment">#!/bin/sh</span>
+          </p>
+
+          <pre><code><span class="Comment">#!/bin/sh</span>
 
 <span class="Identifier">classpath</span>=bin:lib/log4j-1.2.12.jar
 <span class="Identifier">package</span>=com.irc.server
 
-java <span class="Special">-cp</span> <span class="PreProc">$classpath</span> <span class="PreProc">$package.Server</span>
-</pre>
-            </code>
+java <span class="Special">-cp</span> <span class="PreProc">$classpath</span> <span class="PreProc">$package.Server</span></code></pre>
+
+          <p>
             Isn't that easy ?
             </p>
             <h3>Conclusion</h3>

@@ -61,39 +61,36 @@
             more infos, you can check the mail(1) manpage).
             <br />
             So here we go. Make sure those two variables are exported:
-            <code>
-              <pre>
-$ export MAIL=$HOME/var/mail/INBOX
+
+          <pre><code>$ export MAIL=$HOME/var/mail/INBOX
 $ export EDITOR=ed
-$ export VISUAL=vim
-              </pre>
-            </code>
+$ export VISUAL=vim</code></pre>
+
             Now, we will create the most basic directory tree needed by the
             setup (We will improve it later)
-            <code>
-              <pre>
-$ tree $HOME/var/mail
+
+          <pre><code>$ tree $HOME/var/mail
 /home/z3bra/var/mail/
 └── INBOX
     ├── cur
     ├── new
     └── tmp
 
-4 directories, 0 files
-              </pre>
-            </code>
+4 directories, 0 files</code></pre>
+
+          <p>
             Ok, now the mail environment is set up. You can try the
             <code>mail</code> command at this point, but an empty mail tree will
             only result in the following message:
-            <code>
-              <pre>
-No mail for z3bra
-              </pre>
-            </code>
+          </p>
+
+          <pre><code>No mail for z3bra</code></pre>
+
+          <p>
             For future convenience, copy your <code>/etc/mail.rc</code> to
             <code>~/.mailrc</code>, so we will be able to edit it later.
           </p>
-          
+
           <p>
             Before continuing with <code>mail</code>, we will take a look at two
             mail related programs, <a href="http://fdm.sourceforge.net/">fdm</a>
@@ -111,9 +108,9 @@ No mail for z3bra
             If you want a great tutorial for fdm, check out the <a
               href="http://fdm.sourceforge.net">FDM Quick start guide</a>. I'll
             just give you my own(simplified) config file:
-            <code>
-              <pre>
-action "INBOX"           maildir "%h/var/mail/INBOX"
+          </p>
+
+            <pre><code>action "INBOX"           maildir "%h/var/mail/INBOX"
 
 account &quot;&lt;account-name&gt;&quot;
         pop3s
@@ -122,23 +119,24 @@ account &quot;&lt;account-name&gt;&quot;
         cache &quot;~/var/mail/.cache&quot;
         keep # Keeps mails on the server
 
-match all action "INBOX"
-              </pre>
-            </code>
+match all action "INBOX"</code></pre>
+
+          <p>
             <code>FDM</code> can get infos from your <code>~/.netrc</code> file,
             which looks like this:
-            <code>
-              <pre>
-machine &lt;pop3-server&gt;
+          </p>
+
+          <pre><code>machine &lt;pop3-server&gt;
 login &lt;email@domain.tld&gt;
-password &lt;password&gt;
-              </pre>
-            </code>
+password &lt;password&gt;</code></pre>
+
+          <p>
             check that mail fetching works with <code>fdm -kv fetch</code>.
             If it works, you could place <code>fdm fetch</code> in your cron
             entries.
           </p>
         </article>
+
         <article>
           <h3>Sending mails</h3>
           <p>
@@ -146,9 +144,9 @@ password &lt;password&gt;
             its <a href="http://msmtp.sourceforge.net/documentation.html">
             documentation</a>
             Here is a simplified config file:
-            <code>
-              <pre>
-defaults
+          </p>
+
+          <pre><code>defaults
 auth            on
 
 account         &lt;account-name&gt;
@@ -157,26 +155,24 @@ from            &lt;email@domain.tld&gt;
 host            &lt;stmp-server&gt;
 port            25
 
-account default : &lt;account-name&gt;
-              </pre>
-            </code>
+account default : &lt;account-name&gt;</code></pre>
+
+          <p>
             <code>msmtp</code> will also read your <code>~/.netrc</code> file to
             get your password.
           </p>
+
           <p>
             by default, <code>mail</code> uses <code>sendmail</code> (guess what
             it does...). Add the following at the end of  your 
             <code>~/.mailrc</code>:
-            <code>
-              <pre>
-~/.mailrc
-<hr />
+          </p>
+
+          <pre><code>~/.mailrc
 ...
 # use msmtp instead of sendmail
-set sendmail=&quot;/usr/bin/msmtp&quot;
-              </pre >
-            </code>
-          </p>
+set sendmail=&quot;/usr/bin/msmtp&quot;</code></pre >
+
         </article>
         <article>
           <h3>Writing a new mail</h3>
@@ -185,18 +181,18 @@ set sendmail=&quot;/usr/bin/msmtp&quot;
             Now that tools we are going to interact with are set up, let's write
             and send out first mail.
             We will send this mail to ourselves, so let's go like this:
-            <code>
-              <pre>
-$ mail email@domain.tld
+          </p>
+
+          <pre><code>$ mail email@domain.tld
 Subject: Testing a new MUA
 Here is the top of the mail.
 You are actually typing like in ed's insert mode.
 
 To stop typing, just type a dot on its own line
 .
-EOT
-              </pre>
-            </code>
+EOT</code></pre>
+
+          <p>
             This will send a mail to the given address. Nothing more. Nothing
             less.<br />
             You can give multiple address to send the mail to multiple contacts.
@@ -204,13 +200,13 @@ EOT
             If you need more flexibility (e.g. using your own editor, or input
             the text dynamically within a script, keep in mind that you can do
             the following:
-            <code>
-              <pre>
-$ echo &quot;&lt;E-mail body goes here&gt;&quot; | mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt;
+          </p>
+
+            <pre><code>$ echo &quot;&lt;E-mail body goes here&gt;&quot; | mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt;
 $ vim /tmp/body.txt
-$ mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt; &lt; /tmp/body.txt
-              </pre>
-            </code>
+$ mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt; &lt; /tmp/body.txt</code></pre>
+
+          <p>
             As you might guess, the <code>-s</code> can be used to specify the
             subject. There are also <code>-c &lt;CC-field&gt;</code>, <code>-b
               &lt;BCC-field&gt;</code> for copy/carbin copy, and so on. Just
@@ -221,18 +217,18 @@ $ mail -s &quot;&lt;subject&gt;&quot; &lt;email@domain.tld&gt; &lt; /tmp/body.tx
           <p>
             To read your mail, it's quite simple. Just type <code>mail</code> to
             get an output like:
-            <code>
-              <pre>
-$ mail
+          </p>
+
+            <pre><code>$ mail
 mail version v14.4.4.  Type ? for help.
 &quot;/home/z3bra/var/mail/INBOX&quot;: 4 messages 1 unread
 O 1 contact@domain.tld Thu Jan  1 01:00  140/5273  Blah blah, subject
 A 2 me@mail.domain.tld Thu Jan  1 01:00   95/5869  RE: Previous subject
 A 3 NEWS GROUPS        Thu Jan  1 01:00  222/15606 TR: Check this ous!
 &gt;U 4 willy@mailoo.org   Thu Jan  1 01:00  104/4146 &gt;Testing a new MUA           
-? 
-              </pre>
-            </code>
+? </code></pre>
+
+          <p>
             The <code>?</code> at the end is a prompt. You can input commands
             like <code>print &lt;num&gt;</code> to display the content of the
             mail number "num".<br />
@@ -246,6 +242,7 @@ A 3 NEWS GROUPS        Thu Jan  1 01:00  222/15606 TR: Check this ous!
             aliases, mark as read, copy to another folder and delete the current
             mail.
           </p>
+
           <p>
             Today, I discovered <code>mail</code> which does anything I need to
             manage my e-mails. I'll probably make the switch from mutt on all my
