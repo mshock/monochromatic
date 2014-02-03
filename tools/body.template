@@ -1,10 +1,10 @@
     <div id='wrapper'>
       <section>
         <h1>
-          <a href='#'></a>
+          <a href='#'>BLOG_TITLE</a>
         </h1>
         <h2>
-          &mdash;
+          &mdash; BLOG_DATE
         </h2>
         <article>
           <p>

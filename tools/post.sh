@@ -1,18 +1,34 @@
 #!/bin/bash
 
-[[ -z "$1" ]] && exit 1
 
-folder=$(date +%Y/%m)
-file=${1// /-}.html
 
-[[ ! -d ${folder} ]] && mkdir -p ${folder}
+# Ask the user for a title
+read -p "post title" title
 
-POST="${folder}/${file}"
+# use post title to name the file
+file=`echo ${title}| sed "s/\s\+/-/g;s/./\l&/g;s/[,.!;\"']/g"`
 
-cat tools/{head,body,foot}.template >>  $POST
+#date format for the post
+date=`date +%d %B, %Y`
 
-[[ ! -f ${folder}/${file} ]] && echo "cannot create ${POST}" && exit 1
+# The format of the path to the post, here: /yyyy/mm/
+folder=`date +%Y/%m`
 
-echo "$POST created"
+# create the path if it does not exists
+test -d ${folder} || mkdir -p ${folder}
 
-ln -fs ${POST} post.html
+# build the whole path
+post="${folder}/${file}"
+
+# use the templates to create the post skeleton
+cat tools/{head,body,foot}.template >> ${post}
+
+# put the title and date in the post
+sed "s/BLOG_TITLE/${title};s/BLOG_DATE/${date}"
+
+test -f ${folder}/${file} || echo "cannot create ${post}" && exit 1
+
+echo "$post created"
+
+# create a symlink to the last post, to easily access it
+ln -fs ${post} last_post.html

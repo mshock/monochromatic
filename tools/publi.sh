@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Re-generate the RSS feed
 tools/feeds.sh
