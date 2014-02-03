@@ -3,13 +3,16 @@
 
 
 # Ask the user for a title
-read -p "post title" title
+read -p "Post title: " title
+
 
 # use post title to name the file
-file=`echo ${title}| sed "s/\s\+/-/g;s/./\l&/g;s/[,.!;\"']/g"`
+file=`echo ${title}| sed "s/\s\+/-/g;s/./\l&/g;s/[,.!;\"']//g"`.html
+
+test -z "$file" && exit 1
 
 #date format for the post
-date=`date +%d %B, %Y`
+date=`date +"%d %B, %Y"`
 
 # The format of the path to the post, here: /yyyy/mm/
 folder=`date +%Y/%m`
@@ -24,9 +27,9 @@ post="${folder}/${file}"
 cat tools/{head,body,foot}.template >> ${post}
 
 # put the title and date in the post
-sed "s/BLOG_TITLE/${title};s/BLOG_DATE/${date}"
+sed -i "s/BLOG_TITLE/${title}/;s/BLOG_DATE/${date}/" ${post}
 
-test -f ${folder}/${file} || echo "cannot create ${post}" && exit 1
+test -f ${post} || echo "cannot create ${post}" && exit 1
 
 echo "$post created"
 
