@@ -2,6 +2,8 @@
 
 RSS=rss/feed.xml
 
+echo -ne "\rGenerating RSS file ... "
+
 cat << EOF > $RSS
 <?xml version='1.0'?>
 <rss version='2.0'>
@@ -31,3 +33,5 @@ cat << EOF >> $RSS
 </channel>
 </rss>
 EOF
+
+echo -e "[\033[1;32m OK \033[0m]"
