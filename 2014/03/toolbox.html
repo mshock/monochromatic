@@ -80,6 +80,7 @@
             <li><a href="#popup">popup</a></li>
             <li><a href="#prout">prout</a></li>
             <li><a href="#ptii">ptii</a></li>
+            <li><a href="#skroll">skroll</a></li>
             <li><a href="#thingmenu">thingmenu</a></li>
             <li><a href="#wendy">wendy</a></li>
           </ul>
@@ -425,6 +426,33 @@ irc/
             automatically add channels to your list when ii create the folders.
           </p>
         </article>
+
+        <h3 id="skroll">skroll</h3>
+        <article>
+          <p>
+            <a href="http://git.z3bra.org/cgit.cgi/skroll">LINK</a> &mdash;
+            <a href="/img/2014-03-28-skroll.gif">SHOT</a>
+          </p>
+
+          <p>
+            Here is something I wrote for fun. I don't actually need it, but
+            other might find it useful. Skroll takes its input from stdin, and
+            then makes it scroll on stdout. You can specify the scroll speed, as
+            well as the number of characters to be displayed.
+          </p>
+
+          <p>
+            The best application to this I can find so far, is for some kind of
+            notification system. If you want to display the current playing
+            song in a tiny box in the upper left had-corner, you soon notice
+            that you <em>can't</em> adapt the notification box to the size of
+            the input text, because that's just too ugly. And here comes skroll
+            ! Just pipe your text to it with the <code>-r</code> flag (so that
+            there is a new line after each scroll-step), and pipe that output to
+            dzen2 or bar or whatever. <strong>BAM</strong> that's black magic !
+          </p>
+        </article>
+
 
         <h3 id="thingmenu">thingmenu</h3>
         <article>
