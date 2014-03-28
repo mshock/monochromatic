@@ -2,7 +2,7 @@
 
 /*
  * COLORS DEFINITION:
- *      - background -- #222
+ *      - background -- #1d1d1d
  *      - header (bg)-- #000
  *      - def. text  -- #bbb
  *      - link visit -- #bbb
@@ -36,7 +36,7 @@
 
 /* Main blocks style {{{ */
 body {
-    background-color: #222;
+    background-color: #1d1d1d;
     color: #bbb;
     padding: 0;
     margin: 0;
