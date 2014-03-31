@@ -1,0 +1,48 @@
+# [Toolbox](/2014/03/toolbox.html) 
+## &mdash; 12 March, 2014 
+Yeah, yet another list of unix tools. Feel free to avoid it, but you'll
+probably miss some nice tools you've probably never heard of!  
+I'll keep this list updated, so don't forget to check it from time to time.
+
+# [Images in terminal](/2014/01/images-in-terminal.html) 
+## &mdash; 28 January, 2014 
+The terminal is the heart of your linux system. You do everything
+through it. Everything ? No, images are still pissing you
+off...  
+For my next trick, I'll preview a picture of an ant, without leaving my
+terminal prompt!
+
+# [Love me some LaTex](/2013/12/love-me-some-latex.html) 
+## &mdash; 06 December, 2013 
+Since I'm running linux, I'm getting more and more allergic to WYSIWYG
+softwares. So i searched an alternative to write documents, and I've something
+way better than just an alternative. Here is LaTeX.
+
+# [Plain old mails](/2013/11/plain-old-mails.html) 
+## &mdash; 04 November, 2013 
+The other day, I ran into the "mail" tool. I decided to configure and try it
+out this morning, and I was really, really surprised!  
+
+# [Home, sweet home](/2013/10/home-sweet-home.html) 
+## &mdash; 28 October, 2013 
+There is no place like home. And this is why setting up your environment is
+important!  
+If you want advices on how to build a cosy and nice graphical environment, take
+a look here.
+
+# [Java without Eclipse](/2013/09/java-without-eclipse.html) 
+## &mdash; 8 September, 2013 
+Are you disapointed to leave your perfect UNIX environnment (vim, bash, git,
+...) when it comes to java ..?  Have you ever tried managing a Java project by
+hand ..?  Trust me, it is possible !
+
+# [The Hard way](/2013/08/the-hard-way.html) 
+## &mdash; 9 August, 2013 
+Do you encounter difficulties to master a tool ? Or maybe you find that you
+don't have enough free time to put yourself into learning how to do this or
+that ?  Here is a well-known technic, to learn stuffs quickly, and efficiently.
+
+# [Test your CSS !](/2013/08/test-your-css.html) 
+## &mdash; 8 August, 2013 
+Here a simple page with a few HTML tags.  It's pretty useful to test your CSS,
+even if there are no 'difficult' layouts.  Feel free to download and share!
