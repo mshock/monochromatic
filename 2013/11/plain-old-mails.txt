@@ -146,7 +146,7 @@ the following:
 
 
 As you might guess, the `-s` can be used to specify the subject. There are also
-`-c <CC-field>`, `-b <BCC-field></code> for copy/carbin copy, and so on. Just
+`-c <CC-field>`, `-b <BCC-field>` for copy/carbon copy, and so on. Just
 read the manpage for more options.
 
 ### Reading your mails
