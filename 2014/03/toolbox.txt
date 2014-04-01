@@ -182,14 +182,14 @@ will create a file hierarchy looking like this:
     │       ├── int
     │       └── out
     └── irc.iotek.org
-    ├── in
-    ├── nickserv
-    │   ├── in
-    │   └── out
-    ├── out
-    └── #wizards
-    ├── in
-    └── out
+        ├── in
+        ├── nickserv
+        │   ├── in
+        │   └── out
+        ├── out
+        └── #wizards
+            ├── in
+            └── out
 
 The first folder is the server, and the subfolders are the channels which you
 are connected to. The 'in' and 'out' files are named pipes that you can read

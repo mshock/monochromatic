@@ -42,9 +42,9 @@ setup (We will improve it later)
     $ tree $HOME/var/mail
     /home/z3bra/var/mail/
     └── INBOX
-    ├── cur
-    ├── new
-    └── tmp
+        ├── cur
+        ├── new
+        └── tmp
 
     4 directories, 0 files
 
