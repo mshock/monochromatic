@@ -15,7 +15,7 @@ check: $(PAGES)
 	@check.sh
 
 clean:
-	rm -f $(PAGES) $(NAME).tar.gz
+	rm -f $(PAGES) $(FEEDS) $(NAME).tar.gz
 
 .SUFFIXES: .txt .html .xml
 
