@@ -115,9 +115,9 @@ the ranger source, I ended up with this line:
 
 **BOOM !** [It works!](http://chezmoicamarche.com)  
 [![Fucked up w3mimgdisplay trial](/img/thumb/w3mimgdisplay-crap.jpg)](/img/w3mimgdisplay-crap.jpg)
-
-The result of the previous command. Our picture drawn in 200x100px, at offset
-+0+0 in the terminal.  I'm sure you're already trying it ;)
+<span class='caption'>The result of the previous command. Our picture drawn in
+200x100px, at offset +0+0 in the terminal.  I'm sure you're already trying it
+;)</span>
 
 ### the wrapping
 

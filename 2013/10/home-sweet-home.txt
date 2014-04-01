@@ -87,7 +87,8 @@ to look the way you want. Use stuff like [librgba](http://gnome-look.org/content
 even prettier!  
 
 [![cwm screenshot](/img/thumb/2013-10-28-cwm.jpg)](/img/2013-10-28-cwm.jpg)
-Here is a quick CWM setup, using compton and librgba
+<span class='caption'>Here is a quick CWM setup, using compton and
+librgba</span>
 
 Oh! A last advice, **do not bind applications through your WM**. Using an
 application like [xbindkeys](http://www.nongnu.org/xbindkeys/xbindkeys.html) to
@@ -230,8 +231,9 @@ So, we have seen how to tweak the terminal, let's see what it looks like!
 I wrote a small script for the purpose:  
 
 [![term screenshot](/img/thumb/2013-10-28-term.jpg)](/img/2013-10-28-term.jpg)
-A terminal running the script [info.sh](http://git.z3bra.org/cgit.cgi/scripts/tree/info.sh)
-that dump 16 colors along system informations
+<span class='caption'>A terminal running the script
+[info.sh](http://git.z3bra.org/cgit.cgi/scripts/tree/info.sh) that dump 16
+colors along system informations</span>
 
 ### Shell
 
@@ -294,8 +296,8 @@ And my old zsh prompt:
     RPROMPT="%{$fg[black]%}%M:%{$fg_bold[yellow]%}%~%{$reset_color%}   "
 
 [![shell screenshot](/img/thumb/2013-10-28-shell.jpg)](/img/2013-10-28-shell.jpg)
-A few different prompts, from top to bottom:
-sh, zsh, bash, zsh
+<span class='caption'>A few different prompts, from top to bottom: sh, zsh,
+bash, zsh</span>
 
 ### CLI tools
 
@@ -326,12 +328,12 @@ As an alternative, take a look at [emacs](https://www.gnu.org/software/emacs/),
 [Alpine](http://sourceforge.net/projects/re-alpine/).
 
 [![cwm screenshot](/img/thumb/2013-10-28-cli.jpg)](/img/2013-10-28-cli.jpg)
-
-Mandatory screenshot of the setup with those apps (and custom themes).  
+<span class='caption'>Mandatory screenshot of the setup with those apps (and
+custom themes).  
 top-left: **vim**  
 top-right: **mutt**  
 bottom-left: **tmux**  
-bottom-right: **irssi**  
+bottom-right: **irssi**</span>
 
 ### Status bar
 
@@ -362,9 +364,10 @@ And there you go!  You can achieve really great looking stuff with that simple
 process:  
 
 [![bar screenshot](/img/thumb/2013-10-28-bar.jpg)](/img/2013-10-28-bar.jpg)
-You can also choose to put your status bar within a terminal multiplexer status bar,
+<span class='caption'>You can also choose to put your status bar within a
+terminal multiplexer status bar, 
 [as phyrne suggested](http://calummacrae.blogspot.fr/2012/12/dropping-status-bars-for-tmux-as-im.html)
-in one of his blog post
+in one of his blog post</span>
 
 ### Integration
 
@@ -438,9 +441,8 @@ Finally, here is my own xinitrc
     wm $1
 
 [![final screenshot](/img/thumb/2013-10-28-final.jpg)](/img/2013-10-28-final.jpg)
-That shot show off the whole setup, with
-prompt, bar, applications, etc...
-I hope you will like it!
+<span class='caption'>That shot show off the whole setup, with prompt, bar,
+applications, etc...  I hope you will like it!</span>
 
 ### Conclusion
 
