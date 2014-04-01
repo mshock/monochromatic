@@ -49,7 +49,7 @@ tools, because that's too specific.
 * [thingmenu](#thingmenu)
 * [wendy](#wendy)
 
-### 2bwm
+<h3 id='2bwm'>2bwm</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/2bwm) &mdash;
 [SHOT](/img/2014-01-08-2bwm.jpg)
@@ -70,7 +70,7 @@ works kinda like traditionnal workspaces, except that you can show or hide them
 independently, allowing you to show multiple workspaces at the same time. See a
 showcase [here](http://raw.z3bra.org/vid/2bwm.webm).
 
-### 9menu
+<h3 id='9menu'>9menu</h3>
 
 [LINK](ftp://freefriends.org/arnold/Source/) &mdash;
 [SHOT](/img/2014-03-17-menus.jpg)
@@ -87,7 +87,7 @@ Another good advantage (but you can totally live without it), is the ability of
 9menu to act as an interpreter, so that you can write your menu using the
 shebang: `#!/usr/bin/9menu`
 
-### bar
+<h3 id='bar'>bar</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/bar) &mdash;
 [SHOT](/img/2014-03-13-bar.jpg)
@@ -104,7 +104,7 @@ to get a tons of infos within that thin, lovely bar.
 I forked it to add a little feature: change the width of the bar on startup,
 allowing to use bar as a notification [popup](#popup)
 
-### dtach
+<h3 id='dtach'>dtach</h3>
 
 [LINK](http://dtach.sourceforge.net/) &mdash;
 [SHOT](/img/2014-03-13-dtach.jpg)
@@ -139,7 +139,7 @@ I personnaly use it to reattach to my irssi session, as it's the only
 application I need on a remote server. You will also be able to send an
 application from one screen/tmux session to another. Isn't that cool ?
 
-### fcount
+<h3 id='fcount'>fcount</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/fcount)
 
@@ -155,7 +155,7 @@ script that will be executed every second to display the number of unread mails
 in a status bar, it is usefull to gain some miliseconds.   Take it or not, this
 is your choice.
 
-### hsetroot
+<h3 id='hsetroot'>hsetroot</h3>
 
 [LINK](http://thegraveyard.org/hsetroot.php) (dead)
 
@@ -165,7 +165,7 @@ gradients, add tint to images... Everything you could want to do with a
 wallpaper can be done with it. And it's light as I like ! Forget that crappy
 feh ! You can barely get rid of the .fehbg that pisses you off !
 
-### ii
+<h3 id='ii'>ii</h3>
 
 [LINK](http://tools.suckless.org/ii/)
 
@@ -206,7 +206,7 @@ simple and good unix tool. I use it within a tiny script along with a tool of
 mine ([ptii](#ptii)) to get a quick access to the IRC without having to fire up
 irssi with 4 server connection, 10 channel autojoins, and such..
 
-### instagram
+<h3 id='instagram'>instagram</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/scripts/tree/instagram)
 
@@ -218,7 +218,7 @@ It will also open a preview of the shot you just took, and put it in a
 predifined folder. You can write your own 'upload' function to upload the way
 you want
 
-### meh
+<h3 id='meh'>meh</h3>
 
 [LINK](http://www.johnhawthorn.com/meh/)
 
@@ -236,14 +236,14 @@ When you press `<enter>`, meh outputs the current image name to stdout. It
 allows cool stuffs like meh \*.jpg | xargs rm to delete the images upon
 pressing `<enter>`.
 
-### popup
+<h3 id='popup'>popup</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/scripts/tree/popup)
 
 This is just a simple script that uses my fork of [bar](#bar) to display a
 small notification bar at the top left hand corner of your desktop.
 
-### prout
+<h3 id='prout'>prout</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/prout)
 
@@ -258,7 +258,7 @@ want to implement this feature...
 
 Anyway, this is pretty neat to me! I hope you'll enjoy it.
 
-### ptii
+<h3 id='ptii'>ptii</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/ptii) &mdash;
 [SHOT](/img/2014-03-13-ptii.jpg)
@@ -270,7 +270,7 @@ will be able to talk on multiple channels easily.  Using simple commands like
 The interresting point of this tool is that it uses inotify to automatically
 add channels to your list when ii create the folders.
 
-### skroll
+<h3 id='skroll'>skroll</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/skroll) &mdash;
 [SHOT](/img/2014-03-28-skroll.gif)
@@ -288,7 +288,7 @@ And here comes skroll ! Just pipe your text to it with the -r flag (so that
 there is a new line after each scroll-step), and pipe that output to dzen2 or
 bar or whatever. **BAM** that's black magic !
 
-### thingmenu
+<h3 id='thingmenu'>thingmenu</h3>
 
 [LINK](http://git.r-36.net/thingmenu/) &mdash;
 [SHOT](/img/2014-03-17-menus.jpg)
@@ -302,7 +302,7 @@ submenus and "back" buttons, that you can easily improve to fit your own needs.
 
 Also, feel free to browse the whole git repo, it's full of good stuff !
 
-### wendy
+<h3 id='wendy'>wendy</h3>
 
 [LINK](http://git.z3bra.org/cgit.cgi/wendy) &mdash;
 [SHOT](/img/2014-03-13-wendy.jpg)

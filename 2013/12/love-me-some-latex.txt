@@ -311,7 +311,7 @@ There you go, you are now ready to write your own latex documents,
 and browser the web to find help about what is not explained in
 this post (there is **A LOT** things about latex..)
 
-### Tips
+<h3 id='tips'>Tips</h3>
 
 Before leaving you, here are just a few tips, from my experience
 with latex (particularly images).

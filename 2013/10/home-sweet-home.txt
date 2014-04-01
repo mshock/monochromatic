@@ -13,7 +13,7 @@ Yes, a summary, because that's gonna be a LONG article.
 * [Status bar](#bar)
 * [Integration](#setup)
 
-### Introduction
+<h3 id='intro'>Introduction</h3>
 
 Okay, so you have finally installed your distro of choice, cleaned
 the whole setup, installed X.org, xterm and vim...  
@@ -36,7 +36,7 @@ with me. If you feel uncomfortable with some points, just avoid
 them. You're not here to feel bad, but to find advices on
 **setting up your home!**
 
-### Window manager
+<h3 id='wm'>Window manager</h3>
 
 This is the most important part of your future environment. It is
 the god that will tell all your windows where to go, how to move,
@@ -96,7 +96,7 @@ do that is a better idea, as it follow the
 [UNIX philosophy](http://www.faqs.org/docs/artu/ch01s06.html), and it will help
 you a lot if you want to try another WM.
 
-### Terminal
+<h3 id='term'>Terminal</h3>
 
 Here we are. The terminal. The central part of the whole setup!
 
@@ -235,7 +235,7 @@ I wrote a small script for the purpose:
 [info.sh](http://git.z3bra.org/cgit.cgi/scripts/tree/info.sh) that dump 16
 colors along system informations</span>
 
-### Shell
+<h3 id='sh'>Shell</h3>
 
 right after seeing the terminal, you can't avoid it's main program: **the shell**.  
 If you don't know this already, the shell is the link between the user and the
@@ -299,7 +299,7 @@ And my old zsh prompt:
 <span class='caption'>A few different prompts, from top to bottom: sh, zsh,
 bash, zsh</span>
 
-### CLI tools
+<h3 id='cli'>CLI tools</h3>
 
 The shell is the core of a UNIX/Linux based system. So having a
 bunch of fast, light and efficient CLI tools is a must. There are
@@ -335,7 +335,7 @@ top-right: **mutt**
 bottom-left: **tmux**  
 bottom-right: **irssi**</span>
 
-### Status bar
+<h3 id='bar'>Status bar</h3>
 
 All of this is great, but I think that if you want to check the
 time, you're not willing to open a terminal, and type:
@@ -369,7 +369,7 @@ terminal multiplexer status bar,
 [as phyrne suggested](http://calummacrae.blogspot.fr/2012/12/dropping-status-bars-for-tmux-as-im.html)
 in one of his blog post</span>
 
-### Integration
+<h3 id='setup'>Integration</h3>
 
 Now that we potentially have a working desktop, let make it spawn
 correctly, using ONLY one file: `~/.xinitrc`.
