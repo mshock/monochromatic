@@ -1,0 +1,330 @@
+# [Love me some LaTeX](#)
+## &mdash; 06 December, 2013
+
+
+I am now in my last year of engineering school, and this imply that
+I will have to write a report for the last 3 years I spent in my
+company, as an apprentice. As a fellow Linux user, I don't want to
+use that fucking text processor. I love my vim
+setup, and I want to use it to write that report.
+
+### Introduction
+
+So i came to [LaTeX](http://www.latex-project.org/).  
+Latex (side note: I will not write "LaTeX" everytime in this post.
+I'm too lazy for that) is a kind of markup language that you can use
+to write scientific reports, or anything you want in fact.  
+
+It is intelligent in the sense that, you don't have to bother about
+the formatting on the document, latex will do that for you, and
+probably better than you. So you can just **focus on what your
+are typing**.
+
+Seems interresting huh? So basically, what does it look like? Here's
+a simple document (download/view it 
+[HERE](http://raw.z3bra.org/null/la.pdf))
+
+    la.tex
+
+    \documentclass[9pt]{report}     % Start of document
+
+    \usepackage[utf8]{inputenc}     % Write text unsing UTF-8 encoding
+    \usepackage{graphicx}           % Use graphics for diagrams and such
+
+    \title{\LaTeX exemple}
+    \author{z3bra, the cool guy}
+    \date{\today}
+
+    \begin{document}
+
+    \maketitle
+    \tableofcontents
+    \listoftables
+    \listoffigures
+    \newpage
+
+    \chapter{Introduction}
+
+    \section{\LaTeX is fun}
+    Bla bla, latex is cool, and not only in bed.
+    See that explanatory figure to figure out why:
+
+    \begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{figure}
+    \caption{Figure caption}
+    \label{fig:figure}
+    \end{figure}
+
+    that might not be the good figure. Anyway...
+
+    \subsection{Love?}
+    Do you love me some \LaTeX?
+
+    \subsection{Llorem ipsum}
+    My money's in that office, right? If she start giving me some bullshit about it
+    ain't there, and we got to go someplace else and get it, I'm gonna shoot you in
+    the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find
+    out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm
+    talking to you, motherfucker. You listen: we go in there, and that nigga Winston
+    or anybody else is in there, you the first motherfucker to get shot. You
+    understand?
+
+    Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is
+    advertised as the most popular gun in American crime. Do you believe that shit?
+    It actually says that in the little book that comes with it: the most popular
+    gun in American crime. Like they're actually proud of that shit.
+
+    Now that we know who you are, I know who I am. I'm not a mistake! It all makes
+    sense! In a comic, you know how you can tell who the arch-villain's going to be?
+    He's the exact opposite of the hero. And most times they're friends, like you
+    and me! I should've known way back when... You know why, David? Because of the
+    kids. They called me Mr Glass.
+
+    \appendix
+    \chapter{Appendix}
+
+    \section{Oh! A table!}
+    \begin{table}[h!]
+    \begin{tabular}{ | l | l | p{5cm} | }
+    % pretty that shit with !column -t -s \&amp; -o \&amp;
+    \hline
+    COLUMN &amp; COLUMN 3 HEADER   &amp; DESCRIPTION \\ \hline \hline
+    column &amp; name of something &amp; Description of that, eeh \\ \hline
+    column &amp; name of something &amp; Description of that, eeh \\ \hline
+    column &amp; name of something &amp; Description of that, eeh \\ \hline
+    column &amp; name of something &amp; Description of that, eeh \\ \hline
+    column &amp; name of something &amp; Description of that, eeh \\ \hline
+    column &amp; name of something &amp; Description of that, eeh \\ \hline \hline
+    FOOTER &amp; NAME OF FOOTER    &amp; WHO CARES WHAT'S HERE?   \\ \hline
+    \end{tabular}
+    \caption{Exemple of a table}
+    \label{tab:table}
+    \end{table}
+
+    \end{document}
+    % vim&#0058; ft=tex tw=80 cc=81 nowrap fdm=marker :
+
+
+Wooow ! That's so many tags for such a simple thing!  
+In fact, once you get used to those tags, they are no more a
+problem. Also, The more text you have, the less you'll see the tags.
+
+
+So, now you know HOW latex looks like. But you don't know HOW to
+write it, and what to do with that file.  
+Don't worry, that ain't difficult. 
+
+
+### Writing latex
+
+Latex files basically looks like any source file. First come the
+definitions, and then the source (document) itself.  
+The definitions are importants because that will tell latex HOW to
+create the document.
+
+Latex tags are only a \ followed by a command. If that keyword needs
+an argument, that argument is given within {}. If that command needs
+an option, that option is given within []. Seems hard ? It is not.
+Take a look at this:
+
+    \command[option]{argument}
+    % comments are from % 'til EOL
+
+Do you get it now ? Then, move on.
+
+The simplest header would be:
+
+    \documentclass{report}
+
+
+This will tell to latex that you want to write a report. Latex knows
+what a report is, so it will apply a set of rules (margin, font
+size, numerotation of chapters/section, and so on). So you will ONLY
+have to rewrite the rules you don't like, or that are missing.
+I'll not cover that in this post, because there are too many way
+to do so, and you are tall enough to find infos by yourself 
+;). Latex has a huge wiki, which is
+great. Use it!
+
+
+Now, the body. Here to, I will give you the most basic body (eg, not
+covering figures, or table. The wiki is better than me to that).
+So, the most simple body is the following:
+
+    \begin{document}
+
+    \chapter{First chapter}
+
+    \section{\LaTeX is fun}
+    My money's in that office, right? If she start giving me some bullshit about it
+    ain't there, and we got to go someplace else and get it, I'm gonna shoot you in
+    the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find
+    out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm
+    talking to you, motherfucker. You listen: we go in there, and that nigga Winston
+    or anybody else is in there, you the first motherfucker to get shot. You
+    understand?
+
+    \section{Middle section}
+    Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is
+    advertised as the most popular gun in American crime. Do you believe that shit?
+    It actually says that in the little book that comes with it: the most popular
+    gun in American crime. Like they're actually proud of that shit.
+
+
+    \chapter{Last chapter}
+
+    \section{Last section}
+    Now that we know who you are, I know who I am. I'm not a mistake! It all makes
+    sense! In a comic, you know how you can tell who the arch-villain's going to be?
+    He's the exact opposite of the hero. And most times they're friends, like you
+    and me! I should've known way back when... You know why, David? Because of the
+    kids. They called me Mr Glass.
+
+    \end{document}
+
+
+You're still there ? Fine. Now, what should we do with that file ?
+
+
+### Compilation
+
+Yeah, you read it right. You compile a Latex file, because it has to
+generate many other files in order to understand your whole
+document.  
+It will have to count yur chapters, sections, subsection, and so on.
+Then, create a output file which will be formatted, and correctly
+numeroted, linked to your figures, tables, etc..
+
+
+So, how does it works ? Taht's easy, just call `latex` on your file to have it
+compiled.
+
+    latex file.tex
+
+This command will create a **dvi** file. If you want
+another format, you you be able to use any other tool to convert it
+to the fomat you want:
+
+    dvips  file.dvi
+    dvipdf file.dvi
+
+This will create two files: `file.ps`, and `file.pdf` (U DONT SAY?!), that you
+will be able to view in your prefered PDF viewer. (I suggest
+[zathura](http://pwmt.org/projects/zathura/), which is able to reload
+automatically your file if the timestamp have changed)
+
+
+I here someone in the audience whispering:
+<q>But, That's a pain !</q>. You are not wrong ! That's why my
+favorite tool comes to the rescue: `make`.
+Yes ! Each time you hear or read the word _compilation_, you
+should instantly think _Makefile_. That's what I did, and it
+has saved me a lot of time!  
+I could leave it to you as an exercise, but I know that some of you
+are just lazy. So here is the makefile I came with:
+
+    # File name
+    BASE    = la
+
+    # How to view output files
+    VIEWER  = zathura
+
+    # Files used for diagrams (umlet file)
+    uxffiles=$(wildcard fig/*.uxf)
+
+    # Those files, with the correct extension for LaTeX
+    figures=$(patsubst %.uxf,%.eps,${uxffiles})
+
+    .SUFFIXES:
+    .SUFFIXES:.ps .pdf .dvi .tex .uxf .eps .toc .lof .lot
+
+    .PHONY: default all dvi ps pdf eps view view-ps view-pdf clean mrproper
+
+    # What should 'make' run by default ?
+    default: ps
+
+    # build everything
+    all: ps pdf view-ps
+
+    # The output files
+    dvi: ${BASE}.dvi
+    ps:  ${BASE}.ps
+    pdf: ${BASE}.pdf
+    eps: ${figures}
+
+    # Default view
+    view: view-ps
+
+    # --- DVI ---------------------------------------
+    ${BASE}.dvi: ${figures} ${BASE}.toc ${BASE}.tex
+    	@echo &quot;TEX  ${BASE}.tex&quot;
+    	@latex ${BASE}.tex &gt;/dev/null
+
+    # --- TOC ---------------------------------------
+    ${BASE}.toc: ${figures} ${BASE}.tex
+    	@echo &quot;TOC  ${BASE}.tex&quot;
+    	@latex -draftmode ${BASE}.tex &gt;/dev/null
+
+    # --- EPS ---------------------------------
+    .uxf.eps:
+    	@echo &quot;EPS  $&lt;&quot;
+    	@umlet -action=convert -format=eps -filename=$&lt; &gt;/dev/null
+
+    # --- PS ----------------------------------------
+    .dvi.ps:
+    	@echo &quot;PS   $&lt;&quot;
+    	@dvips -q $&lt;
+
+    # --- PDF ---------------------------------------
+    .dvi.pdf:
+    	@echo &quot;PDF  $&lt;&quot;
+    	@dvipdf -q $&lt;
+
+    # --- OTHER -------------------------------------
+    view-%: ${BASE}.%
+    	${VIEWER} $&lt;
+
+    clean:
+    	rm -f *.aux
+    	rm -f *.log
+    	rm -f *.dvi
+    	rm -f *.lof
+    	rm -f *.lot
+    	rm -f *.toc
+
+    mrproper: clean
+    	rm -f fig/*.eps
+    	rm -f *.pdf
+    	rm -f *.ps
+
+Easy to use!
+
+    make [dvi|ps|pdf|eps]   # build either the dvi/ps/pdf files, or the eps files
+    make [view-ps|view-pdf] # calls ${VIEWER} on either the ps or pdf file
+
+Maybe... To get the "eps" part, see the [tips section](#tips)
+
+### Enjoy !
+
+There you go, you are now ready to write your own latex documents,
+and browser the web to find help about what is not explained in
+this post (there is **A LOT** things about latex..)
+
+### Tips
+
+Before leaving you, here are just a few tips, from my experience
+with latex (particularly images).
+
+* Read other documents, there are goldmine out there, and that
+  will help you a lot
+* Write the skeleton of your file BEFORE the text itself, so you
+  can focus on what you type.
+* DVI format only support EPS files to render figures, now you're
+  warned..
+* [UMLet](http://umlet.com/) is a great tool to create
+  diagrams and such. It also include a cli routine to export files
+  to format like pdf/jpg/eps (see the Makefile above)
+* Latex can also write letter! That's cool isn't it?
+
+<!-- vim: set ft=markdown ts=4 et: -->

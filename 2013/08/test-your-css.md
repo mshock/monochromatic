@@ -1,0 +1,78 @@
+
+# [Test your CSS !](#)
+## &mdash; 8 August, 2013
+
+### Text Formatting
+
+Yay ! Here we are. Here is somethig _important_. There is also something **strong**.  
+We are, of course, in a paragraph. And it contains an inline quotation :  
+<cite>Richard M. Stallman</cite> said <q>La cuisine indienne favorise les plats curryeux.</q>  
+But... What about blockquotes ?! Let's test :
+
+> There are some people who live in a dream world, and there are some who face reality;
+> and then there are those who turn one into the other.
+> &mdash; <cite>Douglas Everett</cite>
+
+That was a fine quote. Now, go on !
+
+### Long texts
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Images
+
+[![ratpoison screenshot](/img/thumb/2013-08-ratpoison.jpg)](/img/2013-08-ratpoison.jpg)
+&larr; Ratpoison screenshot &mdash; Uses "ratpoison -c set border 28" to make the shot sexier
+
+### Tables and code
+          <table>
+<thead>
+  <tr>
+    <th>column #0</th>
+    <th>column #1</th>
+    <th>column #2</th>
+    <th>column #3</th>
+    <th>column #4</th>
+  </tr>
+</thead>
+  <tbody>
+    <tr><td>cell 0-0</td><td>cell 0-1</td><td>cell 0-2</td><td>cell 0-3</td><td>cell 0-4</td></tr>
+    <tr><td>cell 1-0</td><td>cell 1-1</td><td>cell 1-2</td><td>cell 1-3</td><td>cell 1-4</td></tr>
+    <tr><td>cell 2-0</td><td>cell 2-1</td><td>cell 2-2</td><td>cell 2-3</td><td>cell 2-4</td></tr>
+    <tr><td>cell 3-0</td><td>cell 3-1</td><td>cell 3-2</td><td>cell 3-3</td><td>cell 3-4</td></tr>
+    <tr><td>cell 4-0</td><td>cell 4-1</td><td>cell 4-2</td><td>cell 4-3</td><td>cell 4-4</td></tr>
+  </tbody>
+</table>
+
+Pretty nice isn't it ?
+
+Here is some code, using the `<pre>` tag (remember to escape special chars !)
+
+index.html
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>monochromatic</title>
+      </head>
+      <body>
+        <p id='shblah'>Hello, World!</p>
+      </body>
+    </html>
+
+main.c
+
+    #include <stdio.h>
+
+    #define TEXT "Hello, World!"
+    #define EXIT_SUCCESS 0
+
+    int
+    main (int argc, char **argv)
+    {
+        printf("%s\n", TEXT);
+
+        return EXIT_SUCCESS;
+    }
+
+<!-- vim: set ft=markdown ts=4 et: -->

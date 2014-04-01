@@ -1,0 +1,188 @@
+# [Images in terminal](#)
+## &mdash; 28 January, 2014
+
+I am a huge fan of the terminal. Really. 90% of the magic I realize on my
+computer is through a terminal: IRC, text editing, ,e-mails, file managing,
+package managing, developpement, even web browsing sometimes !
+
+But the terminal lack one thing: **image rendering**.
+
+I have search a way to display images in the terminal for a looooong time now,
+and after digging through fbi, fbterm, and obscure graphical drivers, I finally
+found my goldmine.. I stumbled upon
+[this picture](http://www.nongnu.org/ranger/screenshots/w3mimgpreview.png)
+taken from [this website](http://www.nongnu.org/ranger/).  Ranger. It's a
+text-based file manager (that's cool bro'), but the interesting point sits in
+the "dependencies" section:
+
+> &bull; w3m for previewing images in "true color".
+
+[w3m](http://w3m.sourceforge.net). That was my answer.
+
+### the package
+
+w3m is a text-based web browser. It means that you can use it to browse the web
+from within your terminal (good stuff!). There are many like it (lynx, links,
+elinks, edbrowse,..), but this one is different, as it acts more like a
+point'n'click software than a CLI app.
+
+w3m uses gpm, a tool that let you use your terminal cursor like a mouse, moving
+it character by character.  Anyway, that's not the point here. Let's go back to
+image viewing!  w3m has the particularity to render images in your terminal,
+and it is pretty good at it! The problem was to find out **HOW**. I browsed the
+manpage many, many times, searching for keywords like <q>image</q>,
+<q>preview</q>, <q>gimme my f\*\*cking image rendering, damn software!</q>. Every
+usefull keyword I could find. **Nothing**.
+
+### the pursuit
+
+A few minutes (when all the buckets were fullfilled with my tears), I finally
+tough: <q>Use the source, z3bra</q>. That's how I installed ranger.
+
+Ranger is written in python. And if it uses w3m to render images, I would find
+the tool it uses to do so. Here is how I managed to find it:
+
+    $ pacman -Ql ranger | grep -E 'image|img|w3m|picture|preview'
+    ranger /usr/lib/python3.3/site-packages/ranger/ext/__pycache__/img_display.cpython-33.pyc
+    ranger /usr/lib/python3.3/site-packages/ranger/ext/__pycache__/img_display.cpython-33.pyo
+    ranger /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
+
+    $ grep 'w3m' /usr/lib/python3.3/site-packages/ranger/ext/img_display.py
+    ...
+    W3MIMGDISPLAY_PATH = '/usr/lib/w3m/w3mimgdisplay'
+    ...
+
+**HOORAY!** A binary ! Next step will be to understand how to make it render
+images in the terminal..
+
+### the trials
+
+Obviously, running `w3mimgdisplay --help` would've been too easy.. But I
+finally managed to understand a few things using the ranger source I just
+found, and
+[this thread](https://www.mail-archive.com/mutt-users@mutt.org/msg34447.html).
+Here is the idea: w3mimgdisplay reads commands from stdin, and draws something
+on your terminal, pixel by pixel.
+
+w3mimgdisplay commands are numbers from 0 to 6, and some commands take
+additionnal parameters.  
+In the w3m tarball, you can find this:
+
+    w3mimgdisplay.c
+
+    /*
+    * w3mimg protocol
+    *  0  1  2 ....
+    * +--+--+--+--+ ...... +--+--+
+    * |op|; |args             |\n|
+    * +--+--+--+--+ .......+--+--+
+    *
+    * args is separeted by ';'
+    * op   args
+    *  0;  params          draw image
+    *  1;  params          redraw image
+    *  2;  -none-          terminate drawing
+    *  3;  -none-          sync drawing
+    *  4;  -none-          nop, sync communication
+    *                      response '\n'
+    *  5;  path            get size of image,
+    *                      response "<width> <height>\n"
+    *  6;  params(6)       clear image
+    *
+    * params
+    *      <n>;<x>;<y>;<w>;<h>;<sx>;<sy>;<sw>;<sh>;<path>
+    * params(6)
+    *      <x>;<y>;<w>;<h>
+    *
+    */
+
+Here is the _params_ interpreted on the mutt mail list:
+
+    >  n  - This is used when displaying multiple images
+    >  x  - x coordinate to draw the image at (top left corner)
+    >  y  - y coordinate to draw the image at (top left corner)
+    >  w  - width to draw the image
+    >  h  - height to draw the image
+    >  sx - x offset to draw the image
+    >  xy - y offset to draw the image
+    >  sw - width of the original (source) image
+    >  sh - height of the original (source) image
+
+I now have a better idea on how the protocol works.  Now, by crossing it with
+the ranger source, I ended up with this line:
+
+    echo -e '0;1;0;0;200;160;;;;;ant.jpg\n4;\n3;' | /usr/lib/w3m/w3mimgdisplay 
+
+**BOOM !** [It works!](http://chezmoicamarche.com)  
+[![Fucked up w3mimgdisplay trial](/img/thumb/w3mimgdisplay-crap.jpg)](/img/w3mimgdisplay-crap.jpg)
+
+The result of the previous command. Our picture drawn in 200x100px, at offset
++0+0 in the terminal.  I'm sure you're already trying it ;)
+
+### the wrapping
+
+Okay, we can now display an image in the terminal, at the offset and size we
+want. Let's wrap it up in a script, to be more adaptive!  We will need some
+tools to help us here. Feel free to search by yourself, as an exercise. Here is
+the script I came with:
+
+    #!/bin/bash
+    #
+    # z3bra -- 2014-01-21
+
+    test -z "$1" &amp;&amp; exit
+
+    W3MIMGDISPLAY="/usr/lib/w3m/w3mimgdisplay"
+    FILENAME=$1
+    FONTH=14 # Size of one terminal row
+    FONTW=8  # Size of one terminal column
+    COLUMNS=`tput cols`
+    LINES=`tput lines`
+
+    read width height <<< `echo -e "5;$FILENAME" | $W3MIMGDISPLAY`
+
+    max_width=$(($FONTW * $COLUMNS))
+    max_height=$(($FONTH * $(($LINES - 2)))) # substract one line for prompt
+
+    if test $width -gt $max_width; then
+    height=$(($height * $max_width / $width))
+    width=$max_width
+    fi
+    if test $height -gt $max_height; then
+    width=$(($width * $max_height / $height))
+    height=$max_height
+    fi
+
+    w3m_command="0;1;0;0;$width;$height;;;;;$FILENAME\n4;\n3;"
+
+    tput cup $(($height/$FONTH)) 0
+    echo -e $w3m_command|$W3MIMGDISPLAY
+
+Let's see the rendering...  
+[![Fucked up w3mimgdisplay trial](/img/thumb/w3mimgdisplay-good.jpg)](/img/w3mimgdisplay-good.jpg)
+
+The script draws the image depending on the terminal size (width AND height),
+and put the cursor after the image (exactly 2 lines after).  
+You might want to adapt it to your own case, as the character height and width
+is hardcoded.
+
+Aaaaaaaaand it's cool !
+
+### the end
+
+There you are. You have a tool to preview images in your terminal, in an easy
+way. The dependency is not huge, and you can script it the way you want.  
+
+I hope you learnt a few things here, like tips to grok softwares, understand
+libs/protocols, or at least, the w3mimg protocol.  My script is not perfect,
+because I have no idea how one can get the current cursor line and such. so if
+you have any improvement or idea, I'll be glad to modify my script and add your
+name :)
+
+_Side note:_ w3m can't render images in urxvt, if the depth is 32. That means
+that you can't render images on a transparent background. Be sure that you
+comment the line `URxvt*depth: 32` in your `~/.Xresources`.
+
+### That's all, folks!
+
+<!-- vim: set ft=markdown ts=4 et: -->

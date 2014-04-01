@@ -46,3 +46,5 @@ that ?  Here is a well-known technic, to learn stuffs quickly, and efficiently.
 ## &mdash; 8 August, 2013 
 Here a simple page with a few HTML tags.  It's pretty useful to test your CSS,
 even if there are no 'difficult' layouts.  Feel free to download and share!
+
+<!-- vim: set ft=markdown ts=4 et: -->

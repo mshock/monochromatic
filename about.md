@@ -12,10 +12,10 @@ for that matters).
 
 The technology behind this blog is very simple : 
 
-* Home server &mdash; __archlinux__
-* Web server &mdash; __thttpd__
-* Content &mdash; __static html__
-* Site generator &mdash; __/dev/null__
+* Home server &mdash; **archlinux**
+* Web server &mdash; **thttpd**
+* Content &mdash; **static html**
+* Site generator &mdash; **/dev/null**
 
 So yes, it is written entirely by hand in pure HTML. Why ?  Because I can.
 Because I have the time. Because I like to do stuff from scratch. Because
@@ -33,3 +33,5 @@ I am on a few other places online. You want me ? Here I am :
 
 I wish you will enjoy browsing this blog as much as I like to write it.  So,
 ladies and gentlemen, have a nice day !
+
+<!-- vim: set ft=markdown ts=4 et: -->

@@ -1,0 +1,328 @@
+# [Toolbox](#)
+## &mdash; 12 March, 2014
+
+Please, allow me to start this one with a smart quote, to let you
+know what will follow:
+
+> Show me what's the output of your '`ls /usr/bin`', and I'll tell you who you
+> are ...
+> &mdash; <cite>Nobody (because that's freakin' stupid)</cite>
+
+That being said, we can move on. I'll keep this article updated in time,
+because it's _more_ than an article. It's a list. A list of the tools I use (or
+have used maybe) daily, and that I think are worth mentioning. You'll find
+tools written by me, or by other.  Shell scripts, or compiled program.
+Everything that I find 'nice'.
+
+Those tools are (most of the time) not important or complex enough to get a
+dedicated post, so I'll just write a paragraph here about them. If you feel
+that one of them require a bigger description, email me and I'll consider
+writing an article about it.
+
+Let's start with my current setup ! Every tool in this list is installed on my
+main computer (a desktop one). I'll avoid mentioning server administration
+tools, because that's too specific.
+
+### Computer
+
+* CRUX 3.0
+* AMD A10-5800k
+* Nvidia GeForce GTx 650 Ti
+* Roccat Kone Pure
+* Razer Vespuala
+
+### Tool list
+
+* [2bwm](#2bwm)
+* [9menu](#9menu)
+* [bar](#bar)
+* [dtach](#dtach)
+* [fcount](#fcount)
+* [hsetroot](#hsetroot)
+* [ii](#ii)
+* [instagram](#instagram)
+* [meh](#meh)
+* [popup](#popup)
+* [prout](#prout)
+* [ptii](#ptii)
+* [skroll](#skroll)
+* [thingmenu](#thingmenu)
+* [wendy](#wendy)
+
+### 2bwm
+
+[LINK](http://git.z3bra.org/cgit.cgi/2bwm) &mdash;
+[SHOT](/img/2014-01-08-2bwm.jpg)
+
+It means <q>Two borders window manager</q>. This is my WM of choice.  It is a
+fork of [mcwm](http://hack.org/mc/hacks/mcwm/), but the author, Venam, added so
+many feature that it became a new tool.
+
+2bwm is a floating WM. It means that your computer will never change the window
+geometry if you don't ask him (but tilling WM will).
+
+With 2bwm, you can resize window horiz/vertically, or grow them keeping aspect
+ratio. You can move them in any direction, or gut them in the corners or in the
+middle, all that, just with your keyboard !
+
+I personnally forked it myself to add a specific feature: window groups. It
+works kinda like traditionnal workspaces, except that you can show or hide them
+independently, allowing you to show multiple workspaces at the same time. See a
+showcase [here](http://raw.z3bra.org/vid/2bwm.webm).
+
+### 9menu
+
+[LINK](ftp://freefriends.org/arnold/Source/) &mdash;
+[SHOT](/img/2014-03-17-menus.jpg)
+
+Here is a simple, yet powerfull menu application. 9menu allows you to create
+static menus to launch your favorite applications. Users of the \*box WM, or
+FVWM will relate to this.
+
+The advantages of 9menu over other applications like [thingmenu](#thingmenu) is
+that you can leave it running in the background, iconify it, bring it back, and
+teleport it.
+
+Another good advantage (but you can totally live without it), is the ability of
+9menu to act as an interpreter, so that you can write your menu using the
+shebang: `#!/usr/bin/9menu`
+
+### bar
+
+[LINK](http://git.z3bra.org/cgit.cgi/bar) &mdash;
+[SHOT](/img/2014-03-13-bar.jpg)
+
+Bar (or (b)ar (a)in't (r)ecursive) is a lightweight status bar application
+written on top of XCB. You can pipe text to it, and it will be displayed within
+the bar. You can also use escape sequences to add colored backgrounds,
+foregrounds or underlining.
+
+It allow the use of
+[complicated](http://git.z3bra.org/cgit.cgi/scripts/tree/bar/status.sh) scripts
+to get a tons of infos within that thin, lovely bar.
+
+I forked it to add a little feature: change the width of the bar on startup,
+allowing to use bar as a notification [popup](#popup)
+
+### dtach
+
+[LINK](http://dtach.sourceforge.net/) &mdash;
+[SHOT](/img/2014-03-13-dtach.jpg)
+
+I often see newbies asking this question:
+
+> newbie &mdash; How can I move one application from one terminal to another ?
+> stranger1 &mdash; you need screen.  
+> stranger2 &mdash; tmux is better !  
+> stranger1 &mdash; How so ?  
+> stranger3 &mdash; It has vertical splits !  
+> stranger2 &mdash; It's scriptable  
+> newbie &mdash; how does it works ?  
+> stranger1 &mdash; There is a vsplit patch fro screen  
+> stranger3 &mdash; Yes but ...  
+> str...
+
+The problem here, is that screen AND tmux are terminal MULTIPLEXER.  Their main
+job is to give access to multiple terminals within a PHYSICAL terminal. The
+possibility to detach and reattach them is just a feature.
+
+But that feature was so good, that a small team wrote a tool with ONLY the
+ability to detach an application, and reattach it somewhere else. Here came
+dtach.
+
+The advantages of dtach are its small size, (not only the code, because it only
+depends on glibc), and that you don't have to remember a million commands.
+There is one only bind: `^\` to detach the process. You can also disable this
+key and use signals to detach it from elsewhere.
+
+I personnaly use it to reattach to my irssi session, as it's the only
+application I need on a remote server. You will also be able to send an
+application from one screen/tmux session to another. Isn't that cool ?
+
+### fcount
+
+[LINK](http://git.z3bra.org/cgit.cgi/fcount)
+
+That is a tool I made. It is REALLY DUMB, but totally usefull in a particular
+case.  
+
+fcount counts the number of files within a directory. NOTHING.
+F\*\*KING. MORE.  
+It's basically a "`ls -rAa1 | wc -l`" within one process. 
+
+I agree that you can find stupid to use a program like that, but within a
+script that will be executed every second to display the number of unread mails
+in a status bar, it is usefull to gain some miliseconds.   Take it or not, this
+is your choice.
+
+### hsetroot
+
+[LINK](http://thegraveyard.org/hsetroot.php) (dead)
+
+I like this one. This is a tool to display images on the root window (humans:
+understand "change wallpaper"). You can fit/expand/tile images, create
+gradients, add tint to images... Everything you could want to do with a
+wallpaper can be done with it. And it's light as I like ! Forget that crappy
+feh ! You can barely get rid of the .fehbg that pisses you off !
+
+### ii
+
+[LINK](http://tools.suckless.org/ii/)
+
+Okay, I don't use it _that_ often.  
+II stands for Irc It, and is a filesystem based irc client. Upon starting, ii
+will create a file hierarchy looking like this:
+
+    $ tree irc/irc.oftc.net/
+    irc/
+    ├── irc.oftc.net
+    │   ├── int
+    │   ├── out
+    │   └── #shblah
+    │       ├── int
+    │       └── out
+    └── irc.iotek.org
+    ├── in
+    ├── nickserv
+    │   ├── in
+    │   └── out
+    ├── out
+    └── #wizards
+    ├── in
+    └── out
+
+The first folder is the server, and the subfolders are the channels which you
+are connected to. The 'in' and 'out' files are named pipes that you can read
+from and write to to interact with servers/channels.  
+Example:
+
+    echo "Hi, people of shblah!" > irc/irc.oftc.net/\#shblah/in
+
+Will effectively send a message to the channel "#shblah" on server
+"irc.oftc.net".
+
+I agree that this is not the most practical client you've used, but it's a
+simple and good unix tool. I use it within a tiny script along with a tool of
+mine ([ptii](#ptii)) to get a quick access to the IRC without having to fire up
+irssi with 4 server connection, 10 channel autojoins, and such..
+
+### instagram
+
+[LINK](http://git.z3bra.org/cgit.cgi/scripts/tree/instagram)
+
+My swiss-knife for screen shots. At first, I wrote it to be able to take a shot
+of only one of my two screens. It's now a script with a lot of features, like
+uploading, thumbnail creation, and such.
+
+It will also open a preview of the shot you just took, and put it in a
+predifined folder. You can write your own 'upload' function to upload the way
+you want
+
+### meh
+
+[LINK](http://www.johnhawthorn.com/meh/)
+
+I've spit on feh before (see [hsetroot](#hsetroot). I have effectively some
+problems with it. Feh is impossible to use. it displays the images in full
+size, no matter what the window size is. And that's freaking annoying... I just
+want my image viewer to display an image at the maximum size for the window,
+and to resize when I change the window size.
+
+That is what meh does. And (almost) nothing more ! Meh take a list of images as
+arguments, and fits them in its window. Meh can also read a list from stdin.
+You can then cycle through images using h,j,k,l,left,down,up,right.
+
+When you press `<enter>`, meh outputs the current image name to stdout. It
+allows cool stuffs like meh \*.jpg | xargs rm to delete the images upon
+pressing `<enter>`.
+
+### popup
+
+[LINK](http://git.z3bra.org/cgit.cgi/scripts/tree/popup)
+
+This is just a simple script that uses my fork of [bar](#bar) to display a
+small notification bar at the top left hand corner of your desktop.
+
+### prout
+
+[LINK](http://git.z3bra.org/cgit.cgi/prout)
+
+Did you notice? If you want to send a document to the printer configured to
+/etc/client.conf using the lp command, you need (at least, on Archlinux) to
+install the full cups server!  That's a shame, isn't it?
+
+That's the reason why I wrote prout. The only dependency is libcups.  This tool
+only sends a file given as argument to the default printer. Nothing else. You
+can't actually send options along with the document, but I'm not sure that I
+want to implement this feature...
+
+Anyway, this is pretty neat to me! I hope you'll enjoy it.
+
+### ptii
+
+[LINK](http://git.z3bra.org/cgit.cgi/ptii) &mdash;
+[SHOT](/img/2014-03-13-ptii.jpg)
+
+Here is an [ii](#ii) helper. Just fire it up in the ii's directory, and you
+will be able to talk on multiple channels easily.  Using simple commands like
+/cn, /cp, /cl, you will be able to list and switch between channels.
+
+The interresting point of this tool is that it uses inotify to automatically
+add channels to your list when ii create the folders.
+
+### skroll
+
+[LINK](http://git.z3bra.org/cgit.cgi/skroll) &mdash;
+[SHOT](/img/2014-03-28-skroll.gif)
+
+Here is something I wrote for fun. I don't actually need it, but other might
+find it useful. Skroll takes its input from stdin, and then makes it scroll on
+stdout. You can specify the scroll speed, as well as the number of characters
+to be displayed.
+
+The best application to this I can find so far, is for some kind of
+notification system. If you want to display the current playing song in a tiny
+box in the upper left had-corner, you soon notice that you _can't_ adapt the
+notification box to the size of the input text, because that's just too ugly.
+And here comes skroll ! Just pipe your text to it with the -r flag (so that
+there is a new line after each scroll-step), and pipe that output to dzen2 or
+bar or whatever. **BAM** that's black magic !
+
+### thingmenu
+
+[LINK](http://git.r-36.net/thingmenu/) &mdash;
+[SHOT](/img/2014-03-17-menus.jpg)
+
+Thingmenu is one of those app you've never heard of, but you use (or have used)
+daily, because it was part of a WM.
+
+It is a simple tool that help you associate some strings with commands, and
+stack them up in a menu. It comes with a nice script that is able to deal with
+submenus and "back" buttons, that you can easily improve to fit your own needs.
+
+Also, feel free to browse the whole git repo, it's full of good stuff !
+
+### wendy
+
+[LINK](http://git.z3bra.org/cgit.cgi/wendy) &mdash;
+[SHOT](/img/2014-03-13-wendy.jpg)
+
+Wendy makes my life better. I first wrote it as an exercise to learn inotify,
+but it turned out to be a good replacement to inotifywait.
+
+Wendy let you watch a directory/file and execute a command when a watched event
+is received.    As an example is worth a thousand explications, there you go:
+
+    # watch mail directory for new mails and raise an alert
+    wendy -C ~/var/mail/INBOX/new -t 60 -e beep
+
+    # automatic recompilation
+    wendy -M wendy.c -e make
+
+Every inotify mask can be used, and they can be combined (eg, whatch creation
+AND modification).
+
+I tried to make this tool the most simple possible, to extend the
+possibilities. Be creative!
+
+<!-- vim: set ft=markdown ts=4 et: -->
