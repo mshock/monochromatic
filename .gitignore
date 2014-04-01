@@ -1,9 +1,6 @@
 .gitignore
-
 *.html
-
 img/*
-
 rss/*.xml
-
 css/fonts/*
+*.tar.gz
