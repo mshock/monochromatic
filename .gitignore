@@ -1,2 +1,9 @@
+.gitignore
+
+*.html
+
 img/*
+
+rss/*.xml
+
 css/fonts/*
