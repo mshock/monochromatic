@@ -1,13 +1,10 @@
 #!/bin/bash
 
-
-
 # Ask the user for a title
 read -p "Post title: " title
 
-
 # use post title to name the file
-file=`echo ${title}| sed "s/\s\+/-/g;s/./\l&/g;s/[,.!;\"']//g"`.html
+file=`echo ${title}| sed "s/\s\+/-/g;s/./\l&/g;s/[,.!;\"']//g"`.txt
 
 test -z "$file" && exit 1
 
@@ -23,15 +20,9 @@ test -d ${folder} || mkdir -p ${folder}
 # build the whole path
 post="${folder}/${file}"
 
-# use the templates to create the post skeleton
-cat tools/{head,body,foot}.template >> ${post}
-
-# put the title and date in the post
-sed -i "s/BLOG_TITLE/${title}/;s/BLOG_DATE/${date}/" ${post}
-
 test -f ${post} || echo "cannot create ${post}" && exit 1
 
 echo "$post created"
 
 # create a symlink to the last post, to easily access it
-ln -fs ${post} last_post.html
+ln -fs ${post} last.txt
