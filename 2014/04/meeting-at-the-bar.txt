@@ -520,7 +520,7 @@ script, that we will pipe later to our HUD.
 
 
 All you have to do now is to pipe this script to your status bar of choice:
-`./bar-generator | bar -B \#1d1d1d`. 
+`./barmk.sh | bar`. 
 
 There you are! You now know how (ow ow ow) make your system talk to you.
 Obviously, this is a raw script, and it can be heavily improved (eg, add some
@@ -529,6 +529,10 @@ colors, parse CLI arguments, etc..).
 But I'm pretty sure that it's a good start for your imagination. By the way, if
 you find neat tricks to improve the performances of the functions listed above,
 feel free to mail me these, I'll be glad to modify them!
+
+[![barmk showcase](/img/thumb/2014-04-02-barmk.png)](/img/2014-04-02-barmk.png)
+<span class='caption'>Before leaving you, here is what I got using this script
+(with some tweaks, see the `diff` output)</span>
 
 Now go ahead, and watch how your computer tell you how he (or she) feels...
 Isn't that **amazing** ?!
