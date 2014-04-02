@@ -12,8 +12,9 @@ cat << EOF
 EOF
 
 sed -e 's/^## .*$/<description>/' \
-    -e 's/^$/<\/description>\n<\/item>/' \
-    -e 's/^# \[\(.*\)\](\(.*\))/<item>\n<title>\1<\/title>\n<guid>\2<\/guid>/' $1
+    -e 's/^$/<\/description>\\n<\/item>/' \
+    -e 's/^# \[\(.*\)\](\(.*\))/<item>\n<title>\1<\/title>\n<guid>\2<\/guid>/' \
+    -e 's/<guid>/&http:\/\/blog.z3bra.org/' $1
 
 cat << EOF
 </channel>
