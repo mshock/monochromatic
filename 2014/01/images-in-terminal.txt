@@ -130,7 +130,7 @@ the script I came with:
     #
     # z3bra -- 2014-01-21
 
-    test -z "$1" &amp;&amp; exit
+    test -z "$1" && exit
 
     W3MIMGDISPLAY="/usr/lib/w3m/w3mimgdisplay"
     FILENAME=$1
