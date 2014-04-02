@@ -316,7 +316,7 @@ interface using `iwconfig`. Sounds easy huh ?
 
     # iwconfig returns an error code if the interface tested has no wireless
     # extensions
-    if iwconfig $int1 2>&1 >/dev/null; then
+    if iwconfig $int1 >/dev/null 2>&1; then
         wifi=$int1
         eth0=$int2
     else
@@ -330,7 +330,7 @@ interface using `iwconfig`. Sounds easy huh ?
     # this line will set the variable $int to $eth0 if it's up, and $wifi
     # otherwise. I assume that if ethernet is UP, then it has priority over
     # wifi. If you have a better idea, please share :)
-    ip link show $eth0 | grep 'UP' >/dev/null && int=$eth0 || int=$wifi
+    ip link show $eth0 | grep 'state UP' >/dev/null && int=$eth0 || int=$wifi
 
 This is now the time to see if network is up or not. For that, a simple `ping`
 would do the trick:
@@ -343,7 +343,7 @@ would do the trick:
     # but feel free to use any ip address you want. Be sure to put an IP, not a
     # domain name. You'll bypass the DNS resolution that can take some precious
     # miliseconds ;)
-    ping -c 1 8.8.8.8 2>&1 >/dev/null && echo "connected" || echo "disconnected"
+    ping -c 1 8.8.8.8 >/dev/null 2>&1 && echo "connected" || echo "disconnected"
 
 
 #### window manager groups
@@ -471,18 +471,18 @@ script, that we will pipe later to our HUD.
 
     network() {
         read lo int1 int2 <<< `ip link | sed -n 's/^[0-9]: \(.*\):.*$/\1/p'`
-        if iwconfig $int1 2>&1 >/dev/null; then
+        if iwconfig $int1 >/dev/null 2>&1; then
             wifi=$int1
             eth0=$int2
         else
             wifi=$int2
             eth0=$int1
         fi
-        ip link show $eth0 | grep 'UP' >/dev/null && int=$eth0 || int=$wifi
+        ip link show $eth0 | grep 'state UP' >/dev/null && int=$eth0 ||int=$wifi
 
         #int=eth0
 
-        ping -c 1 8.8.8.8 2>&1 >/dev/null && 
+        ping -c 1 8.8.8.8 >/dev/null 2>&1 && 
             echo "$int connected" || echo "$int disconnected"
     }
 
