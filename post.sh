@@ -20,7 +20,18 @@ test -d ${folder} || mkdir -p ${folder}
 # build the whole path
 post="${folder}/${file}"
 
-test -f ${post} || echo "cannot create ${post}" && exit 1
+# create the file
+cat <<EOF > ${post}
+### [${title}](#)
+## &mdash; ${date}
+
+<!-- vim: set ft=markdown ts=4 et: -->
+EOF
+
+if ! test -f ${post}; then
+    echo "cannot create ${post}"
+    exit 1
+fi
 
 echo "$post created"
 
