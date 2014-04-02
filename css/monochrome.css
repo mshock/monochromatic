@@ -106,9 +106,7 @@ h1, h3 {
     text-shadow: 2px 2px 4px #000;
 }
 
-h1 {
-    display:inline;
-}
+h1 { display:inline; }
 
 h2 {
     color: #666;
@@ -116,6 +114,10 @@ h2 {
     font-weight: normal;
     font-size: 80%;
 }
+
+h3 { font-size:150%; }
+
+h4 { font-size:120%; }
 
 header h1 {
     font-size: 200%;
