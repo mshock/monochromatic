@@ -6,7 +6,7 @@
  *      - header (bg)-- #000
  *      - def. text  -- #bbb
  *      - link visit -- #bbb
- *      - code (bg)  -- #000
+ *      - code (bg)  -- #aaa
  *      - link text  -- #eec
  *      - borders    -- #eec
  *      - main title -- #fff
@@ -178,22 +178,17 @@ code {
 }
 
 pre {
-    color: inherit;
-    background-color: #322;
+    width:90%;
+    margin:auto;
+    color: white;
+    background-color: #111;
     padding: 10px;
-    border: 1px solid #555;
-    border-radius: 4px;
+    border-radius: 2px;
     margin-top: 4px;
     max-height:200px;
     overflow:auto;
 }
 
-pre hr {
-    background-color:#555;
-    width: 100%;
-    margin: 0;
-    margin-top: 4px;
-}
 /* }}} */
 
 /* Text Formatting {{{ */
