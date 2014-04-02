@@ -1,3 +1,9 @@
+# [Meeting at the bar](/2014/04/meeting-at-the-bar.html) 
+## &mdash; 02 April, 2014
+I know that I will deceive some people but I'm not talking about alcohol here!
+This article is about building a status bar for your beloved desktop. And we
+will do this **the hard way**...
+
 # [Toolbox](/2014/03/toolbox.html) 
 ## &mdash; 12 March, 2014 
 Yeah, yet another list of unix tools. Feel free to avoid it, but you'll
