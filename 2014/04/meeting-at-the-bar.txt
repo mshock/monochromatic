@@ -21,10 +21,10 @@ Here we go!
 
 <h3 id='hud'>head-up display</h3>
 
-First of all, let's understand what an HUD is. Gamers can go the the next
+First of all, let's understand what an HUD is. Gamers can go to the next
 paragraph. An HUD display some information you (most of the time) wants to see.
 In video-games, that will be your life/armor points, or the number of ammos
-loaded in your gun. Those information are almost always visible and are updated
+loaded in your gun. Those informations are almost always visible and are updated
 in real-time.
 
 But we're not playing video games here. And you're probably not reading with a
@@ -32,6 +32,11 @@ loaded gun in your hand. So, sitting in front of your computer, you want other
 kind of informations. We will talk about those informations later.  
 First, let's see HOW we will display them on-screen. I currently know 4 ways of
 doing it (understand, I've not tried the alternatives):
+
+* dzen
+* conky
+* tmux
+* bar
 
 #### dzen
 
@@ -54,11 +59,11 @@ XCB (see the fourth alternative: bar).
 
 #### conky
 
-Here comes the king of HUDs, ladies and gentlmen, please put a knee to the
+Here comes the king of HUDs, ladies and gentlemen, please put a knee to the
 ground!  
 Conky's job is to display every possible information on your screen, in a really
 eye-candy way. I made
-[this](http://pix.toile-libre.org/upload/original/1360670013.jpg) monthes ago
+[this](http://pix.toile-libre.org/upload/original/1360670013.jpg), monthes ago
 using conky (do not ask for configs or wallpaper, I don't have them anymore).
 
 It is extensible in lua and has a heavy set of features built-in.
@@ -79,8 +84,8 @@ would be:
     EOF
     conky &
 
-But for just a simple thing, that's a bit overkill.
-Note that there is also conky-cli that output informations to stdout. That is
+But for such a simple thing, that's a bit overkill.  
+Note that there is also conky-cli that outputs informations to stdout. That is
 useful to build informations lines to feed a bar with. To have a quick idea of
 how this works, check this
 [nice forum post](http://nixers.net/showthread.php?tid=117) by jmbi.
@@ -134,9 +139,9 @@ them:
 * window manager groups
 * mpd's current playing song
 
-I choosed those to show you many way to fetch informations on your computer.
+I choosed those to show you many ways to fetch informations on your computer.
 
-Before going any further, I need to introduce to you the tools we'll need, and
+Before going any further, I need to introduce you to the tools we'll need, and
 that we just CAN'T avoid to fetch informations..
 
 * `awk` -- a powerfull script language, I don't know enough about this, though
@@ -144,9 +149,11 @@ that we just CAN'T avoid to fetch informations..
 * `grep` -- should I really present 'grep' ?
 * `sed` -- stream editor, it's useful to format outputs
 * `test` -- test an expression and return 0 if it's true, >0 otherwise
+* `tr` -- translate or delete characters from the input
 
 By the way, that would be a **HUGE** plus to know about [regular
-expressions](https://en.wikipedia.org/wiki/Regular_expression).  
+expressions](https://en.wikipedia.org/wiki/Regular_expression), because we are
+going to use them _a lot_ with `sed`.  
 So, here we go!
 
 #### current date / time
@@ -158,9 +165,10 @@ output. So we'll just use that:
 
 #### battery level
 
-There is this tool, `acpi` that can be used to output some infos on you system
-power. But that's just not fun! We'll be messing with the `/sys` directory,
-which is a goldmine. Feel free to navigate it, to see what you can find.
+There is this tool, `acpi` that can be used to output some infos on your system
+power. But that's just not fun! We'll be messing with the `/sys` directory
+instead, which is a goldmine. Feel free to navigate it, to see what you can
+find.
 
 Back to the battery. We are interested in two information, the current
 charge of the battery (in percent) and if the charger is plugged in, or not. _on
@@ -205,7 +213,9 @@ You can notice that the info we're interested in sits at the end of the output.
 That will make things easier.
 
     # parse amixer output to get ONLY the level. Will output "84%"
-    amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p'
+    # The 'N' command will join lines, before substituting, so that we can avoid
+    # piping the output to `uniq`
+    amixer get Master | sed -n 'N;s/^.*\[\([0-9]\+%\).*$/\1/p'
 
 #### CPU load
 
@@ -275,15 +285,15 @@ awk for mostly. I'll need to dive a little more in that language):
 
 At this point, you might realise that those two number are not really useful. We
 will need to modify them a little by converting them to Mib, and making a ratio
-out of them:
+out of them. A neat alternative would be to ignore cached memory and buffers, to
+know exactly how much the applications are taking:
 
     # store the total and free memory in two variables
     read t f <<< `grep -E 'Mem(Total|Free)' /proc/meminfo |awk '{print $2}'`
+    read b c <<< `grep -E '^(Buffers|Cached)' /proc/meminfo |awk '{print $2}'`
 
-    # then, calcultate the percentage of memory used (scale=2 tells bc to
-    # calculate two digits after the floating point)
-    # cut will help us to get rid of the floating point that is useless here
-    echo `bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1`%
+    # then, calcultate the percentage of memory used
+    echo `bc <<< "$t / ($t -$f -$c -$b"`%
 
 #### network connection state
 
@@ -313,6 +323,9 @@ interface using `iwconfig`. Sounds easy huh ?
         wifi=$int2
         eth0=$int1
     fi
+
+    # in case you have only one interface, just set it here:
+    # int=eth0
 
     # this line will set the variable $int to $eth0 if it's up, and $wifi
     # otherwise. I assume that if ethernet is UP, then it has priority over
@@ -344,9 +357,9 @@ to get the number of groups and the current group with ratpoison:
 
     echo "`ratpoison -c groups| cut -sd'*' -f1`/`ratpoison -c groups| wc -l`"
 
-iBack to the topic, fetching current group out of all the groups. To make this a
-little more exiting, we will output something like `--o---`, 'o' being the
-current desktop, '-' being the other desktops.
+Back to the topic, fetching current group out of all the groups. To make this a
+little more exiting, we will output something like "`==|=====`", '|' being the
+current desktop, '=' being the other desktops.
 
 The first step is to fetch the number of desktops, and the index of the current
 one. To do that, let's use `xprop`
@@ -363,12 +376,14 @@ But now, the desktop indicator. To do that, there is two solutions:
 I tried both versions, and `time` reports that they are they're _almost_ the
 same:
 
-    ───── time cicle.sh; time fillup.sh 
+    ───── time cicle.sh
     ==|=======
 
     real    0m0.025s
     user    0m0.013s
     system  0m0.000s
+
+    ───── time fillup.sh
     ==|=======
 
     real    0m0.020s
@@ -386,7 +401,7 @@ variable with the 'group line', and then output it. It goes like this:
     line="${line}|"
 
     # En then the other groups
-    for w in `seq 1 $((cur + 2))`; do line="${line}="; done
+    for w in `seq $((cur + 2)) $tot`; do line="${line}="; done
 
     # don't forget to print that line!
     echo $line
@@ -437,24 +452,25 @@ script, that we will pipe later to our HUD.
         test "`cat $BATS`" = "Charging" && echo -n '+' || echo -n '-'
 
         # append the character '%' after the number
-        sed 's/$/%/' $BATC
+        sed 's/$/%%/' $BATC
     }
 
     volume() {
-        amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p'
+        amixer get Master | sed -n 'N;s/^.*\[\([0-9]\+%\).*$/\1%/p'
     }
 
     cpuload() {
-        CALC=`ps -eo pcpu |grep -vE '0.0|%CPU' |tr "\n" " " |sed 's/  / + /g'`
-        echo `bc <<< $LINE`%
+        LINE=`ps -eo pcpu |grep -vE '0.0|%CPU' |tr "\n" " " |sed 's/  / + /g'`
+        echo `bc <<< $LINE`%%
     }
 
     memused() {
         read t f <<< `grep -E 'Mem(Total|Free)' /proc/meminfo |awk '{print $2}'`
-        echo `bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1`%
+        echo `bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1`%%
     }
 
     network() {
+        read lo int1 int2 <<< `ip link | sed -n 's/^[0-9]: \(.*\):.*$/\1/p'`
         if iwconfig $int1 2>&1 >/dev/null; then
             wifi=$int1
             eth0=$int2
@@ -464,17 +480,19 @@ script, that we will pipe later to our HUD.
         fi
         ip link show $eth0 | grep 'UP' >/dev/null && int=$eth0 || int=$wifi
 
+        #int=eth0
+
         ping -c 1 8.8.8.8 2>&1 >/dev/null && 
             echo "$int connected" || echo "$int disconnected"
     }
 
     groups() {
-        cur=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'
-        tot=`xprop -root _NET_NUMBER_OF_DESKTOP | awk '{print $3}'
+        cur=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'`
+        tot=`xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}'`
 
         for w in `seq 0 $((cur - 1))`; do line="${line}="; done
         line="${line}|"
-        for w in `seq 1 $((cur + 2))`; do line="${line}="; done
+        for w in `seq $((cur + 2)) $tot`; do line="${line}="; done
         echo $line
     }
 
@@ -486,19 +504,20 @@ script, that we will pipe later to our HUD.
     }
 
     # This loop will fill a buffer with our infos, and output it to stdout.
-    (while :; do
+    while :; do
         buf=""
         buf="${buf} [$(groups)]   --  "
         buf="${buf} CLK: $(clock) -"
         buf="${buf} NET: $(network) -"
         buf="${buf} CPU: $(cpuload) -"
         buf="${buf} RAM: $(memused) -"
-        buf="${buf} VOL: $(volume) -"
+        buf="${buf} VOL: $(volume)"
         buf="${buf} MPD: $(nowplaying)" # use $(nowplaying scroll) to get a
                                         # scrolling output!
         echo $buf
         sleep 1 # The HUD will be updated every second
-    done)
+    done
+
 
 All you have to do now is to pipe this script to your status bar of choice:
 `./bar-generator | bar -B \#1d1d1d`. 
