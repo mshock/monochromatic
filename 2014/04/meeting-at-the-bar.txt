@@ -213,9 +213,9 @@ You can notice that the info we're interested in sits at the end of the output.
 That will make things easier.
 
     # parse amixer output to get ONLY the level. Will output "84%"
-    # The 'N' command will join lines, before substituting, so that we can avoid
-    # piping the output to `uniq`
-    amixer get Master | sed -n 'N;s/^.*\[\([0-9]\+%\).*$/\1/p'
+    # we need `uniq` because on some hardware, The master is listed twice in
+    # "Front Left" and Front Right" (because laptop speakers I guess)
+    amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p'| uniq
 
 #### CPU load
 
