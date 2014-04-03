@@ -1,4 +1,5 @@
 .gitignore
+last.txt
 *.html
 img/*
 rss/*.xml
