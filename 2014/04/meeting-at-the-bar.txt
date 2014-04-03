@@ -186,8 +186,8 @@ on the battery state. To get the info:
     # prepend percentage with a '+' if charging, '-' otherwise
     test "`cat $BATS`" = "Charging" && echo -n '+' || echo -n '-'
 
-    # append the character '%' after the number
-    sed 's/$/%/' $BATC
+    # print out the content (forced myself to use `sed` :P)
+    sed -n p $BATC
 
 #### sound level
 
@@ -215,7 +215,7 @@ That will make things easier.
     # parse amixer output to get ONLY the level. Will output "84%"
     # we need `uniq` because on some hardware, The master is listed twice in
     # "Front Left" and Front Right" (because laptop speakers I guess)
-    amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p'| uniq
+    amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
 
 #### CPU load
 
@@ -228,12 +228,12 @@ To get the current CPU load used by every program, one can use this command:
     # gives you the CPU load used by every running program
     # 'args' is used here just so you can see the programs command lines
 
-    ps -eo pcpu,argv
+    ps -eo pcpu,args
 
 We don't care about idling programs that uses '0.0' load or the header '%CPU',
-so we can just remove them with `grep -vE '0.0|%CPU'`.
+so we can just remove them with `grep -vE '^\s*(0.0|%CPU)'`.
 
-    ps -eo pcpu | grep -vE '0.0|%CPU'
+    ps -eo pcpu | grep -vE '^\s*(0.0|%CPU)'
 
 We now have a list of the CPU loads actually used, but per program. We just need
 to sum them up!  
@@ -243,19 +243,21 @@ I recommend that you just get it right away!).
 
 `bc` takes operations from stdin, and outputs to stdout. Pretty simple. Pretty
 good.
+Thanks to
+[randomcrocodile](http://www.reddit.com/r/unixporn/comments/220diq/howto_create_an_informative_status_bar_for_your/cgi9hve)
+for pointing out the two digit problem (and other things)
 
     # use the "here-line" feature.
-    # tr replaces newlines with space, that we change in '+' through sed
     # The whole line goes to bc which outputs the result
 
-    CALC=`ps -eo pcpu | grep -vE '0.0|%CPU' | tr "\n" " " | sed 's/  / + /g'`
-    echo `bc <<< $LINE`%
+    LINE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
+    echo `bc <<< $LINE`
 
 #### RAM used
 
-To display RAM usage (in the form `xx% (<used>/<total>)`, we will use another
-place of the filesystem: `/proc`. This will be easier to find memory usage here,
-than battery level in `/sys`:
+To display RAM usage (percentage of RAM actually by the system), we will use
+another place of the filesystem: `/proc`. This will be easier to find memory
+usage here, than battery level in `/sys`:
 
     ───── ls /proc/ | grep 'mem'
     iomem
@@ -293,7 +295,7 @@ know exactly how much the applications are taking:
     read b c <<< `grep -E '^(Buffers|Cached)' /proc/meminfo |awk '{print $2}'`
 
     # then, calcultate the percentage of memory used
-    echo `bc <<< "$t / ($t -$f -$c -$b"`%
+    echo `bc <<< "100($t -$f -$c -$b) / $t"`
 
 #### network connection state
 
@@ -319,7 +321,7 @@ interface using `iwconfig`. Sounds easy huh ?
     if iwconfig $int1 >/dev/null 2>&1; then
         wifi=$int1
         eth0=$int2
-    else
+    else 
         wifi=$int2
         eth0=$int1
     fi
@@ -365,7 +367,7 @@ The first step is to fetch the number of desktops, and the index of the current
 one. To do that, let's use `xprop`
 
     cur=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'
-    tot=`xprop -root _NET_NUMBER_OF_DESKTOP | awk '{print $3}'
+    tot=`xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}'
 
 If that enough for you, you can obviously just output `$cur/$tot` ;)  
 But now, the desktop indicator. To do that, there is two solutions:
@@ -448,25 +450,23 @@ script, that we will pipe later to our HUD.
         BATC=/sys/class/power_supply/BAT1/capacity
         BATS=/sys/class/power_supply/BAT1/status
 
-        # prepend percentage with a '+' if charging, '-' otherwise
         test "`cat $BATS`" = "Charging" && echo -n '+' || echo -n '-'
 
-        # append the character '%' after the number
-        sed 's/$/%%/' $BATC
+        sed -n p $BATC
     }
 
     volume() {
-        amixer get Master | sed -n 'N;s/^.*\[\([0-9]\+%\).*$/\1%/p'
+        amixer get Master | sed -n 'N;s/^.*\[\([0-9]\+%\).*$/\1/p'
     }
 
     cpuload() {
-        LINE=`ps -eo pcpu |grep -vE '0.0|%CPU' |tr "\n" " " |sed 's/  / + /g'`
-        echo `bc <<< $LINE`%%
+        LINE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
+        echo `bc <<< $LINE`
     }
 
     memused() {
         read t f <<< `grep -E 'Mem(Total|Free)' /proc/meminfo |awk '{print $2}'`
-        echo `bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1`%%
+        echo `bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1`
     }
 
     network() {
@@ -509,12 +509,13 @@ script, that we will pipe later to our HUD.
         buf="${buf} [$(groups)]   --  "
         buf="${buf} CLK: $(clock) -"
         buf="${buf} NET: $(network) -"
-        buf="${buf} CPU: $(cpuload) -"
-        buf="${buf} RAM: $(memused) -"
-        buf="${buf} VOL: $(volume)"
-        buf="${buf} MPD: $(nowplaying)" # use $(nowplaying scroll) to get a
-                                        # scrolling output!
+        buf="${buf} CPU: $(cpuload)%% -"
+        buf="${buf} RAM: $(memused)%% -"
+        buf="${buf} VOL: $(volume)%%"
+        buf="${buf} MPD: $(nowplaying)"
+
         echo $buf
+        # use `nowplaying scroll` to get a scrolling output!
         sleep 1 # The HUD will be updated every second
     done
 
