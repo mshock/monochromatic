@@ -1,10 +1,10 @@
-Hi everybody ! I am Willy Goiffon (aka 'z3bra').  
+Hi everybody ! I am Willy (aka 'z3bra').  
 I am a french student in computer science, born in the early 90's.
 
 ### Monochromatic
 
 This is my online blog.  Here, I'll shows you what's behind the stripes (yes, a
-white skin).  I created this to have a corner on the web to share anything that
+white skin). I created this to have a place on the web to share anything that
 bother me, mostly about computing, and particularly about linux (or GNU/Linux
 for that matters).
 
@@ -14,20 +14,25 @@ The technology behind this blog is very simple :
 
 * Home server &mdash; **archlinux**
 * Web server &mdash; **thttpd**
-* Content &mdash; **static html**
-* Site generator &mdash; **/dev/null**
+* Content &mdash; **markdown**
+* Site generator &mdash; **[Makefile](http://git.z3bra.org/cgit.cgi/monochromatic/tree/Makefile)**
 
-So yes, it is written entirely by hand in pure HTML. Why ?  Because I can.
-Because I have the time. Because I like to do stuff from scratch. Because
-it's.. cool ?
+<span class="strike">So yes, it is written entirely by hand in pure HTML. Why ?
+Because I can. Because I have the time. Because I like to do stuff from
+scratch. Because it's.. cool ?</span>
+It is now written in markdown, as it is way easier to readthan plain HTML.
+Writing posts in plain HTML was a funny experience, but now that my blog has a
+few articles, it's easier for me to review them in markdown. Peace.
 
 ### Want some more ?
 
 I am on a few other places online. You want me ? Here I am : 
 
-* [gitorious.org](http://gitorious.org/~z3bra/) &mdash; a few project I own (no more updated)
-* [irc.freenode.net](https://webchat.freenode.net/) &mdash; mostly on #vim-fr and #archlinux-fr
-* [unixhub.net](http://forum.unixhub.net/) &mdash; Both on the forum and IRC
+* <span class="strike">[gitorious.org](http://gitorious.org/~z3bra/) &mdash; a
+  few project I own</span> (no more updated)
+* [irc.freenode.net](https://webchat.freenode.net/) &mdash; mostly on #vim-fr
+  and #archlinux-fr
+* [nixers.net](http://nixers.net/) &mdash; Both on the forum and IRC
 * <span class='strike'>[quakelive.com](http://quakelive.com)</span> &mdash; Come on ID, bring linux support back..
 * [reddit.com](http://reddit.com/u/z-brah/) &mdash; Well.. Does it count ?
 
