@@ -535,6 +535,11 @@ feel free to mail me these, I'll be glad to modify them!
 <span class='caption'>Before leaving you, here is what I got using this script
 (with some tweaks, see the `diff` output)</span>
 
+<span class='caption'>Oh, and for reference. It tried to get the same result
+with conky and barmk, just to see the difference. Note how conky does not
+display float numbers (for CPU). Also, I was not able to recreate a desktop bar with conky, so I "downgraded"
+the barmk script to make the battle more fair.</span>[![barmk vs conky](/img/thumb/2014-04-10-conky-mkbar.png)](/img/2014-04-10-conky-mkbar.png)
+
 Now go ahead, and watch how your computer tell you how he (or she) feels...
 Isn't that **amazing** ?!
 
