@@ -4,7 +4,8 @@
 
 ### Text Formatting
 
-Yay ! Here we are. Here is somethig _important_. There is also something **strong**.  
+Yay ! Here we are. Here is something _important_. There is also something
+**strong**.  
 We are, of course, in a paragraph. And it contains an inline quotation :  
 <cite>Richard M. Stallman</cite> said <q>La cuisine indienne favorise les plats curryeux.</q>  
 But... What about blockquotes ?! Let's test :

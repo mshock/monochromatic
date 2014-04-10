@@ -111,7 +111,7 @@ allowing to use bar as a notification [popup](#popup)
 
 I often see newbies asking this question:
 
-> newbie &mdash; How can I move one application from one terminal to another ?
+> newbie &mdash; How can I move one application from one terminal to another ?  
 > stranger1 &mdash; you need screen.  
 > stranger2 &mdash; tmux is better !  
 > stranger1 &mdash; How so ?  
