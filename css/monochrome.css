@@ -2,16 +2,17 @@
 
 /*
  * COLORS DEFINITION:
- *      - background -- #1d1d1d
- *      - header (bg)-- #000
- *      - def. text  -- #bbb
- *      - link visit -- #bbb
- *      - code (bg)  -- #aaa
- *      - link text  -- #eec
- *      - borders    -- #eec
- *      - main title -- #fff
- *      - bold text  -- #fff
- *      - sub titles -- #666
+ *      - background -- #fff
+ *      - def. text  -- #666
+ *      - link visit -- #666
+ *      - code (bg)  -- #222
+ *      - code (fg)  -- #fff
+ *      - borders    -- #222
+ *      - link text  -- #755
+ *      - main title -- #444
+ *      - bold text  -- #444
+ *      - sub titles -- #aaa
+ *      - blockquote -- #aaa
  *
  */
 
@@ -36,12 +37,11 @@
 
 /* Main blocks style {{{ */
 body {
-    background-color: #1d1d1d;
-    color: #bbb;
+    background-color: #fff;
+    color: #666;
     padding: 0;
     margin: 0;
     /* font-family: district, sans-serif; */
-    font-size: 90%;
 }
 
 #wrapper {
@@ -55,7 +55,7 @@ body {
 hr {
     width: 40%;
     height: 1px;
-    background-color:#fff;
+    background-color:#444;
     margin-left: 0;
     margin-top: 32px;
     border:none;
@@ -67,27 +67,27 @@ header {
     width:90%;
     margin:auto;
     max-width:720px;
-    border-bottom: 1px solid #555;
+    border-bottom: 1px solid #666;
     padding: 10px;
 }
 
 footer {
-    color: #555;
+    color: #666;
     font-size:90%;
     text-align: center;
     margin: auto;
     width: 70%;
     max-width: 720px;
-    border-top:1px solid #555;
+    border-top:1px solid #666;
     padding: 10px;
 }
 
 footer a {
-    color: #fff;
+    color: #444;
 }
 
 p {
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 #blank {
@@ -98,24 +98,29 @@ p {
 
 /* Titles and headers {{{ */
 h1, h2, h3, h4, h5, h6 {
+    color: #444;
     font-family: archivo, sans-serif;
 }
 
 h1, h3 {
-    color: #fff;
-    text-shadow: 2px 2px 4px #000;
+    /* text-shadow: 2px 2px 4px #000; */
 }
 
 h1 { display:inline; }
 
 h2 {
-    color: #666;
+    color: #aaa;
     display: inline;
     font-weight: normal;
-    font-size: 80%;
+    font-size: 90%;
 }
 
-h3 { font-size:150%; }
+h3 {
+    text-align:right;
+    font-size:150%;
+    border-bottom: 1px solid #aaa;
+    padding-right: 16px;
+}
 
 h4 { font-size:120%; }
 
@@ -129,8 +134,12 @@ header h1 {
 
 /* Pretty links {{{ */
 a {
-    color: #eec;
+    color: #755;
     text-decoration: none;
+}
+
+p a,ul a,ol a {
+    font-style: italic;
 }
 
 a:hover {
@@ -142,12 +151,13 @@ a:visited {
 }
 
 header h1 a {
-    color: white;
+    color: #fff;
+    text-shadow: 0px 0px 2px #222;
 }
 
 header h1 a:hover {
     text-decoration: none;
-    text-shadow: 0px 0px 2px white;
+    text-shadow: 0px 0px 8px #222;
 }
 /* }}} */
 
@@ -164,11 +174,11 @@ table td, table th {
 }
 
 td {
-    border: 1px solid #000;
+    border: 1px solid #222;
 }
 
 th {
-    background-color: #000;
+    background-color: #222;
     color: #fff;
     font-weight: normal;
 }
@@ -180,13 +190,12 @@ code {
 }
 
 pre {
-    width:90%;
     margin:auto;
-    color: white;
-    background-color: #111;
-    padding: 10px;
+    color: #fff;
+    background-color: #222;
     border-radius: 2px;
     margin-top: 4px;
+    padding: 6px;
     max-height:200px;
     overflow:auto;
 }
@@ -195,7 +204,7 @@ pre {
 
 /* Text Formatting {{{ */
 strong {
-    color: #fff;
+    color: #444;
     font-weight: normal;
 }
 
@@ -205,13 +214,14 @@ em {
 }
 
 blockquote, q {
-    color: #666;
+    color: #aaa;
     font-style: italic;
 }
 
 blockquote {
-    border-left: 8px solid #eec;
+    border-left: 8px solid #755;
     padding-left: 8px;
+    margin-left: -8px;
 }
 
 .strike {
@@ -224,7 +234,7 @@ blockquote {
     font-size: 80%;
     padding-left:2px;
     padding-right:2px;
-    border: 1px solid #bbb;
+    border: 1px solid #666;
     border-radius: 6px;
     transform: rotate(90deg);
 }
@@ -235,7 +245,7 @@ blockquote {
 img {
     width:30%;
     vertical-align: top;
-    box-shadow: 0px 0px 10px #000;
+    box-shadow: 0px 0px 10px black;
     border-radius: 4px;
     margin:auto;
     margin-top: 8px;
