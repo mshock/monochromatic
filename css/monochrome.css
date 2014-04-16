@@ -8,9 +8,9 @@
  *      - code (bg)  -- #222
  *      - code (fg)  -- #fff
  *      - borders    -- #222
- *      - link text  -- #755
- *      - main title -- #444
- *      - bold text  -- #444
+ *      - link text  -- #68b
+ *      - main title -- #666
+ *      - bold text  -- #68b
  *      - sub titles -- #aaa
  *      - blockquote -- #aaa
  *
@@ -55,7 +55,7 @@ body {
 hr {
     width: 40%;
     height: 1px;
-    background-color:#444;
+    background-color:#666;
     margin-left: 0;
     margin-top: 32px;
     border:none;
@@ -83,7 +83,7 @@ footer {
 }
 
 footer a {
-    color: #444;
+    color: #666;
 }
 
 p {
@@ -98,7 +98,7 @@ p {
 
 /* Titles and headers {{{ */
 h1, h2, h3, h4, h5, h6 {
-    color: #444;
+    color: #666;
     font-family: archivo, sans-serif;
 }
 
@@ -134,20 +134,22 @@ header h1 {
 
 /* Pretty links {{{ */
 a {
-    color: #755;
-    text-decoration: none;
-}
-
-p a,ul a,ol a {
-    font-style: italic;
+    color: #666;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #68b;
+    /* text-decoration: underline; */
 }
 
 a:visited {
     text-decoration: line-through;
+}
+
+h1 a, h2 a, h3 a, h4 a {
+    text-decoration: none;
 }
 
 header h1 a {
@@ -156,7 +158,7 @@ header h1 a {
 }
 
 header h1 a:hover {
-    text-decoration: none;
+    color: #fff;
     text-shadow: 0px 0px 8px #222;
 }
 /* }}} */
@@ -204,13 +206,12 @@ pre {
 
 /* Text Formatting {{{ */
 strong {
-    color: #444;
-    font-weight: normal;
+    color: #666;
+    font-weight: bold;
 }
 
 em {
     font-style: italic;
-    text-decoration: underline;
 }
 
 blockquote, q {
@@ -219,7 +220,7 @@ blockquote, q {
 }
 
 blockquote {
-    border-left: 8px solid #755;
+    border-left: 8px solid #68b;
     padding-left: 8px;
     margin-left: -8px;
 }
