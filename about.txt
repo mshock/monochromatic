@@ -20,7 +20,7 @@ The technology behind this blog is very simple :
 <span class="strike">So yes, it is written entirely by hand in pure HTML. Why ?
 Because I can. Because I have the time. Because I like to do stuff from
 scratch. Because it's.. cool ?</span>
-It is now written in markdown, as it is way easier to readthan plain HTML.
+It is now written in markdown, as it is way easier to read than plain HTML.
 Writing posts in plain HTML was a funny experience, but now that my blog has a
 few articles, it's easier for me to review them in markdown. Peace.
 
