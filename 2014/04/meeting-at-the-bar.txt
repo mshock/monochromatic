@@ -253,6 +253,12 @@ for pointing out the two digit problem (and other things)
     LINE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
     bc <<< $LINE
 
+**NOTE**: *verkgw* on irc.blinkenshell.org proposed a faster `awk` alternative.
+I don't know awk enough to come up with this kind of line, so I'll just continue
+with `grep` and `sed`. See the comparison [here](http://i.imgur.com/Aefbl8U.png)
+
+    ps -eo pcpu | awk 'BEGIN {sum=0.0f} {sum+=$1} END {print sum}'
+
 #### RAM used
 
 To display RAM usage (percentage of RAM actually by the system), we will use
