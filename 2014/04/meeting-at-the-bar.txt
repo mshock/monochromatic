@@ -251,7 +251,7 @@ for pointing out the two digit problem (and other things)
     # The whole line goes to bc which outputs the result
 
     LINE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
-    echo `bc <<< $LINE`
+    bc <<< $LINE
 
 #### RAM used
 
@@ -295,7 +295,7 @@ know exactly how much the applications are taking:
     read b c <<< `grep -E '^(Buffers|Cached)' /proc/meminfo |awk '{print $2}'`
 
     # then, calcultate the percentage of memory used
-    echo `bc <<< "100($t -$f -$c -$b) / $t"`
+    bc <<< "100($t -$f -$c -$b) / $t"
 
 #### network connection state
 
@@ -461,12 +461,12 @@ script, that we will pipe later to our HUD.
 
     cpuload() {
         LINE=`ps -eo pcpu |grep -vE '^\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
-        echo `bc <<< $LINE`
+        bc <<< $LINE
     }
 
     memused() {
         read t f <<< `grep -E 'Mem(Total|Free)' /proc/meminfo |awk '{print $2}'`
-        echo `bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1`
+        bc <<< "scale=2; 100 - $f / $t * 100" | cut -d. -f1
     }
 
     network() {
