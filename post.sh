@@ -25,7 +25,7 @@ cat <<EOF > ${post}
 ### [${title}](#)
 ## &mdash; ${date}
 
-<!-- vim: set ft=markdown ts=4 et: -->
+<!-- vim: set ft=markdown ts=4 et tw=80: -->
 EOF
 
 if ! test -f ${post}; then
@@ -33,7 +33,7 @@ if ! test -f ${post}; then
     exit 1
 fi
 
-echo "$post created"
+echo "$post created (symlinked to last.txt)"
 
 # create a symlink to the last post, to easily access it
 ln -fs ${post} last.txt
