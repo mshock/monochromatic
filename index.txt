@@ -1,3 +1,10 @@
+# [Pop it up !](/2014/04/pop-it-up.html)
+## &mdash; 30 April, 2014
+What about a dynamic way to get in touch with your system infos?  Something
+like <q>How by the way, this just happened. I though you might be
+interrested !</q>.  That's what notifications are made for. Let's check this out
+by building a whole notification system !
+
 # [Meeting at the bar](/2014/04/meeting-at-the-bar.html) 
 ## &mdash; 02 April, 2014
 I know that I will deceive some people but I'm not talking about alcohol here!

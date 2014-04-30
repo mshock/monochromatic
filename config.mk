@@ -13,7 +13,8 @@ PAGES   =   index.html \
 	    2013/12/love-me-some-latex.html \
 	    2014/01/images-in-terminal.html \
 	    2014/03/toolbox.html \
-	    2014/04/meeting-at-the-bar.html
+	    2014/04/meeting-at-the-bar.html \
+	    2014/04/pop-it-up.html
 
 FEEDS = rss/feed.xml
 EXTRA = css img favicon.ico

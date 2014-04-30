@@ -1,0 +1,263 @@
+# [Pop it up !](#)
+## &mdash; 30 April, 2014
+
+So you know how to build a status bar to get informations about your computer?
+That's **cute**. How about bringing it to the next level?
+
+Let's go through another way to display informations from your lovely
+computer: popup notifications !
+
+### What's that ?
+Popup notifications (I'll call them "popup" from now) are a tiny window that
+will appear on your screen with an informative text on it, and then disappear
+after a certain amount of time, or a user interaction.
+
+The important part is that the popups show up when an event occur, not upon user
+request (well, if the user request a popup, it can still appear, obviously).
+
+### Usefulness
+Well, most of the popup we have to deal with are annoying most of the time
+(except those that notify me that I won an IPad by being the visitor number
+1 000 000, it's nice to tell me!). But if you choose wisely the content and the
+event to pop it, it can become really useful, and help you to unclutter your
+desktop by removing useless informations.
+
+Do you really need to know that your laptop battery is at 78% ? **NO**
+Do you really need to know that you have 0 new mails ? **NO**
+
+This can apply to many other informations (RAM, CPU, current workspace,..). You
+don't need the information to be displayed all the time.  You just need it when
+it's relevant, like battery under 10%, or new mail incoming.
+
+But if you just LIKE to have it displayed all the time (Sometime, I enjoy a nice
+status bar with the fine infos in it), then it's okay! Remember that you can
+have both anyway ;)
+
+### Existing software
+There are in fact, many notification systems that you can use:
+[notify-osd](https://launchpad.net/notify-osd),
+[twmn](https://github.com/sboli/Twmn), etc...
+
+These are fine. But as always, it's just funnier to build your own!
+And in order to do so, we will need an important program:
+[bar](https://github.com/lemonboy/bar)! (note that you can use
+[dzen](https://github.com/robm/dzen) too)
+
+I love this one, because it's really light and simple to use. Moreover, I
+contributed to it ot complete the geometry setting. You can now create a window
+of any size and place it wherever you want!
+
+### Popup itself
+This part is the most simple in fact. `bar` will do anything for us.
+
+All you have to do is to create a script that will take a serie of argument and
+put them in a resized bar on your screen.
+
+The simplest script I can think of is:
+
+    #!/bin/sh
+
+    Create the popup and make it live for 3 seconds
+    (echo " $@"; sleep 3) | bar -g 120x20+20+20
+
+And it's working, already!
+After that, you can style it to make it look like you want:
+
+    #!/bin/sh
+
+    # how long should the popup remain?
+    duration=3
+
+    # define geometry
+    barx=10
+    bary=10
+    barw=120
+    barh=20
+
+    # colors
+    bar_bg='#ff333333'
+    bar_fg='#ffffffff' # white is default
+
+    # font used
+    bar_font='-*-gohufont-medium-*-*--11-*-*-*-*-*-iso10646-1'
+
+    # compute all this
+    baropt='-g ${barw}x${barh}+${barx}+${bary} -B${bar_bg} -f ${bar_font}'
+
+    Create the popup and make it live for 3 seconds
+    (echo " $@"; sleep ${duration}) | bar ${baropt}
+
+[![simple popup](/img/thumb/2014-04-29-popup-simple.png)](/img/2014-04-29-popup-simple.png)
+<span class='caption'>The simple script above, started with a random text.
+It's my upper left hand-corner</span>
+
+Obviously, that's not an informative popup at all (is it?). All you need now is
+to write some simple script to grab the informations you will need to display in
+your popup.  I'll not develop it here, as I already wrote a not-so-tiny section
+on a subjet in my [previous
+post](http://blog.z3bra.org/2014/04/meeting-at-the-bar.html#grab).
+
+You could then just pop notifications using:
+
+    popup $(~/bin/volume)
+
+
+### Automate the popups
+The best thing about popups is that they spawn when it's relevent, eg: when a
+new mail arrived, volume is changing or battery is low.
+
+To catch those event there are many way. We will run through three of them:
+
+* infinite loop
+* inotify event
+* key presses
+
+#### infinite loop
+This one is easy. We just check whatever we want at regular interval, and
+depending on some conditions, we raise a notification. That's what I use for my
+battery:
+
+    #!/bin/sh
+    #
+    # z3bra - (c) wtfpl 2014
+    # check battery level, and raise a notification if the capacity is
+    # under a defined level
+
+    LEVL=7
+    BATC=$(sed 's/%//' /sys/class/power_supply/BAT0/capacity)
+
+    test ${BATC} -le ${LEVL} && popup battery level: ${BATC}
+
+Then run this every 2 minutes or so, and it will notify you when your battery is
+running low. You can put it in your `.xinitrc` or as a cron job:
+
+    # .xinitrc
+    while :; do ~/bin/battery_check; sleep 120; done &
+
+    # crontab
+    */2 * * * * DISPLAY=0 ~/bin/battery_check
+
+
+#### inotify event
+[Inotify (inode notify) is a Linux kernel subsystem that acts to extend
+filesystems to notice changes to the
+filesystem](https://en.wikipedia.org/wiki/Inotify). That strange sentence means
+that you can catch an event when a node (file, socket, fifo, directory, ...) is
+modified. There are many events like modification, access to a node, node moved,
+etc...
+
+To catch those event, there are really few tools.. I wrote mine,
+[wendy](http://blog.z3bra.org/2014/03/toolbox.html#wendy), but there are other.
+Just take a look at this [reddit
+thread](http://www.reddit.com/r/linux/comments/1y5iqy/wendy_watch_files_in_your_file_system_and_launch/)
+to find out more.
+
+So let's define the environnment. There is that directory:
+
+    $ ls ~/var/mail/INBOX
+    cur/ new/ tmp/
+
+I use `fdm` (see [this blog
+post](http://blog.z3bra.org/2013/11/plain-old-mails.html) to retrieve my mails
+from my POP3 server. Each new mail creates a file in `~/var/mail/INBOX/new`, so
+we will just need to watch file creation in that folder, and pop a notification
+at each new mail. It's done like this in my `~/.xinitrc`
+
+    # .xinitrc
+    # note that $MAIL is set to my inbox through my ~/.profile
+    wendy -m 256 -q -f ${MAIL}/new -e popup 'new mail(s)!' &
+
+And there we go. each time `fdm` will fetch mails to your inbox, a wild popup
+will appear!
+
+#### key presses
+The last type of popup I use is those that occur when a key is pressed. The best
+exemple for that are the volume keys. I don't know how you handle this, but
+personnally, I use `xbindkeys` for that. It's a software that let the user map
+commands to hotkeys, which is totally useful for everything. I know some people
+(`bspwm` users, mostly) use baskerville's `sxhkd` to do so. I have nothing
+against this soft, but it will just not cut it here. For further explanations,
+see [this comment
+@nixers.net](http://nixers.net/showthread.php?tid=888&pid=9444#pid9444).
+
+So, if you already use `xbindkeys` to change your volume level, probably already
+know what to do.
+
+I personally have a script to manage my volume level:
+
+    #!/bin/sh
+    #
+    # z3bra - (c) wtfpl 2014
+    # Manage ALSA Master channel
+
+    test "$1" = "-h" && echo "usage `basename $0` [+|-|!]" && exit 0
+
+    level() {
+        amixer get Master | sed -n 's/^.*\[\([0-9]\+%\).*$/\1/p' | uniq
+    }
+
+    state() {
+        amixer get Master | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
+    }
+
+    test $# -eq 0 && echo "`level` `state`" && exit 0
+
+    case $1 in
+        +)      amixer set Master 5%+ >/dev/null;;
+        -)      amixer set Master 5%- >/dev/null;;
+        !)      amixer set Master toggle >/dev/null;;
+        state|level) $1;;
+        *)    amixer set Master $1 >/dev/null;;
+    esac
+
+It's quite simple. `volume +|-` will raise|lower volume, `volume !` will toggle
+on/off, `volume level|state` will output the level or state, and `volume
+whatever` will execute `whatever` through amixer (exemple: `volume on|off`).
+
+Back to the topic. Here is my `.xbindkeysrc`
+
+    "~/bin/volume +"
+        XF86AudioRaiseVolume
+
+    "~/bin/volume -"
+        XF86AudioLowerVolume
+
+    "~/bin/volume !"
+        XF86AudioMute
+
+    "~/bin/popup volume: $(~/bin/volume level)"
+        XF86AudioRaiseVolume
+
+    "~/bin/popup volume: $(~/bin/volume level)"
+        XF86AudioLowerVolume
+
+    "~/bin/popup volume: $(~/bin/volume level)"
+        XF86AudioMute
+
+There, simple. The popup command is bound to my volume keys, so each time I
+press them, the notification comes up! It's quite simple.
+
+### Improvements
+This system is not perfect at all, because popup overlap, the width and timing
+is fixed, ... But it's also a bare simple system, easily hackable. You could use
+it to build a more complex system on top of that. Here are a few ideas I had
+(but did not bother trying :P):
+
+* Using [txtw](https://github.com/baskerville/txtw) to change width dynamically
+* Use a fifo with a script that reads it to stack popups together
+* Make use of the clickable area of `bar` to get rid of the popup
+* Make long notifications scroll using `skroll`
+* shampoo / soap
+* 4 apples
+* <span class='strike'>some fresh meat</span> <em>Ah, wrong list...</em>
+* ...
+* Be creative, as usual!
+
+### Good bye
+I hope this will be helpful to someone. It's not meant to make you throw your
+status bar away, or switch from libnotify and such. It's just a bare simple
+alternative to those, as I like to have :)
+
+Enjoy!
+
+<!-- vim: set ft=markdown ts=4 et: -->
