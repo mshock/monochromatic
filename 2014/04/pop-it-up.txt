@@ -33,6 +33,10 @@ But if you just LIKE to have it displayed all the time (Sometime, I enjoy a nice
 status bar with the fine infos in it), then it's okay! Remember that you can
 have both anyway ;)
 
+Moreover, you can use popups to notify you when a task running in the
+background has finished, or that a torrent has finished downloading, or
+whatever weird usage you can find!
+
 ### Existing software
 There are in fact, many notification systems that you can use:
 [notify-osd](https://launchpad.net/notify-osd),
@@ -44,7 +48,7 @@ And in order to do so, we will need an important program:
 [dzen](https://github.com/robm/dzen) too)
 
 I love this one, because it's really light and simple to use. Moreover, I
-contributed to it ot complete the geometry setting. You can now create a window
+contributed to it to complete the geometry setting. You can now create a window
 of any size and place it wherever you want!
 
 ### Popup itself
@@ -257,6 +261,15 @@ it to build a more complex system on top of that. Here are a few ideas I had
 I hope this will be helpful to someone. It's not meant to make you throw your
 status bar away, or switch from libnotify and such. It's just a bare simple
 alternative to those, as I like to have :)
+
+[![popup show
+off](/img/thumb/2014-04-30-popup-showoff.png)](/img/2014-04-30-popup-showoff.png)
+<span class="caption">Here is a little show case of what you can achieve. I
+used `stlarch_font` for the icon.  
+the first popup is the volume bar. It goes red when it's muted.  
+Next is a new mail (spawned via `touch $MAIL/new/shblah`). And finally, the
+battery level, bound to a key for the purpose of the gif. Otherwise it only
+shows up under 15% (written in red)</span>
 
 Enjoy!
 
